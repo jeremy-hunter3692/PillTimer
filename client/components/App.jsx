@@ -46,36 +46,44 @@ const App = () => {
 
   return (
     <>
-      <h1>Testing!</h1>
-      <div className="titleContainer">
-        <AddText addText={addText} title={title} />
-      </div>
-      <div className="canvasContainer">
-        <CanvasDraw
-          brushColor={color}
-          canvasWidth={800}
-          canvasHeight={600}
-          hideGridX={true}
-          hideGridY={true}
-          ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
-        />
-      </div>
-      <div className="palette">
-        <h3>Palette</h3>
-        <CirclePicker onChange={changeColor} colors={paletteColors} />
-        <FontAwesomeIcon
-          className="icon"
-          icon={faEraser}
-          onClick={eraseColor}
-        />
-      </div>
-      <button
-        onClick={() => {
-          saveableCanvas.eraseAll()
-        }}
-      >
-        Erase All
-      </button>
+      <header>
+        <h1>Testing!</h1>
+        <div className="titleContainer">
+          <AddText addText={addText} title={title} />
+        </div>
+      </header>
+      <section>
+        <div className="canvasContainer">
+          <CanvasDraw
+            brushColor={color}
+            canvasWidth={800}
+            canvasHeight={600}
+            hideGridX={true}
+            hideGridY={true}
+            ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
+          />
+        </div>
+      </section>
+      <section className="colors-erasers">
+        <div className="palette">
+          <h3>Palette</h3>
+          <CirclePicker onChange={changeColor} colors={paletteColors} />
+        </div>
+        <div className="erase-clear">
+          <FontAwesomeIcon
+            className="icon"
+            icon={faEraser}
+            onClick={eraseColor}
+          />
+          <button
+            onClick={() => {
+              saveableCanvas.eraseAll()
+            }}
+          >
+            Clear Canvas
+          </button>
+        </div>
+      </section>
     </>
   )
 }
