@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AddText from './AddText'
 import CanvasDraw from 'react-canvas-draw'
 import { CirclePicker } from 'react-color'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +9,12 @@ const App = () => {
   const [color, setColor] = useState('blue')
   const changeColor = (e) => {
     setColor(e.hex)
+  }
+
+  const [title, setTitle] = useState('title')
+
+  function addText(text) {
+    setTitle(text)
   }
 
   const eraseColor = () => {
@@ -40,6 +47,9 @@ const App = () => {
   return (
     <>
       <h1>Testing!</h1>
+      <div className="titleContainer">
+        <AddText addText={addText} title={title} />
+      </div>
       <div className="canvasContainer">
         <CanvasDraw
           brushColor={color}
