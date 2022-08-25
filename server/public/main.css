@@ -9,6 +9,18 @@ html, body, .viewport {
 }
 
 div {
-  display: flex;
   flex-wrap: wrap;
+  display: flex;
 }
+
+.canvas {
+  margin: auto;
+  justify-content: center;
+  /* border: 'black solid 10px'; */
+  border-style: solid;
+  display: grid;
+  grid-template-columns: repeat(80, 1fr);
+  grid-template-rows: repeat(50, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
