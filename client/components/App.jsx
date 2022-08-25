@@ -7,14 +7,18 @@ import AddText from './AddText'
 function App() {
   const [title, setTitle] = useState('title')
 
-  function addText({ text }) {
-    setTitle({ ...title, text })
+  function addText(text) {
+    setTitle(text)
   }
   return (
     <>
+      <h1>{title}</h1>
       <div className="main">
         <Routes>
-          <Route path="/" element={<AddText addText={addText} />} />
+          <Route
+            path="/"
+            element={<AddText addText={addText} title={title} />}
+          />
         </Routes>
       </div>
     </>

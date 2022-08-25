@@ -7,10 +7,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  ,
-  document.getElementById('app')
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('app')
   )
 })
