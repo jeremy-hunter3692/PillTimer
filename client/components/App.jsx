@@ -13,9 +13,8 @@ function App() {
   return (
     <>
       <div className="main">
-        <AddText addText={addText} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AddText addText={addText} />} />
         </Routes>
       </div>
     </>
