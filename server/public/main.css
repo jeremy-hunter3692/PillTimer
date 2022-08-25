@@ -6,18 +6,46 @@ html, body, .viewport {
 
 #app {
   width: 100%;
+  flex-wrap: wrap;
+  display: flex;
 }
 
-.canvas {
+h1 {
+  text-align: center;
+  margin: 20px auto;
+
+}
+
+.canvasContainer {
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
   margin: auto;
+  
 }
 
-.circle-picker {
-
+canvas {
+  border: solid black 5px;
 }
+
+h3 {
+  text-align: center;
+  margin: 7px auto;
+}
+
+.palette {
+  width: 240px;
+  height: 160px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: rgba(165, 42, 42, 0.462);
+}
+
+.icon {
+  margin: auto;
+}
+
+
 
 /* .canvas {
   margin: auto;
