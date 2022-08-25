@@ -1,20 +1,22 @@
-import React from 'react'
-
-import Pixel from './Pixel'
+import React, { useState } from 'react'
+import CanvasDraw from 'react-canvas-draw'
+import { CirclePicker } from 'react-color'
 
 const App = () => {
-  let array = []
-  for (let i = 0; i < 4000; i++) {
-    array.push(<Pixel id={i} key={i} />)
+  const [color, setColor] = useState('blue')
+  const changeColor = (e) => {
+    setColor(e.hex)
+    console.log(e)
   }
   return (
     <>
-      <h1>Testing!</h1>
-      <div className="canvas">{array}</div>
+      <div className="canvas">
+        <h1>Testing!</h1>
+        <CanvasDraw brushColor={color} />
+      </div>
+      <CirclePicker onChange={changeColor} />
     </>
   )
 }
 
 export default App
-
-//4000 , 80, 50
