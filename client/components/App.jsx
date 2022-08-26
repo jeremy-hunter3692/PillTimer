@@ -1,9 +1,31 @@
 import React, { useState } from 'react'
 import AddText from './AddText'
+import AddColor from './AddColor'
 import CanvasDraw from 'react-canvas-draw'
 import { CirclePicker } from 'react-color'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEraser } from '@fortawesome/free-solid-svg-icons'
+
+let paletteColors = [
+  '#f44336',
+  '#e91e63',
+  '#9c27b0',
+  '#673ab7',
+  '#3f51b5',
+  '#2196f3',
+  '#03a9f4',
+  '#00bcd4',
+  '#009688',
+  '#4caf50',
+  '#8bc34a',
+  '#cddc39',
+  '#ffeb3b',
+  '#ffc107',
+  '#ff9800',
+  '#ff5722',
+  '#795548',
+  '#607d8b',
+]
 
 const App = () => {
   const [color, setColor] = useState('blue')
@@ -13,6 +35,8 @@ const App = () => {
 
   const [title, setTitle] = useState('title')
 
+  const [newColor, setNewColor] = useState(paletteColors)
+
   function addText(text) {
     setTitle(text)
   }
@@ -21,34 +45,20 @@ const App = () => {
     setColor('#ffffff')
   }
 
-  let paletteColors = [
-    '#f44336',
-    '#e91e63',
-    '#9c27b0',
-    '#673ab7',
-    '#3f51b5',
-    '#2196f3',
-    '#03a9f4',
-    '#00bcd4',
-    '#009688',
-    '#4caf50',
-    '#8bc34a',
-    '#cddc39',
-    '#ffeb3b',
-    '#ffc107',
-    '#ff9800',
-    '#ff5722',
-    '#795548',
-    '#607d8b',
-  ]
-
   let saveableCanvas
+
+  function addColor(colorHex) {
+    setNewColor([...newColor, colorHex])
+  }
 
   return (
     <>
-      <h1>Testing!</h1>
+      <h1>{title}</h1>
       <div className="titleContainer">
         <AddText addText={addText} title={title} />
+      </div>
+      <div>
+        <AddColor addColor={addColor} />
       </div>
       <div className="canvasContainer">
         <CanvasDraw
@@ -62,7 +72,7 @@ const App = () => {
       </div>
       <div className="palette">
         <h3>Palette</h3>
-        <CirclePicker onChange={changeColor} colors={paletteColors} />
+        <CirclePicker onChange={changeColor} colors={newColor} />
         <FontAwesomeIcon
           className="icon"
           icon={faEraser}
