@@ -2,6 +2,15 @@ html, body, .viewport {
   width: 100%;
   height: 100%;
   margin: 0;
+  background: rgb(250,248,255);
+background: -moz-linear-gradient(180deg, rgba(250,248,255,1) 20%, rgba(133,172,239,1) 70%, rgba(250,248,255,1) 95%);
+background: -webkit-linear-gradient(180deg, rgba(250,248,255,1) 20%, rgba(133,172,239,1) 70%, rgba(250,248,255,1) 95%);
+background: linear-gradient(180deg, rgba(250,248,255,1) 20%, rgba(133,172,239,1) 70%, rgba(250,248,255,1) 95%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#faf8ff",endColorstr="#faf8ff",GradientType=1);
+}
+
+header {
+  width: 100%;
 }
 
 #app {
@@ -20,8 +29,7 @@ h1 {
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  margin: auto;
-  
+  margin: 0;
 }
 
 canvas {
@@ -33,18 +41,40 @@ h3 {
   margin: 7px auto;
 }
 
+.colors-erasers {
+  margin: 20px;
+  display: flexbox;
+  flex-wrap: wrap;
+}
+
 .palette {
   width: 240px;
-  height: 160px;
+  height: 200px;
   padding: 5px;
+  margin: 10px 0;
   border-radius: 20px;
   background-color: rgba(165, 42, 42, 0.462);
 }
 
 .icon {
-  margin: auto;
+  margin: 6px;
+  font-size: 25px;
+  justify-content: left;
 }
 
+button {
+  width: 100px;
+  height: 30px; 
+  background: white;
+ border-radius: 5px;
+ justify-content: right;
+}
+
+.erase-clear {
+  background-color: pink;
+  height: 50px;
+  border-radius: 10px;
+}
 
 
 /* .canvas {
