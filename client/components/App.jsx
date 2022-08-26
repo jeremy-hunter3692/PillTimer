@@ -30,11 +30,12 @@ let paletteColors = [
 const App = () => {
   const [color, setColor] = useState('blue')
   const [brush, setBrush] = useState(12)
+
   const changeColor = (e) => {
     setColor(e.hex)
   }
 
-  const [title, setTitle] = useState('title')
+  const [title, setTitle] = useState('Your artwork title here...')
 
   const [newColor, setNewColor] = useState(paletteColors)
 
@@ -57,63 +58,77 @@ const App = () => {
   let saveableCanvas
 
   function addColor(colorHex) {
-    setNewColor([...newColor, colorHex])
+    let check = newColor.find((x) => x === colorHex)
+    if (check == undefined && colorHex != '') {
+      setNewColor([...newColor, colorHex])
+    }
   }
 
   return (
     <>
       <header>
-        <h1>{title}</h1>
-      </header>
-      <section>
         <h1>Easel by Chlorine Cats</h1>
-        <div className="titleContainer">
-          <AddText addText={addText} title={title} />
-        </div>
-        <div>
-          <AddColor addColor={addColor} />
-        </div>
-        <div className="canvasContainer">
-          <CanvasDraw
-            brushColor={color}
-            brushRadius={brush}
-            canvasWidth={800}
-            canvasHeight={600}
-            hideGridX={true}
-            hideGridY={true}
-            ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
-          />
-        </div>
-      </section>
-      <section className="colors-erasers">
-        <div className="palette">
-          <h3>Palette</h3>
-          <CirclePicker onChange={changeColor} colors={newColor} />
-        </div>
-        <div className="erase-clear">
-          <h3>Tools</h3>
-          <FontAwesomeIcon
-            className="icon"
-            icon={faEraser}
-            onClick={eraseColor}
-          />
-          <button
-            className="clickMe"
-            onClick={() => {
-              saveableCanvas.eraseAll()
-            }}
-          >
-            Clear Canvas
-          </button>
-          <button className="clickMe" onClick={decreaseBrushSize}>
-            --
-          </button>
-          <button className="clickMe" onClick={increaseBrushSize}>
-            ++
-          </button>
-          <label>{brush}</label>
-        </div>
-      </section>
+        <h2>{title}</h2>
+      </header>
+      <div className="big-container">
+        <section className="container">
+          <div className="form">
+            <h3>Name your Artwork:</h3>
+            <AddText addText={addText} title={title} />
+            <br></br>
+            <h3>Add a new hex colour:</h3>
+            <AddColor addColor={addColor} />
+          </div>
+          <div className="canvasContainer">
+            <CanvasDraw
+              brushColor={color}
+              brushRadius={brush}
+              canvasWidth={800}
+              canvasHeight={600}
+              hideGridX={true}
+              hideGridY={true}
+              ref={(canvasDraw) => (saveableCanvas = canvasDraw)}
+            />
+          </div>
+          <section>
+            <div className="palette">
+              <h3>Palette</h3>
+              <CirclePicker onChange={changeColor} colors={newColor} />
+            </div>
+            <div className="erase-clear">
+              <h3>Tools</h3>
+              <div className="tools">
+                <div className="row">
+                  <FontAwesomeIcon
+                    className="icon"
+                    icon={faEraser}
+                    onClick={eraseColor}
+                  />
+                  <button
+                    className="clickMe"
+                    onClick={() => {
+                      saveableCanvas.eraseAll()
+                    }}
+                  >
+                    Clear All
+                  </button>
+                </div>
+                <div className="row">
+                  <button className="clickMe" onClick={decreaseBrushSize}>
+                    smaller
+                  </button>
+                  <button className="clickMe" onClick={increaseBrushSize}>
+                    bigger
+                  </button>
+                </div>
+                <div className="row">
+                  <label>Brush Size: {brush}</label>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
     </>
   )
 }

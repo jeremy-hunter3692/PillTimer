@@ -27,7 +27,7 @@ export default function AddText({ addText, title }) {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">
-            <strong>New Title:</strong>
+            <strong>New Title: </strong>
           </label>
           <input
             type="text"

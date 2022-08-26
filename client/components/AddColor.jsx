@@ -18,6 +18,7 @@ export default function AddColor({ addColor, title }) {
   //Submits the form text contents when the submit button is clicked
   function handleSubmit(e) {
     e.preventDefault()
+
     addColor(name)
     setData(initialData)
   }
@@ -26,17 +27,21 @@ export default function AddColor({ addColor, title }) {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Add Colour</label>
+          <label htmlFor="name">
+            <strong>Hex Colour: </strong>
+          </label>
           <input
             type="text"
             id="name"
             name="name"
             value={name}
             onChange={handleChange}
+            placeholder="#"
           />
         </div>
-        <input type="submit" />
+        <input className="clickMe" type="submit" />
         <button
+          className="clickMe"
           onClick={(e) => {
             e.preventDefault()
             setData(initialData)
