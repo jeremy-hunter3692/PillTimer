@@ -26,7 +26,9 @@ export default function AddText({ addText, title }) {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">New Title:</label>
+          <label htmlFor="name">
+            <strong>New Title:</strong>
+          </label>
           <input
             type="text"
             id="name"
@@ -35,8 +37,9 @@ export default function AddText({ addText, title }) {
             onChange={handleChange}
           />
         </div>
-        <input type="submit" />
+        <input className="clickMe" type="submit" />
         <button
+          className="clickMe"
           onClick={(e) => {
             e.preventDefault()
             setData(initialData)

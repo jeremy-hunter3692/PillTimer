@@ -29,6 +29,7 @@ let paletteColors = [
 
 const App = () => {
   const [color, setColor] = useState('blue')
+  const [brush, setBrush] = useState(12)
   const changeColor = (e) => {
     setColor(e.hex)
   }
@@ -45,6 +46,14 @@ const App = () => {
     setColor('#ffffff')
   }
 
+  const increaseBrushSize = () => {
+    setBrush(brush + 2)
+  }
+
+  const decreaseBrushSize = () => {
+    brush > 0 ? setBrush(brush - 2) : setBrush(brush)
+  }
+
   let saveableCanvas
 
   function addColor(colorHex) {
@@ -57,6 +66,7 @@ const App = () => {
         <h1>{title}</h1>
       </header>
       <section>
+        <h1>Easel by Chlorine Cats</h1>
         <div className="titleContainer">
           <AddText addText={addText} title={title} />
         </div>
@@ -66,6 +76,7 @@ const App = () => {
         <div className="canvasContainer">
           <CanvasDraw
             brushColor={color}
+            brushRadius={brush}
             canvasWidth={800}
             canvasHeight={600}
             hideGridX={true}
@@ -80,18 +91,27 @@ const App = () => {
           <CirclePicker onChange={changeColor} colors={newColor} />
         </div>
         <div className="erase-clear">
+          <h3>Tools</h3>
           <FontAwesomeIcon
             className="icon"
             icon={faEraser}
             onClick={eraseColor}
           />
           <button
+            className="clickMe"
             onClick={() => {
               saveableCanvas.eraseAll()
             }}
           >
             Clear Canvas
           </button>
+          <button className="clickMe" onClick={decreaseBrushSize}>
+            --
+          </button>
+          <button className="clickMe" onClick={increaseBrushSize}>
+            ++
+          </button>
+          <label>{brush}</label>
         </div>
       </section>
     </>
