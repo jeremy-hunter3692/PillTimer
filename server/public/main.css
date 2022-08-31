@@ -14,7 +14,7 @@ header {
 #app {
   width: 100%;
   flex-wrap: wrap;
-  display: flex;
+  display:block;
 }
 
 h1 {
@@ -54,7 +54,7 @@ h3 {
   font-size: 25px;
 }
 
-.tools {
+/* .tools {
   display: flex-box;
   justify-content: center;
   flex-direction: wrap;
@@ -67,7 +67,7 @@ h3 {
   margin: 10px 0;
   border-radius: 20px;
   background-color: #d2b08c;
-}
+} */
 
 .icon {
   margin: 0 20px ;
@@ -95,11 +95,11 @@ h3 {
   color: #576fe3;
 }
 
-input {
-  width: 100px;
-  height: 30px; 
+textarea{
+  width: 70vw;
+  height: 50vh; 
   border-radius: 5px;
-  justify-content: right;
+  justify-content: center;
 }
 
 
@@ -126,10 +126,20 @@ input {
 }
 
 label {
+  
   font-size: 20px;
 }
 
 .row {
   margin: 10px;
   text-align: center;
+}
+
+.studentNotes { 
+
+  background-color: green;
+}
+.teacherNotes { 
+
+  background-color:red;
 }

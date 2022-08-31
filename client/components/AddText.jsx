@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const initialData = { name: '' }
+const initialData = { name: '', submitted: 'nothing submitted' }
 
 export default function AddText({ addText, title }) {
   const [data, setData] = useState(initialData)
@@ -19,23 +19,34 @@ export default function AddText({ addText, title }) {
   function handleSubmit(e) {
     e.preventDefault()
     addText(name)
-    setData(initialData)
+    setData({ ...initialData, submitted: 'submitted' })
+    console.log(data)
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="notes">
+          <h1>
+            <strong>
+              {title} {data.submitted}
+            </strong>
+          </h1>
+        </label>
+
         <div>
-          <label htmlFor="name">
-            <strong>New Title: </strong>
-          </label>
-          <input
+          {/* <label htmlFor="notes">
+            <strong>{title} </strong>
+          </label> */}
+          <textarea
             type="text"
-            id="name"
+            id={title}
             name="name"
             value={name}
             onChange={handleChange}
-          />
+            size="sm"
+            placeholder={title}
+          ></textarea>
         </div>
         <input className="clickMe" type="submit" />
         <button
