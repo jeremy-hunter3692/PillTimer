@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import AddText from './AddText'
-import AddColor from './AddColor'
 
 const App = () => {
   const [title, setTitle] = useState('Your artwork title here...')

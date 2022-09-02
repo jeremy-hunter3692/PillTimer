@@ -26,7 +26,7 @@ export default function AddText({ addText, title }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="notes">
+        <label htmlFor={title}>
           <h1>
             <strong>
               {title} {data.submitted}
