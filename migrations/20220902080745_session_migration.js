@@ -1,13 +1,13 @@
 const { default: knex } = require('knex')
 
-// /**
-//  * @param { import("knex").Knex } knex
-//  * @returns { Promise<void> }
-//  */
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
 exports.up = function (knex) {
   return knex.schema.createTable('sessions', (table) => {
     table.increments('id').primary()
-    table.date('date')
+    table.dateTime('date')
     table.string('hour')
     table.text('studentNotes')
     table.text('teacherNotes')
@@ -15,8 +15,6 @@ exports.up = function (knex) {
     table.integer('student_id')
   })
 }
-
-
 
 /**
  * @param { import("knex").Knex } knex

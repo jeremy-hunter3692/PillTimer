@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const initialData = { name: '', submitted: 'nothing submitted' }
+const initialData = { name: ' ', submitted: 'nothing submitted' }
 
 export default function AddText({ addText, title }) {
   const [data, setData] = useState(initialData)
@@ -20,11 +20,10 @@ export default function AddText({ addText, title }) {
     e.preventDefault()
     addText(name)
     setData({ ...initialData, submitted: 'submitted' })
-    console.log(data)
   }
 
   return (
-    <div>
+    <div className="notesInput">
       <form onSubmit={handleSubmit}>
         <label htmlFor={title}>
           <h1>
@@ -33,22 +32,18 @@ export default function AddText({ addText, title }) {
             </strong>
           </h1>
         </label>
-
-        <div>
-          {/* <label htmlFor="notes">
-            <strong>{title} </strong>
-          </label> */}
-          <textarea
-            type="text"
-            id={title}
-            name="name"
-            value={name}
-            onChange={handleChange}
-            size="sm"
-            placeholder={title}
-          ></textarea>
-        </div>
+        <textarea
+          className="textBox"
+          type="text"
+          id={title}
+          name="name"
+          value={name}
+          onChange={handleChange}
+          size="sm"
+          placeholder={title}
+        ></textarea>
         <input className="clickMe" type="submit" />
+        {/* clear the input feild */}
         <button
           className="clickMe"
           onClick={(e) => {
@@ -56,7 +51,7 @@ export default function AddText({ addText, title }) {
             setData(initialData)
           }}
         >
-          Cancel
+          Clear texr
         </button>
       </form>
     </div>

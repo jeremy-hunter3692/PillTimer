@@ -9,6 +9,19 @@ export function getSessionById() {
   })
 }
 
-export function addSession() {
-  return request.post(apiUrl)
+export function addSession(text) {
+  return request
+    .post(apiUrl)
+    .send(text)
+    .then((res) => {
+      if (res.status === 200) {
+        console.log('from apicli inside', text, 'body', res.body)
+        return res.body
+      } else {
+        throw new Error('post not saved')
+      }
+    })
+    .catch((err) => {
+      console.error(err, 'bad from addSession')
+    })
 }

@@ -1,34 +1,32 @@
 import React, { useState } from 'react'
 import AddText from './AddText'
+import Nav from './Nav'
+import { addSession, getSessionById } from '../apiClient'
+
+const student = 'studenttemp'
+const date = 'datetemp'
 
 const App = () => {
-  const [title, setTitle] = useState('Your artwork title here...')
+  const [sessionInfo, setSessionInfo] = useState(
+    `notes for ${student} on ${date}`
+  )
 
-  function addText(text) {
-    console.log('submitted', text)
-    // setTitle(text)
+  function addText(notes) {
+    addSession(notes)
   }
-
-  // function addColor(colorHex) {
-  //   let check = newColor.find((x) => x === colorHex)
-  //   if (check == undefined && colorHex != '') {
-  //     setNewColor([...newColor, colorHex])
-  //   }
-  // }
 
   return (
     <>
-      <header>
-        <h1>Personal Project</h1>
-        <h2>{title}</h2>
-      </header>
-      <div className="form">
+      <Nav />
+
+      <div className="formContainer">
+        <h2>{sessionInfo}</h2>
         <div className="studentNotes">
-          <AddText addText={addText} title="studentNotes" />
+          <AddText addText={addText} title="Student Notes" />
           <br></br>
         </div>
         <div className="teacherNotes">
-          <AddText addText={addText} title="teacherNotes" />
+          <AddText addText={addText} title="Teacher Notes" />
         </div>
       </div>
     </>
