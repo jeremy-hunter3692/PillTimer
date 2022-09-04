@@ -15,11 +15,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const session = req.body
-  console.log('routes fired', req.body)
+  console.log(req.body, 'from routes', session)
   db.addSession(session)
     .then((session) => {
       res.send(session)
-      console.log('db addsession', session)
     })
     .catch((err) => {
       console.error(err, 'no good')

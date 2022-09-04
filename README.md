@@ -1,3 +1,15 @@
+exports.up = function (knex) {
+
+}
+
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
+exports.seed = async function (knex) {
+  
+
+
 # (Broken) Kaleidoscope
 
 This challenge is designed to help you get more comfortable with managing component state in React.

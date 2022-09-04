@@ -8,7 +8,7 @@ function getAllSessions(db = connection) {
   return db('sessions').select()
 }
 
-function getSessionById(db = connection) {
+function getSessionById(id, db = connection) {
   return db('sessions').select()
 }
 
@@ -16,7 +16,7 @@ function addSession(info, db = connection) {
   console.log('from db', info)
   return db('sessions').insert(info)
 }
-server/db/knexfile.js
+
 module.exports = {
   addSession,
   getSessionById,
