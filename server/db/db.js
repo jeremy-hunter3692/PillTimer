@@ -9,7 +9,7 @@ function getAllSessions(db = connection) {
 }
 
 function getSessionById(id, db = connection) {
-  return db('sessions').select()
+  return db('sessions').where('id', id).select().first()
 }
 
 function addSession(info, db = connection) {

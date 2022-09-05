@@ -51,7 +51,7 @@ export default function AddText({ addText, title }) {
             setData(initialData)
           }}
         >
-          Clear texr
+          Clear text
         </button>
       </form>
     </div>

@@ -18,6 +18,7 @@
     "dev:server": "nodemon server",
     "lint": "eslint --ext .js,.jsx .",
     "init": "knex init",
+    "knex": "knex --knexfile server/db/knexfile.js",
     "migrate:make": "knex migrate:make",
     "migrate:latest": "knex migrate:latest",
     "migrate:rollback": "knex migrate:rollback",
