@@ -1,40 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import AddText from './AddText'
+import React, { useState } from 'react'
 import Nav from './Nav'
+import CurrentSession from './CurrentSession'
+import LastSession from './LastSession'
 import { addSession, getSessionById, getAllSessions } from '../apiClient'
 
-const initObj = {
-  date: 'none loaded',
-  hour: 0,
-  studentNotes: 'none Loaded',
-  teacherNotes: 'none Loaded',
-}
 
+let sessionSelector = 0
 const App = () => {
-  const [sessionInfo, setSessionInfo] = useState(initObj)
-  const [currentSession, setCurrentSession] = useState({})
+ 
+  const [selectedSession, setSelectedSession] = useState('')
+  const [currentSession, setCurrentSession] = useState(false)
   // console.log(sessionInfo[0])
   //get all notes and then check somewhere to get the last seesion.
   //on click for load last session have boolen
-  useEffect(() => {
-    getAllSessions()
-      .then((data) => {
-        setSessionInfo(data[0]) //data.length
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
-  }, [])
 
-  console.log(sessionInfo)
-  console.log(currentSession)
-  // function loadLastSession() {}
+
+  console.log('state:', selectedSession)
 
   function addFormText(notes) {
-    // addSession([...sessionInfo[0], sessionInfo[1]])
+    setSelectedSession({ ...selectedSession, studentNotes: notes })
   }
-  // console.log('date', sessionInfo.date)
-  const displayInfo = `Notes for: ${sessionInfo.hour} am/pm on ${sessionInfo.date}`
 
   return (
     <>
@@ -43,31 +28,23 @@ const App = () => {
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          // sessionInfo([se])
+          setCurrentSession(false)
         }}
       >
         Load Last Session
       </button>
+      {/*  */}
       <button
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          setSessionInfo(sessionInfo[1])
-          console.log(sessionInfo[1])
+          setCurrentSession(true)
         }}
       >
         Load Current Session
       </button>
-      <div className="formContainer">
-        <h2>{displayInfo}</h2>
-        <div className="studentNotes">
-          <AddText addFormText={addFormText} title="Student Notes" />
-          <br></br>
-        </div>
-        <div className="teacherNotes">
-          <AddText addFormText={addFormText} title="Teacher Notes" />
-        </div>
-      </div>
+      {currentSession ? <CurrentSession /> : <LastSession />}
+
     </>
   )
 }
