@@ -7,6 +7,7 @@ exports.seed = async function (knex) {
   await knex('sessions').del()
   await knex('sessions').insert([
     {
+      date: '12 / 12',
       hour: 23.45,
       studentNotes: 'some student notes',
       teacherNotes: 'some teacher notes',
@@ -14,6 +15,7 @@ exports.seed = async function (knex) {
       student_id: 6,
     },
     {
+      date: '11 / 12',
       hour: 12,
       studentNotes: 'some other student notes',
       teacherNotes: 'some other teacher notes',
@@ -21,6 +23,7 @@ exports.seed = async function (knex) {
       student_id: 8,
     },
     {
+      date: '12 / 01',
       hour: 2,
       studentNotes: 'some other student notes',
       teacherNotes: 'some other teacher notes',

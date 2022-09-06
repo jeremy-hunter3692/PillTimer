@@ -1,24 +1,19 @@
 import React, { useState } from 'react'
-import AddText from './AddText'
-const initSession = {
-  date: 'none loaded',
-  hour: 0,
-  studentNotes: 'none Loaded',
-  teacherNotes: 'none Loaded',
-}
-export default function CurrentSession(props) {
-  const [session, setSession] = useState(initSession)
+import AddText from './LastForm'
 
+export default function CurrentSession(props) {
+  // const [session, setSession] = useState(initSession)
+  // console.log('from currentSesh', props)
   return (
     <>
       <h1>Current Session:</h1>
+      <h2>{`Notes for: ${props.state.hour} am/pm on ${props.state.date}`}</h2>
       <div className="formContainer">
-        <h2>{`Notes for: ${session.hour} am/pm on ${session.date}`}</h2>
         <div className="studentNotes">
           <AddText
             // addFormText={addFormText}
             title="Student Notes"
-            sessionNotes={session.studentNotes}
+            handelChange={props.handleChange}
           />
           <br></br>
         </div>
@@ -26,7 +21,7 @@ export default function CurrentSession(props) {
           <AddText
             // addFormText={addFormText}
             title="Teacher Notes"
-            sessionNotes={session.teacherNotes}
+            handelChange={props.handleChange}
           />
         </div>
       </div>
