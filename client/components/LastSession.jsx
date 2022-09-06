@@ -13,7 +13,8 @@ export default function LastSession(props) {
           <LastForm
             // addFormText={addFormText}
             title="Student Notes"
-            value={props.state.studentNotes}
+            handelChange={props.handleChange}
+            state={props.state}
           />
           <br></br>
         </div>
@@ -21,7 +22,8 @@ export default function LastSession(props) {
           <LastForm
             // addFormText={addFormText}
             title="Teacher Notes"
-            value={props.state.teacherNotes}
+            handelChange={props.handleChange}
+            state={props.state}
           />
         </div>
       </div>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
-const initialData = { name: '', submitted: 'notthing submitted' }
+// const initialData = { name: '', submitted: 'notthing submitted' }
 
-export default function LastForm({ title, value, handelChange }) {
-  const [data, setData] = useState(initialData)
-  //const name = data.name
-  let { name } = data
+export default function LastForm({ title, handelChange, state }) {
+  const [data, setData] = useState(state)
+  console.log('1', data)
+  // state ? (data.studentNotes = state.studentNotes) : console.log('wait')
+  console.log(data)
 
-  // console.log(data)
+  // let { studentNotes } = state.studentNotes
 
   function localHandleChange(e) {
-    handelChange(data, e.target.name, e.target.value)
+    setData({ ...data, studentNotes: e.target.value })
+    handelChange(data)
   }
 
   //Submits the form text contents when the submit button is clicked
@@ -25,7 +27,8 @@ export default function LastForm({ title, value, handelChange }) {
         <label htmlFor={title}>
           <h1>
             <strong>
-              {title} {data.submitted}
+              {title}
+              {/* {data.submitted} */}
             </strong>
           </h1>
         </label>
@@ -34,7 +37,7 @@ export default function LastForm({ title, value, handelChange }) {
           type="text"
           id={title}
           name="name"
-          value={name}
+          value={data.studentNotes}
           onChange={localHandleChange}
           size="sm"
         ></textarea>

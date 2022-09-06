@@ -23,15 +23,14 @@ const oldSession = {
 const App = () => {
   const [state, setState] = useState([oldSession, initSession])
   const [selector, setSelector] = useState(false)
-
-  function handleChange(data, name, value) {
-    setState(
+  console.log(state[0])
+  function handleChange(data) {
+    // console.log(data.name)
+    setState([
       state[0],
-      (state[1] = {
-        ...data,
-        name: value,
-      })
-    )
+      (state[1] = { ...state[1], studentNotes: data.studentNotes }),
+    ])
+    console.log(state[1])
   }
 
   // useEffect(() => {
@@ -52,7 +51,7 @@ const App = () => {
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          setSelector(false)
+          setSelector(true)
         }}
       >
         Load Last Session
@@ -62,16 +61,17 @@ const App = () => {
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          setSelector(true)
-          setState([
-            state[0],
-            (state[1] = {
-              date: 'new data',
-              hour: 4,
-              studentNotes: 'new notet',
-              teacherNotes: 'NEWWW',
-            }),
-          ])
+          setState([...state])
+          setSelector(false)
+          // setState([
+          //   state[0],
+          //   (state[1] = {
+          //     date: 'new data',
+          //     hour: 4,
+          //     studentNotes: 'new notet',
+          //     teacherNotes: 'NEWWW',
+          //   }),
+          // ])
 
           console.log('current load', state)
         }}
@@ -79,9 +79,9 @@ const App = () => {
         Load Current Session
       </button>
       {selector ? (
-        <CurrentSession state={state[1]} handleChange={handleChange} />
+        <LastSession state={state[0]} handleChange={handleChange} />
       ) : (
-        <LastSession state={state[0]} />
+        <CurrentSession state={state[1]} handleChange={handleChange} />
       )}
     </>
   )
