@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 // const initialData = { name: '', submitted: 'notthing submitted' }
 
 export default function CurrentForm({ title, handelChange, state, formName }) {
-  // console.log('state:', state)
-  // const [data, setData] = useState(state )
 
   function localHandleChange(e) {
     handelChange([e.target.name], e.target.value)
@@ -12,8 +10,7 @@ export default function CurrentForm({ title, handelChange, state, formName }) {
   //Submits the form text contents when the submit button is clicked
   function handleSubmit(e) {
     e.preventDefault()
-    // addFormText(name)
-    setData({ ...initialData, submitted: 'submitted' })
+    // setData({ ...initialData, submitted: 'submitted' })
   }
 
   return (

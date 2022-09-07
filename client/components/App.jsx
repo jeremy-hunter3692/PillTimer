@@ -6,10 +6,10 @@ import { addSession, getSessionById, getAllSessions } from '../apiClient'
 // import { Statement } from 'sqlite3'
 
 const initSession = {
-  date: 'init',
+  date: '',
   hour: '12',
-  studentNotes: 'init',
-  teacherNotes: 'init',
+  studentNotes: '',
+  teacherNotes: '',
 }
 
 const oldSession = {
