@@ -6,31 +6,29 @@ import { addSession, getSessionById, getAllSessions } from '../apiClient'
 // import { Statement } from 'sqlite3'
 
 const initSession = {
-  date: 'none loaded',
-  hour: 4,
-  studentNotes: 'none yet Loaded student',
-  teacherNotes: 'none  teacher yet Loaded',
+  date: 'init',
+  hour: '12',
+  studentNotes: 'init',
+  teacherNotes: 'init',
 }
 
 const oldSession = {
   date: '12.12.34',
   hour: 3,
   studentNotes: 'ollllllld student notes',
-  teacherNotes: 'Ye old teacher notes',
+  teacherNotes: 'Ye olllllld teacher notes',
 }
 // let sessionSelector = 0
 //
 const App = () => {
-  const [state, setState] = useState([oldSession, initSession])
-  const [selector, setSelector] = useState(false)
-  console.log(state[0])
-  function handleChange(data) {
-    // console.log(data.name)
-    setState([
-      state[0],
-      (state[1] = { ...state[1], studentNotes: data.studentNotes }),
-    ])
-    console.log(state[1])
+  const [state, setState] = useState([oldSession, initSession, true])
+  // console.log(state)
+  // const [selector, setSelector] = useState(true)
+  // console.log(state[0])
+
+  function handleChange(name, value) {
+    setState([state[0], { ...state[1], [name]: value }, state[2]])
+    console.log('TOP 2:', state[1])
   }
 
   // useEffect(() => {
@@ -51,7 +49,8 @@ const App = () => {
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          setSelector(true)
+          setState([state[0], state[1], (state[2] = true)])
+          // console.log(state)
         }}
       >
         Load Last Session
@@ -61,24 +60,12 @@ const App = () => {
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
-          setState([...state])
-          setSelector(false)
-          // setState([
-          //   state[0],
-          //   (state[1] = {
-          //     date: 'new data',
-          //     hour: 4,
-          //     studentNotes: 'new notet',
-          //     teacherNotes: 'NEWWW',
-          //   }),
-          // ])
-
-          console.log('current load', state)
+          setState([state[0], state[1], (state[2] = false)])
         }}
       >
         Load Current Session
       </button>
-      {selector ? (
+      {state[2] ? (
         <LastSession state={state[0]} handleChange={handleChange} />
       ) : (
         <CurrentSession state={state[1]} handleChange={handleChange} />

@@ -10,21 +10,11 @@ export default function LastSession(props) {
       <h2>{`Notes for: ${props.state.hour} am/pm on ${props.state.date}`}</h2>
       <div className="formContainer">
         <div className="studentNotes">
-          <LastForm
-            // addFormText={addFormText}
-            title="Student Notes"
-            handelChange={props.handleChange}
-            state={props.state}
-          />
+          <LastForm value={props.state.studentNotes} />
           <br></br>
         </div>
         <div className="teacherNotes">
-          <LastForm
-            // addFormText={addFormText}
-            title="Teacher Notes"
-            handelChange={props.handleChange}
-            state={props.state}
-          />
+          <LastForm value={props.state.teacherNotes} />
         </div>
       </div>
     </>
