@@ -8,6 +8,6 @@ exports.seed = async function (knex) {
   await knex('students').insert([
     { id: 3, name: 'lil jimmy', instrument: 'piano' },
     { id: 6, name: 'bleremy', instrument: 'piano' },
-    { id: 16, name: 'timtimtim', intrument: 'guitar' },
+    { id: 16, name: 'timtimtim', instrument: 'guitar' },
   ])
 }

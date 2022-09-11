@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-// const initialData = { name: '', submitted: 'notthing submitted' }
+import React from 'react'
 
 export default function CurrentForm({
   title,
@@ -7,6 +6,7 @@ export default function CurrentForm({
   state,
   formName,
   handleSubmit,
+  bool,
 }) {
   function localHandleChange(e) {
     handelChange([e.target.name], e.target.value)
@@ -14,7 +14,6 @@ export default function CurrentForm({
 
   function localHandleSubmit(e) {
     e.preventDefault()
-    // console.log('current form:', state)
     handleSubmit(state)
   }
 
@@ -29,6 +28,11 @@ export default function CurrentForm({
             </strong>
           </h1>
         </label>
+        {bool ? (
+          <input className="clickMe" type="submit" value="submit all notes" />
+        ) : (
+          ' '
+        )}
         <textarea
           className="textBox"
           type="text"
@@ -38,18 +42,19 @@ export default function CurrentForm({
           onChange={localHandleChange}
           size="sm"
         ></textarea>
-        <input className="clickMe" type="submit" />
-        {/* clear the input feild */}
-        <button
-          className="clickMe"
-          onClick={(e) => {
-            e.preventDefault()
-            // setData(initialData)
-          }}
-        >
-          Clear text
-        </button>
       </form>
     </div>
   )
+}
+
+{
+  /* TODO implement clear buttone <button
+className="clickMe"
+onClick={(e) => {
+  e.preventDefault()
+  // setData(initialData)
+}}
+>
+Clear text
+</button> */
 }

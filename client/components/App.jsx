@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react'
 import Nav from './Nav'
 import CurrentSession from './CurrentSession'
 import LastSession from './LastSession'
+import Display from './Display'
 import { addSession, getSessionById, getAllSessions } from '../apiClient'
-// import { Statement } from 'sqlite3'
+
+const date = new Date().toISOString()
 
 const initSession = {
-  date: '',
-  hour: '',
-  studentNotes: '',
-  teacherNotes: '',
+  date: date.slice(2, 10),
+  hour: date.slice(11, 13),
+  studentNotes: ' ',
+  teacherNotes: ' ',
+  name: ' ',
 }
 
 const App = () => {
-  const [state, setState] = useState([[], initSession, true])
+  const [state, setState] = useState([{}, initSession, true])
 
   function handleChange(name, value) {
     setState([state[0], { ...state[1], [name]: value }, state[2]])
@@ -22,17 +25,22 @@ const App = () => {
 
   //Submits the form text contents when the submit button is clicked
   function handleSubmit(newSession) {
-    console.log('app level', newSession)
-    // addSession(newSession)
+    //Filtering form level info to fit api/db calls
+    delete newSession.name
+    addSession(newSession)
   }
 
   useEffect(() => {
     getAllSessions()
       .then((data) => {
         //select last session and put them in the state for display
-        //TODO make the db call just fetch the last one? Seems over kill to load everythiing here
+        //TODO make the db call just fetch the last one? Seems overkill to load everythiing here
         const index = data.length - 1
-        setState([data[index], initSession, true])
+        setState([
+          data[index],
+          { ...initSession, name: data[index].name },
+          true,
+        ])
       })
       .catch((err) => {
         console.error(err.message)
@@ -42,6 +50,18 @@ const App = () => {
   return (
     <>
       <Nav />
+      {state[2] ? (
+        <>
+          {' '}
+          <Display state={state[0]} /> <h1>Last Session:</h1>
+        </>
+      ) : (
+        <>
+          {' '}
+          <Display state={state[1]} />
+          <h1>Current Session:</h1>
+        </>
+      )}
       <button
         className="clickMe"
         onClick={(e) => {
@@ -61,6 +81,7 @@ const App = () => {
       >
         Load Current Session
       </button>
+
       {state[2] ? (
         <LastSession state={state[0]} />
       ) : (

@@ -5,8 +5,8 @@ export default function navBar() {
     <>
       <header>
         <h1>Personal Project: two boxes</h1>
-    
-        <a href="alink">Home</a>
+
+        <a href="alink">Will be link to options, home, edit etc</a>
       </header>
     </>
   )

@@ -1,23 +1,12 @@
-import React, { useState } from 'react'
-// const initialData = { name: '', submitted: 'notthing submitted' }
+import React from 'react'
 
-export default function CurrentForm({ title, value }) {
-  // function localHandleChange(e) {
-  //   setData({ ...data, studentNotes: e.target.value })
-  //   handelChange(data)
-  // }
-
-  //Submits the form text contents when the submit button is clicked
-
+export default function LasttForm({ title, value }) {
   return (
     <div className="notesInput">
       <form>
         <label htmlFor={title}>
           <h1>
-            <strong>
-              {title}
-              {/* {data.submitted} */}
-            </strong>
+            <strong>{title}</strong>
           </h1>
         </label>
         <textarea

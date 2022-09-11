@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const session = req.body
-  // console.log(req.body, 'from routes', session)
   db.addSession(session)
     .then((session) => {
       res.send(session)
