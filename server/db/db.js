@@ -5,7 +5,7 @@ const connection = require('knex')(config)
 // /Users/jeremyhunter/Documents/Coding/DevAcademy/BootCamp/week4/ferrous-felines/server/db
 
 function getAllSessions(db = connection) {
-  return db('sessions').select()
+  return db('sessions').join('students', 'student_id', 'students.id')
 }
 
 function getSessionById(id, db = connection) {
@@ -13,7 +13,7 @@ function getSessionById(id, db = connection) {
 }
 
 function addSession(info, db = connection) {
-  console.log('from db', info)
+  // console.log('from db', info)
   return db('sessions').insert(info)
 }
 

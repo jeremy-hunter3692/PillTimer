@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
 // const initialData = { name: '', submitted: 'notthing submitted' }
 
-export default function CurrentForm({ title, handelChange, state, formName }) {
-
+export default function CurrentForm({
+  title,
+  handelChange,
+  state,
+  formName,
+  handleSubmit,
+}) {
   function localHandleChange(e) {
     handelChange([e.target.name], e.target.value)
   }
 
-  //Submits the form text contents when the submit button is clicked
-  function handleSubmit(e) {
+  function localHandleSubmit(e) {
     e.preventDefault()
-    // setData({ ...initialData, submitted: 'submitted' })
+    // console.log('current form:', state)
+    handleSubmit(state)
   }
 
   return (
     <div className="notesInput">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={localHandleSubmit}>
         <label htmlFor={title}>
           <h1>
             <strong>

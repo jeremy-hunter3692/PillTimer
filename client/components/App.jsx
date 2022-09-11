@@ -7,41 +7,38 @@ import { addSession, getSessionById, getAllSessions } from '../apiClient'
 
 const initSession = {
   date: '',
-  hour: '12',
+  hour: '',
   studentNotes: '',
   teacherNotes: '',
 }
 
-const oldSession = {
-  date: '12.12.34',
-  hour: 3,
-  studentNotes: 'ollllllld student notes',
-  teacherNotes: 'Ye olllllld teacher notes',
-}
-// let sessionSelector = 0
-//
 const App = () => {
-  const [state, setState] = useState([oldSession, initSession, true])
-  // console.log(state)
-  // const [selector, setSelector] = useState(true)
-  // console.log(state[0])
+  const [state, setState] = useState([[], initSession, true])
 
   function handleChange(name, value) {
     setState([state[0], { ...state[1], [name]: value }, state[2]])
-    console.log('TOP 2:', state[1])
+    // console.log('TOP 2:', state[1])
   }
 
-  // useEffect(() => {
-  //   // console.log('use effect')
-  //   getAllSessions()
-  //     .then((data) => {
-  //       setState([data, ...state])
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.message)
-  //     })
-  // }, [])
-  // console.log('from use', state)
+  //Submits the form text contents when the submit button is clicked
+  function handleSubmit(newSession) {
+    console.log('app level', newSession)
+    // addSession(newSession)
+  }
+
+  useEffect(() => {
+    getAllSessions()
+      .then((data) => {
+        //select last session and put them in the state for display
+        //TODO make the db call just fetch the last one? Seems over kill to load everythiing here
+        const index = data.length - 1
+        setState([data[index], initSession, true])
+      })
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }, [])
+
   return (
     <>
       <Nav />
@@ -50,7 +47,6 @@ const App = () => {
         onClick={(e) => {
           e.preventDefault()
           setState([state[0], state[1], (state[2] = true)])
-          // console.log(state)
         }}
       >
         Load Last Session
@@ -66,9 +62,13 @@ const App = () => {
         Load Current Session
       </button>
       {state[2] ? (
-        <LastSession state={state[0]} handleChange={handleChange} />
+        <LastSession state={state[0]} />
       ) : (
-        <CurrentSession state={state[1]} handleChange={handleChange} />
+        <CurrentSession
+          state={state[1]}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
       )}
     </>
   )

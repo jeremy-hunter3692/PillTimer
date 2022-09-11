@@ -16,6 +16,7 @@ export default function CurrentSession(props) {
             formText={props.state.studentNotes}
             state={props.state}
             formName="studentNotes"
+            handleSubmit={props.handleSubmit}
           />
           <br></br>
         </div>
@@ -27,6 +28,7 @@ export default function CurrentSession(props) {
             formText={props.state.teacherNotes}
             state={props.state}
             formName="teacherNotes"
+            handleSubmit={props.handleSubmit}
           />
         </div>
       </div>

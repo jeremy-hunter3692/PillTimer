@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import LastForm from './LastForm'
-import { getAllSessions } from '../apiClient'
 export default function LastSession(props) {
-  const [session, setSession] = useState({})
-  // console.log('props from last', props)
   return (
     <>
       <h1>Last Session</h1>
