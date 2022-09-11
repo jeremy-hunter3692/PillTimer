@@ -1,8 +1,6 @@
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
-// /Users/jeremyhunter/Documents/Coding/DevAcademy/BootCamp/week4/ferrous-felines/knexfile.js
-// /Users/jeremyhunter/Documents/Coding/DevAcademy/BootCamp/week4/ferrous-felines/server/db
 
 function getAllSessions(db = connection) {
   return db('sessions').join('students', 'student_id', 'students.id')

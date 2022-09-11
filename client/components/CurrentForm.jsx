@@ -28,8 +28,11 @@ export default function CurrentForm({
             </strong>
           </h1>
         </label>
+
         {bool ? (
-          <input className="clickMe" type="submit" value="submit all notes" />
+          <div>
+            <input className="clickMe" type="submit" value="submit all notes" />
+          </div>
         ) : (
           ' '
         )}

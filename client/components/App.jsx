@@ -50,18 +50,7 @@ const App = () => {
   return (
     <>
       <Nav />
-      {state[2] ? (
-        <>
-          {' '}
-          <Display state={state[0]} /> <h1>Last Session:</h1>
-        </>
-      ) : (
-        <>
-          {' '}
-          <Display state={state[1]} />
-          <h1>Current Session:</h1>
-        </>
-      )}
+      {/* buttons change ternary state while preserving the rest of the state */}
       <button
         className="clickMe"
         onClick={(e) => {
@@ -81,15 +70,23 @@ const App = () => {
       >
         Load Current Session
       </button>
-
+      {/* to display last or current session depending on state ternary as well as display componenet for session details */}
       {state[2] ? (
-        <LastSession state={state[0]} />
+        <>
+          <Display state={state[0]} /> <h1>Last Session:</h1>
+          <LastSession state={state[0]} />
+        </>
       ) : (
-        <CurrentSession
-          state={state[1]}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
+        <>
+          {' '}
+          <Display state={state[1]} />
+          <h1>Current Session:</h1>
+          <CurrentSession
+            state={state[1]}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        </>
       )}
     </>
   )
