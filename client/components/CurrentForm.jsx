@@ -1,25 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTodaysFormData } from '../Actions/formActions'
 
-export default function CurrentForm({
-  title,
-  handelChange,
-  state,
-  formName,
-  handleSubmit,
-  bool,
-}) {
-  function localHandleChange(e) {
-    handelChange([e.target.name], e.target.value)
+export default function CurrentForm() {
+  const currentFormData = useSelector((state) => state.currentFormData)
+
+  const [form, setForm] = useState(currentFormData)
+  const dispatch = useDispatch()
+
+  useSelector((state) => {
+    state
+  })
+
+  function handleChange(e) {
+    setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  function localHandleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
-    handleSubmit(state)
+    dispatch(setTodaysFormData(form))
   }
 
   return (
     <div className="notesInput">
-      <form onSubmit={localHandleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor={title}>
           <h1>
             <strong>
@@ -28,21 +32,18 @@ export default function CurrentForm({
             </strong>
           </h1>
         </label>
-
-        {bool ? (
+        {bool && (
           <div>
             <input className="clickMe" type="submit" value="submit all notes" />
           </div>
-        ) : (
-          ' '
         )}
         <textarea
           className="textBox"
           type="text"
           id={title}
           name={formName}
-          value={state[formName]}
-          onChange={localHandleChange}
+          value={form}
+          onChange={handleChange}
           size="sm"
         ></textarea>
       </form>

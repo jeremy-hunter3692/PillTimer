@@ -16,6 +16,7 @@ export default function LasttForm({ title, value }) {
           value={value}
           name="name"
           size="sm"
+          readOnly
         ></textarea>
       </form>
     </div>

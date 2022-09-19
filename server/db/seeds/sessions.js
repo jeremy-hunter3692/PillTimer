@@ -46,7 +46,7 @@ exports.seed = async function (knex) {
       date: '22-09-05',
       hour: 2,
       studentNotes:
-        'Two octave scales: A Major, C melodic Minor and F#major. Practise the hannon exercises from last week again. The etudes we have been working on paying careful attention to the fast sections. Remember to practise them slowly!! Start at 40 bpm and work your way up to speed. Begin the Bach piece(no further than bar 20). Hands Spereately first! Then once you can play them wtih no mistakes you can combine them.',
+        'Two octave scales: A Major, C melodic Minor and F#major. Practise the hannon exercises from last week again. The etudes we have been working on paying careful attention to the fast sections. Remember to practise them slowly!! Start at 40 bpm and work your way up to speed. Begin the Bach piece(no further than bar 20). Hands Separately first! Then once you can play them with no mistakes you can combine them.',
       teacherNotes:
         'Begining to rush a lot, make sure to go through the metronome exercises with them next lessson. The scales are coming together but make sure their thumb tucks under quick enough, particularly on the Melodic minor. The pieces are sounding really great, very musical just needs some more practise time practising slowly to get the notes off by heart so they can concentrate on the phrasing.',
       teacher_id: 1,
