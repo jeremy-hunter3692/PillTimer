@@ -19,9 +19,7 @@ export default function form(state = emptyForm, action) {
     case SET_CURRENT_DATA:
       return { ...state, ...payload }
     case GET_CURRENT_DATA:
-      //unsure if payload is correct here
-      return payload
-
+      return state
     case SET_LAST_FORMDATA:
       return state
     default:

@@ -8,6 +8,7 @@ import { addSession, getSessionById, getAllSessions } from '../apiClient'
 import {
   setLastSessionFormData,
   setTodaysFormData,
+  getTodaysFormData,
 } from '../Actions/formActions'
 // const date = new Date().toISOString()
 
@@ -21,14 +22,11 @@ import {
 
 const App = () => {
   const dispatch = useDispatch()
-
+  const [displayCurrent, setDisplayCurrent] = useState(false)
   useEffect(() => {
     getAllSessions()
       .then((data) => {
         dispatch(setLastSessionFormData(data[0]))
-      })
-      .then(() => {
-        setTodaysFormData()
       })
       .catch((err) => {
         console.error(err.message)
@@ -38,18 +36,8 @@ const App = () => {
   return (
     <>
       <Nav />
-      {/* 
-     
-      <button
-        className="clickMe"
-        onClick={(e) => {
-          e.preventDefault()
-          setState([state[0], state[1], (state[2] = true)])
-        }}
-      >
-        Load Last Session
-      </button>
-      <button
+
+      {/* <button
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
@@ -66,12 +54,20 @@ const App = () => {
       ) : (
         <>
           {' '}
-          <Display state={state[1]} />
-          <h1>Current Session:</h1>
-          <CurrentSession state={state[1]} />
-        </>
-      )} */}
+          <Display state={state[1]} /> */}
+
+      <button
+        className="clickMe"
+        onClick={(e) => {
+          e.preventDefault()
+          setDisplayCurrent(!displayCurrent)
+        }}
+      >
+        Load Last Session
+      </button>
+      {displayCurrent ? <CurrentSession /> : <LastSession />}
     </>
+    //   )}
   )
 }
 

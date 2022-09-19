@@ -1,48 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setTodaysFormData } from '../Actions/formActions'
+import { setTodaysFormData, getTodaysFormData } from '../Actions/formActions'
 
-export default function CurrentForm() {
-  const currentFormData = useSelector((state) => state.currentFormData)
+export default function CurrentForm(props) {
+  useEffect(() => {
+    dispatch(getTodaysFormData())
+  }, [])
 
-  const [form, setForm] = useState(currentFormData)
+  const initCurrentForm = useSelector((state) => state.formData)
+  const [form, setForm] = useState(initCurrentForm)
   const dispatch = useDispatch()
-
-  useSelector((state) => {
-    state
-  })
+  const { studentNotes } = form
+  // console.log('2', form)
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
+    dispatch(setTodaysFormData({ ...form, [e.target.name]: e.target.value }))
   }
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(setTodaysFormData(form))
+    // dispatch(setTodaysFormData(form))
   }
 
   return (
     <div className="notesInput">
       <form onSubmit={handleSubmit}>
-        <label htmlFor={title}>
+        <label htmlFor={props.title}>
           <h1>
             <strong>
-              {title}
+              {props.title}
               {/* {data.submitted} */}
             </strong>
           </h1>
         </label>
-        {bool && (
-          <div>
-            <input className="clickMe" type="submit" value="submit all notes" />
-          </div>
-        )}
+
+        <div>
+          <input className="clickMe" type="submit" value="submit all notes" />
+        </div>
+
         <textarea
           className="textBox"
           type="text"
-          id={title}
-          name={formName}
-          value={form}
+          id={props.title}
+          name="studentNotes"
+          value={studentNotes}
           onChange={handleChange}
           size="sm"
         ></textarea>
