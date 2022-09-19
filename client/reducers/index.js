@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 
-import formData from './formData'
+import currentFormData from './currentFormData'
+import lastFormData from './lastFormData'
 
 const reducers = combineReducers({
-  formData,
+  currentFormData,
+  lastFormData,
 })
 
 export default reducers

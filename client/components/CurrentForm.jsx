@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setTodaysFormData, getTodaysFormData } from '../Actions/formActions'
+import { setTodaysFormData } from '../Actions/currentFormActions'
 
-export default function CurrentForm(props) {
-  useEffect(() => {
-    dispatch(getTodaysFormData())
-  }, [])
-
+export default function CurrentForm({ title, bool, value }) {
   const initCurrentForm = useSelector((state) => state.formData)
   const [form, setForm] = useState(initCurrentForm)
   const dispatch = useDispatch()
-  const { studentNotes } = form
-  // console.log('2', form)
+  // const { studentNotes } = form
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -26,10 +21,10 @@ export default function CurrentForm(props) {
   return (
     <div className="notesInput">
       <form onSubmit={handleSubmit}>
-        <label htmlFor={props.title}>
+        <label htmlFor={title}>
           <h1>
             <strong>
-              {props.title}
+              {title}
               {/* {data.submitted} */}
             </strong>
           </h1>
@@ -42,10 +37,10 @@ export default function CurrentForm(props) {
         <textarea
           className="textBox"
           type="text"
-          id={props.title}
+          id={title}
           name="studentNotes"
-          value={studentNotes}
-          onChange={handleChange}
+          value={value}
+          onChange={bool && handleChange}
           size="sm"
         ></textarea>
       </form>

@@ -4,29 +4,31 @@ import Nav from './Nav'
 import CurrentSession from './CurrentSession'
 import LastSession from './LastSession'
 import Display from './Display'
-import { addSession, getSessionById, getAllSessions } from '../apiClient'
 import {
-  setLastSessionFormData,
+  addSession,
+  getSessionById,
+  getAllSessions,
+  getLastSession,
+} from '../apiClient'
+import {
   setTodaysFormData,
   getTodaysFormData,
-} from '../Actions/formActions'
+} from '../Actions/currentFormActions'
+import { setLastSessionFormData } from '../Actions/lastFormActions'
 // const date = new Date().toISOString()
-
-// const initSession = {
-//   date: date.slice(2, 10),
-//   hour: date.slice(11, 13),
-//   studentNotes: ' ',
-//   teacherNotes: ' ',
-//   name: ' ',
-// }
 
 const App = () => {
   const dispatch = useDispatch()
   const [displayCurrent, setDisplayCurrent] = useState(false)
+
   useEffect(() => {
-    getAllSessions()
+    getLastSession()
       .then((data) => {
-        dispatch(setLastSessionFormData(data[0]))
+        console.log('app', data)
+        dispatch(setLastSessionFormData(data))
+      })
+      .then(() => {
+        dispatch(getTodaysFormData())
       })
       .catch((err) => {
         console.error(err.message)

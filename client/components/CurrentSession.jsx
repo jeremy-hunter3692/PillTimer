@@ -9,12 +9,12 @@ export default function CurrentSession(props) {
         <div className="studentNotes">
           <CurrentForm
             title="Student Notes"
-            // handelChange={props.handleChange}
-            // formText={props.state.studentNotes}
-            // state={props.state}
-            // formName="studentNotes"
-            // handleSubmit={props.handleSubmit}
-            // bool={true}
+            handelChange={props.handleChange}
+            formText={props.state.studentNotes}
+            state={props.state}
+            formName="studentNotes"
+            handleSubmit={props.handleSubmit}
+            bool={true}
           />
           <br></br>
         </div>

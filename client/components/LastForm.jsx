@@ -1,6 +1,8 @@
 import React from 'react'
-
-export default function LasttForm({ title, value }) {
+import { useSelector } from 'react-redux'
+export default function LastForm({ title }) {
+  const formData = useSelector((state) => state.lastFormData)
+  console.log('form data at Last Form', formData.payload)
   return (
     <div className="notesInput">
       <form>
@@ -13,7 +15,7 @@ export default function LasttForm({ title, value }) {
           className="textBox"
           type="text"
           id={title}
-          value={value}
+          value={formData.studentNotes}
           name="name"
           size="sm"
           readOnly

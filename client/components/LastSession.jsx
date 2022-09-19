@@ -3,10 +3,10 @@ import LastForm from './LastForm'
 export default function LastSession(props) {
   return (
     <>
+      <h1>Last Session:</h1>
       <div className="formContainer">
         <div className="studentNotes">
-          <h1>LAST FORM</h1>
-          {/* <LastForm value={props.state.studentNotes} title="Student Notes" /> */}
+          <LastForm title="Student Notes" />
           <br></br>
         </div>
         <div className="teacherNotes">

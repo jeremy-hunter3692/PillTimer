@@ -3,9 +3,9 @@ const router = express.Router()
 const db = require('./db/db')
 
 router.get('/', (req, res) => {
-  db.getAllSessions()
-    .then((sesh) => {
-      res.send(sesh)
+  db.getLastSession()
+    .then((data) => {
+      res.send(data)
     })
     .catch((err) => {
       console.error(err, 'no good')
