@@ -1,7 +1,11 @@
 import React from 'react'
 import CurrentForm from './CurrentForm'
+import { useSelector } from 'react-redux'
+import currentForm from '../reducers/currentFormData'
 
 export default function CurrentSession(props) {
+  const formData = useSelector((state) => state.currentFormData)
+
   return (
     <>
       <h1>Current Session:</h1>
@@ -9,26 +13,24 @@ export default function CurrentSession(props) {
         <div className="studentNotes">
           <CurrentForm
             title="Student Notes"
-            handelChange={props.handleChange}
-            formText={props.state.studentNotes}
-            state={props.state}
             formName="studentNotes"
+            state={formData}
+            value={formData.studentNotes}
             handleSubmit={props.handleSubmit}
             bool={true}
           />
           <br></br>
         </div>
-        {/* <div className="teacherNotes">
+        <div className="teacherNotes">
           <CurrentForm
             title="Teacher Notes"
-            // handelChange={props.handleChange}
-            // formText={props.state.teacherNotes}
-            // state={props.state}
-            // formName="teacherNotes"
-            // handleSubmit={props.handleSubmit}
-            // bool={false}
+            formName="teacherNotes"
+            state={formData}
+            value={formData.teacherNotes}
+            handleSubmit={props.handleSubmit}
+            bool={true}
           />
-        </div> */}
+        </div>
       </div>
     </>
   )

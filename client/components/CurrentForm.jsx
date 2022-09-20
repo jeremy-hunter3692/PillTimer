@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTodaysFormData } from '../Actions/currentFormActions'
 
-export default function CurrentForm({ title, bool, value }) {
-  const initCurrentForm = useSelector((state) => state.formData)
-  const [form, setForm] = useState(initCurrentForm)
+export default function CurrentForm(props) {
+  const [form, setForm] = useState(props.state)
   const dispatch = useDispatch()
   // const { studentNotes } = form
-
+  console.log('props', props)
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value })
-    dispatch(setTodaysFormData({ ...form, [e.target.name]: e.target.value }))
+    // setForm({ ...form, [e.target.name]: e.target.value })
+    dispatch(
+      setTodaysFormData({ ...props.state, [e.target.name]: e.target.value })
+    )
   }
 
   function handleSubmit(e) {
@@ -21,12 +22,9 @@ export default function CurrentForm({ title, bool, value }) {
   return (
     <div className="notesInput">
       <form onSubmit={handleSubmit}>
-        <label htmlFor={title}>
+        <label htmlFor={props.title}>
           <h1>
-            <strong>
-              {title}
-              {/* {data.submitted} */}
-            </strong>
+            <strong>{props.title}</strong>
           </h1>
         </label>
 
@@ -37,10 +35,10 @@ export default function CurrentForm({ title, bool, value }) {
         <textarea
           className="textBox"
           type="text"
-          id={title}
-          name="studentNotes"
-          value={value}
-          onChange={bool && handleChange}
+          id={props.title}
+          name={props.formName}
+          value={props.value}
+          onChange={props.bool && handleChange}
           size="sm"
         ></textarea>
       </form>
