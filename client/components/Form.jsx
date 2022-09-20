@@ -49,7 +49,7 @@ export default function CurrentForm(props) {
           onChange={props.onChangeBool ? handleChange : undefined}
           size="sm"
           // readOnly={!submitted && !props.onChangeBool}
-          readOnly={!props.onChange}
+          readOnly={props.onChange}
         ></textarea>
       </form>
     </div>
