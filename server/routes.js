@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const session = req.body
+  delete session.name
   db.addSession(session)
     .then((session) => {
       res.send(session)

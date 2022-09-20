@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import { setTodaysFormData } from '../Actions/currentFormActions'
+import { addSession } from '../apiClient'
 
 export default function CurrentForm(props) {
-  const [form, setForm] = useState(props.state)
   const dispatch = useDispatch()
-  // const { studentNotes } = form
-  console.log('props', props)
+
   function handleChange(e) {
-    // setForm({ ...form, [e.target.name]: e.target.value })
     dispatch(
       setTodaysFormData({ ...props.state, [e.target.name]: e.target.value })
     )
@@ -16,7 +14,7 @@ export default function CurrentForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    // dispatch(setTodaysFormData(form))
+    addSession(props.state)
   }
 
   return (
@@ -29,7 +27,9 @@ export default function CurrentForm(props) {
         </label>
 
         <div>
-          <input className="clickMe" type="submit" value="submit all notes" />
+          {props.buttonBool && (
+            <input className="clickMe" type="submit" value="submit all notes" />
+          )}
         </div>
 
         <textarea
@@ -38,8 +38,9 @@ export default function CurrentForm(props) {
           id={props.title}
           name={props.formName}
           value={props.value}
-          onChange={props.bool && handleChange}
+          onChange={props.onChangeBool ? handleChange : undefined}
           size="sm"
+          readOnly={!props.onChangeBool}
         ></textarea>
       </form>
     </div>
