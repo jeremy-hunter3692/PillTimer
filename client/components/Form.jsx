@@ -14,6 +14,8 @@ export default function CurrentForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    //adds to the databse via api client
+    //if you refresh after adding it it should then be in the last session page.
     addSession(props.state)
   }
 

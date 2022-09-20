@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Form from './Form'
-export default function LastSession(props) {
+export default function LastSession() {
   const formData = useSelector((state) => state.lastFormData)
 
   return (

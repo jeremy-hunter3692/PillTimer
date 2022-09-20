@@ -13,8 +13,13 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  //Matching/changing key names to databse key names
   const session = req.body
+  session.student_id = req.body.studentId
+  session.teacher_id = req.body.teacherId
   delete session.name
+  delete session.studentId
+  delete session.teacherId
   db.addSession(session)
     .then((session) => {
       res.send(session)

@@ -12,11 +12,10 @@ const App = () => {
   const dispatch = useDispatch()
   const [displayCurrent, setDisplayCurrent] = useState(false)
 
-  //loading session from the data base 
+  //loading last session from the data base via apli client and then setting it in the state
   useEffect(() => {
     getLastSession()
       .then((data) => {
-        console.log('app', data)
         dispatch(setLastSessionFormData(data))
       })
       .catch((err) => {
@@ -34,7 +33,7 @@ const App = () => {
           setDisplayCurrent(!displayCurrent)
         }}
       >
-        {!displayCurrent ? 'Show Current Sessiont' : 'Show Last Session'}
+        {!displayCurrent ? 'Show Current Session' : 'Show Last Session'}
       </button>
       {displayCurrent ? <CurrentSession /> : <LastSession />}
     </>

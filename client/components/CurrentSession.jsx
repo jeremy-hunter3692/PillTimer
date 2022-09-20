@@ -2,8 +2,20 @@ import React from 'react'
 import Form from './Form'
 import { useSelector } from 'react-redux'
 
-export default function CurrentSession(props) {
-  const formData = useSelector((state) => state.currentFormData)
+export default function CurrentSession() {
+  let formData = useSelector((state) => state.currentFormData)
+
+  //This is place holder do getting some information from the last session and new Date()
+  //until I work out how I will make it interact with a calendar libaray
+  const oldSessionData = useSelector((state) => state.lastFormData)
+  formData = {
+    ...formData,
+    date: new Date().toISOString().slice(2, 10),
+    hour: new Date().toISOString().slice(11, 16),
+    name: oldSessionData.name,
+    teacherId: oldSessionData.teacher_id,
+    studentId: oldSessionData.student_id,
+  }
   return (
     <>
       <h1>Current Session:</h1>

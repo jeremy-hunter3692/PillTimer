@@ -23,7 +23,7 @@ export function addSession(data) {
     .send(data)
     .then((res) => {
       if (res.status === 200) {
-        console.log('then in addSesh', data)
+        console.log('from the then in addSesh', data)
       } else {
         throw new Error('post not saved')
       }
