@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setTodaysFormData } from '../Actions/currentFormActions'
 import { addSession } from '../apiClient'
 
 export default function CurrentForm(props) {
+  const [submitted, setSubmitted] = useState(false)
   const dispatch = useDispatch()
 
   function handleChange(e) {
@@ -16,11 +17,14 @@ export default function CurrentForm(props) {
     e.preventDefault()
     //adds to the databse via api client
     //if you refresh after adding it it should then be in the last session page.
+    console.log('submitted')
     addSession(props.state)
+    setSubmitted(true)
   }
 
   return (
     <div className="notesInput">
+      {submitted && <h1>All Notes Submitted</h1>}
       <form onSubmit={handleSubmit}>
         <label htmlFor={props.title}>
           <h1>
@@ -42,7 +46,7 @@ export default function CurrentForm(props) {
           value={props.value}
           onChange={props.onChangeBool ? handleChange : undefined}
           size="sm"
-          readOnly={!props.onChangeBool}
+          readOnly={!submitted && !props.onChangeBool}
         ></textarea>
       </form>
     </div>

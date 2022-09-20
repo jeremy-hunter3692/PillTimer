@@ -17,7 +17,7 @@ export function getSessionById() {
 }
 
 export function addSession(data) {
-  console.log('from api', data)
+  // console.log('from api', data)
   return request
     .post(apiUrl)
     .send(data)
