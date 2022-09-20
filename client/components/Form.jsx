@@ -19,6 +19,8 @@ export default function CurrentForm(props) {
     //if you refresh after adding it it should then be in the last session page.
     console.log('submitted')
     addSession(props.state)
+    //TODO look at redierect. code from class teusday week 6 fruits
+    //bit of a janky way to show that something has happenened at the moment will change this to a rediect later
     setSubmitted(true)
   }
 
@@ -46,7 +48,8 @@ export default function CurrentForm(props) {
           value={props.value}
           onChange={props.onChangeBool ? handleChange : undefined}
           size="sm"
-          readOnly={!submitted && !props.onChangeBool}
+          // readOnly={!submitted && !props.onChangeBool}
+          readOnly={!props.onChange}
         ></textarea>
       </form>
     </div>
