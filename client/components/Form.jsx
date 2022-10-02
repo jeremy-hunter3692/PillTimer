@@ -35,8 +35,24 @@ export default function CurrentForm(props) {
         </label>
 
         <div>
+          {/* WORK ON CLEAR BUTTON + MAKE AN INIST STATE */}
           {props.buttonBool && (
-            <input className="clickMe" type="submit" value="submit all notes" />
+            <>
+              <input
+                className="clickMe"
+                type="submit"
+                value="submit all notes"
+              />
+              <button
+                className="clickMe"
+                onClick={(e) => {
+                  e.preventDefault()
+                  dispatch(setTodaysFormData(props.state))
+                }}
+              >
+                Clear text
+              </button>
+            </>
           )}
         </div>
 
@@ -54,16 +70,4 @@ export default function CurrentForm(props) {
       </form>
     </div>
   )
-}
-
-{
-  /* TODO implement clear buttone <button
-className="clickMe"
-onClick={(e) => {
-  e.preventDefault()
-  // setData(initialData)
-}}
->
-Clear text
-</button> */
 }

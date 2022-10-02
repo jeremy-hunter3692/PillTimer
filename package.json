@@ -12,7 +12,7 @@
   "scripts": {
     "build": "webpack --config client/webpack.config.js",
     "start": "node server",
-    "test": "jest --watchAll",
+    "test": "jest ",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run build -- --watch",
     "dev:server": "nodemon server",
@@ -39,6 +39,7 @@
     "express": "^4.17.2",
     "hash-string": "^1.0.0",
     "knex": "^2.3.0",
+    "react-big-calendar": "^1.5.0",
     "react-canvas-draw": "^1.2.1",
     "react-color": "^2.19.3",
     "react-redux": "^8.0.2",
@@ -73,6 +74,7 @@
     "prettier": "2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "supertest": "^6.2.4",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"

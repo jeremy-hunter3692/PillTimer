@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   delete session.studentId
   delete session.teacherId
   db.addSession(session)
-    .then((session) => {
+    .then(() => {
       res.send(session)
     })
     .catch((err) => {
