@@ -17,7 +17,11 @@ function getSessionById(id, db = connection) {
 }
 
 function addSession(info, db = connection) {
-  return db('sessions').insert(info)
+  return db('sessions')
+    .insert(info)
+    .then((ids) => {
+      ids[0]
+    })
 }
 
 module.exports = {

@@ -27,6 +27,20 @@ describe('GET last sessions /api/v1/sessions', () => {
         return null
       })
   })
+
+  test('getLastSession reject', () => {
+    db.getLastSession.mockImplementation(() =>
+      Promise.reject(new Error('test error message'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .get('/api/v1/sessions')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(console.error).toHaveBeenCalledWith('test error message')
+        return null
+      })
+  })
 })
 
 describe('Post a session /api/v1/sessions', () => {
@@ -50,14 +64,27 @@ describe('Post a session /api/v1/sessions', () => {
       teacherNotes: 'Goodbye',
     }
 
-    // expect.assertions(1)
+    expect.assertions(1)
     db.addSession.mockReturnValue(Promise.resolve(mockPostSessionData))
     return request(server)
       .post('/api/v1/sessions')
       .send(mockPostSessionData)
       .then((res) => {
         expect(res.body).toEqual(mockReturnObject)
-        console.log('from test', res.body)
+      })
+  })
+
+  test('addSession reject', () => {
+    db.addSession.mockImplementation(() =>
+      Promise.reject(new Error('test error message'))
+    )
+    console.error.mockImplementation(() => {})
+    return request(server)
+      .post('/api/v1/sessions')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(console.error).toHaveBeenCalledWith('test error message')
+        return null
       })
   })
 })

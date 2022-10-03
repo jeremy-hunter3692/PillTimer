@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
       res.send(data)
     })
     .catch((err) => {
-      console.error(err, 'no good')
+      console.error(err.message)
+      res.status(500).json({ message: 'Something went wrong' })
     })
 })
 
@@ -25,7 +26,8 @@ router.post('/', (req, res) => {
       res.send(session)
     })
     .catch((err) => {
-      console.error(err, 'no good')
+      console.error(err.message)
+      res.status(500).json({ message: 'Something went wrong not added' })
     })
 })
 

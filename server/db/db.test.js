@@ -25,13 +25,21 @@ describe('getLastSession', () => {
   })
 })
 
-// describe('assSession', () => {
-//   test('reveives correct information from routes', () => {
-//     expect.assertions(1)
-//     const id = 113
-//     return addSession(info, testDb).then((sessions) => {
-//       console.log(sessions)
-//       expect(sessions.id).toBe(111)
-//     })
-//   })
-// })
+describe('assSession', () => {
+  test.todo('adds a new session to the database', () => {
+    expect.assertions(1)
+    const id = [113]
+    const mockInfo = {
+      date: '22-10-02',
+      hour: '06:04',
+      student_id: 7,
+      studentNotes: 'Hello',
+      teacher_id: 2,
+      teacherNotes: 'Goodbye',
+    }
+
+    return addSession(mockInfo, testDb).then((sessions) => {
+      expect(sessions).toEqual(id)
+    })
+  })
+})
