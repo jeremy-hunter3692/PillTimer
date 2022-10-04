@@ -32,7 +32,6 @@ describe('getLastSession', () => {
       .reply(400, { data: 'testing data' })
     const data = { data: 'test' }
     return addSession(data).then((result) => {
-      console.log('resul', result)
       expect(result).toBe('post not saved')
       expect(scope.isDone()).toBe(true)
     })

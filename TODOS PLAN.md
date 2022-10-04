@@ -1,3 +1,10 @@
+
+Learn more about dates and handling of. Re do naming logic in app for getting last session id. 
+Follow above through api client and match up to database
+Learn about useParams and react routing for it
+Write better seed data for this
+Figure out why day and week views aren't working on big calendar
+
 This will be a notes app for Music teachers (or any 1 to 1 regular teaching situation)
 
 There are two different pages a 'Last Session' and a 'Current Session' 

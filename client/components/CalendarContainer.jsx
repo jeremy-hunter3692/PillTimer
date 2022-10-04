@@ -9,29 +9,13 @@ const initEvent = {
   end: ' ',
   title: ' ',
 }
-const eventsData = [
-  {
-    start: new Date(2022, 9, 5),
-    end: new Date(2022, 9, 5),
-    title: 'First event',
-  },
-  {
-    start: new Date(2022, 9, 2),
-    end: new Date(2022, 9, 5),
-    title: 'Second event',
-  },
-  {
-    start: new Date(2022, 9, 6),
-    end: new Date(2022, 9, 7),
-    title: 'Third event',
-  },
-]
 
 export default function MyCalendar(props) {
-  const [events, setEvents] = useState(eventsData)
+  const [events, setEvents] = useState(props.eventsData)
+  //TO DO adding new event
   const [newEvent, setNewEvent] = useState(initEvent)
   // const [view, setView] = useState(views.week)
-  const view = Views.WEEK
+  // const view = Views.DAY
   return (
     <div>
       <h1>Calender</h1>
@@ -41,7 +25,7 @@ export default function MyCalendar(props) {
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
-        view={view}
+        onView={Views.WEEK}
       />
     </div>
   )

@@ -18,7 +18,7 @@ describe('GET last sessions /api/v1/sessions', () => {
       { id: 7, name: 'Autum Blues' },
     ]
     expect.assertions(1)
-    db.getLastSession.mockReturnValue(Promise.resolve(mockSessionData))
+    db.getLastSessionById.mockReturnValue(Promise.resolve(mockSessionData))
     return request(server)
       .get('/api/v1/sessions')
       .then((res) => {
@@ -29,7 +29,7 @@ describe('GET last sessions /api/v1/sessions', () => {
   })
 
   test('getLastSession reject', () => {
-    db.getLastSession.mockImplementation(() =>
+    db.getLastSessionById.mockImplementation(() =>
       Promise.reject(new Error('test error message'))
     )
     console.error.mockImplementation(() => {})

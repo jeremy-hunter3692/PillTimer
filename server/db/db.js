@@ -6,8 +6,9 @@ function getAllSessions(db = connection) {
   return db('sessions').join('students', 'student_id', 'students.id')
 }
 
-function getLastSession(db = connection) {
+function getLastSessionById(id, db = connection) {
   return db('sessions')
+    .where('sessions.student_id', id)
     .join('students', 'student_id', 'students.id')
     .then((ids) => ids[ids.length - 1])
 }
@@ -24,5 +25,5 @@ module.exports = {
   addSession,
   getSessionById,
   getAllSessions,
-  getLastSession,
+  getLastSessionById,
 }
