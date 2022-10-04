@@ -5,7 +5,7 @@ import CurrentSession from './CurrentSession'
 import LastSession from './LastSession'
 import { getLastSession } from '../apiClient'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
-import { MyCalendar } from './CalendarContainer.jsx'
+import MyCalendar from './CalendarContainer.jsx'
 
 // const date = new Date().toISOString()
 
