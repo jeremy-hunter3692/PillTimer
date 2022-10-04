@@ -19,6 +19,7 @@
     "lint": "eslint --ext .js,.jsx .",
     "knex": "knex --knexfile server/db/knexfile.js"
   },
+  "style": "lib/css/react-big-calendar.css",
   "babel": {
     "presets": [
       "@babel/preset-typescript",
@@ -39,6 +40,7 @@
     "express": "^4.17.2",
     "hash-string": "^1.0.0",
     "knex": "^2.3.0",
+    "nock": "^13.2.9",
     "react-big-calendar": "^1.5.0",
     "react-canvas-draw": "^1.2.1",
     "react-color": "^2.19.3",

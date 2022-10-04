@@ -26,9 +26,9 @@ describe('getLastSession', () => {
 })
 
 describe('assSession', () => {
-  test.todo('adds a new session to the database', () => {
-    expect.assertions(1)
-    const id = [113]
+  test('adds a new session to the database', () => {
+    expect.assertions(7)
+
     const mockInfo = {
       date: '22-10-02',
       hour: '06:04',
@@ -38,8 +38,18 @@ describe('assSession', () => {
       teacherNotes: 'Goodbye',
     }
 
-    return addSession(mockInfo, testDb).then((sessions) => {
-      expect(sessions).toEqual(id)
-    })
+    return addSession(mockInfo, testDb)
+      .then(() => {
+        return testDb('sessions').select()
+      })
+      .then((sessions) => {
+        expect(sessions).toHaveLength(6)
+        expect(sessions[5].student_id).toBe(7)
+        expect(sessions[5].teacher_id).toBe(2)
+        expect(sessions[5].studentNotes).toBe('Hello')
+        expect(sessions[5].teacherNotes).toBe('Goodbye')
+        expect(sessions[5].date).toBe('22-10-02')
+        expect(sessions[5].hour).toBe('06:04')
+      })
   })
 })

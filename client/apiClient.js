@@ -17,13 +17,12 @@ export function getSessionById() {
 }
 
 export function addSession(data) {
-  // console.log('from api', data)
   return request
     .post(apiUrl)
     .send(data)
     .then((res) => {
       if (res.status === 200) {
-        console.log('from the then in addSesh', data)
+        return res.body
       } else {
         throw new Error('post not saved')
       }
