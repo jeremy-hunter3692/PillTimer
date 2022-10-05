@@ -10,20 +10,20 @@ import MyCalendar from './CalendarContainer.jsx'
 // const date = new Date().toISOString()
 const eventsData = [
   {
-    start: new Date(2022, 9, 5, 10, 0, 0),
-    end: new Date(2022, 9, 5, 11, 0, 0),
+    start: new Date(2022, 9, 5, 17, 0, 0),
+    end: new Date(2022, 9, 5, 18, 0, 0),
     title: 'First event', //student.name
     studentId: 3,
   },
   {
-    start: new Date(2022, 9, 5, 13, 0, 0),
-    end: new Date(2022, 9, 5, 14, 0, 0),
+    start: new Date(2022, 9, 5, 18, 0, 0),
+    end: new Date(2022, 9, 5, 19, 0, 0),
     title: 'Second event',
     studentId: 6,
   },
   {
-    start: new Date(2022, 9, 5, 11, 0, 0),
-    end: new Date(2022, 9, 5, 12, 0, 0),
+    start: new Date(2022, 9, 5, 14, 0, 0),
+    end: new Date(2022, 9, 5, 15, 0, 0),
     title: 'Third event',
     studentId: 8,
   },
@@ -47,7 +47,8 @@ const App = () => {
         return x
       }
     })
-    console.log('result', result, 'id', result.studentId)
+
+    console.log('result', result, 'id', result?.studentId)
     getLastSessionById(result.studentId)
       .then((data) => {
         dispatch(setLastSessionFormData(data))

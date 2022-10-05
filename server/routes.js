@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 const db = require('./db/db')
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
   //TODO REPLACE HARD CODE WITH USEPARAMS
-  const id = 8
+
+  const id = req.params.id
+  console.group('api,', id)
   db.getLastSessionById(id)
     .then((data) => {
       res.send(data)

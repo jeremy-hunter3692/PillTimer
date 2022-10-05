@@ -1,15 +1,19 @@
 import nock from 'nock'
 
-const { getLastSession, addSession } = require('./apiClient')
+const {
+  getLastSession,
+  addSession,
+  getLastSessionById,
+} = require('./apiClient')
 
 const apiUrl = '/api/v1/sessions'
 
 describe('getLastSession', () => {
   test('gets last session from the database', () => {
     const scope = nock('http://localhost')
-      .get(apiUrl)
+      .get((apiUrl + '/1'))
       .reply(200, { data: 'testing data' })
-    return getLastSession().then((result) => {
+    return getLastSessionById().then((result) => {
       expect(result).toEqual({ data: 'testing data' })
       expect(scope.isDone()).toBe(true)
     })

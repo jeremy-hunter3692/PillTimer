@@ -5,7 +5,8 @@ import request from 'superagent'
 const apiUrl = '/api/v1/sessions'
 
 export function getLastSessionById(id) {
-  return request.get(apiUrl).then((res) => {
+  console.group('api,', id, `${apiUrl}/${id}`)
+  return request.get(`${apiUrl}/${id}`).then((res) => {
     return res.body
   })
 }
