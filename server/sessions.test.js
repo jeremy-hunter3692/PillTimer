@@ -43,6 +43,25 @@ describe('GET last sessions /api/v1/sessions', () => {
   })
 })
 
+describe('GET last sessions /api/v1/s', () => {
+  test('returns last session from db', () => {
+    const mockSessionData = [
+      { id: 5, name: 'Summer Lovin' },
+      { id: 6, name: 'Winter Chills' },
+      { id: 7, name: 'Autum Blues' },
+    ]
+    expect.assertions(1)
+    db.getLastSessionById.mockReturnValue(Promise.resolve(mockSessionData))
+    return request(server)
+      .get('/api/v1/sessions')
+      .then((res) => {
+        expect(res.body[0].id).toBe(5)
+
+        return null
+      })
+  })
+})
+
 describe('Post a session /api/v1/sessions', () => {
   test('Posts a sessions and returns the session details', () => {
     const mockPostSessionData = {

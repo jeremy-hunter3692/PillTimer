@@ -1,9 +1,13 @@
 
 Learn more about dates and handling of. Re do naming logic in app for getting last session id. 
-Follow above through api client and match up to database
-Learn about useParams and react routing for it
 Write better seed data for this
-Figure out why day and week views aren't working on big calendar
+Think about how to get student is and linking to calendar events better.//Just via the times?
+Along with this is submitting sessions to the database
+Might need to change addSession to be and update session
+--add empty data with only times and Ids etc then update notes data
+
+Adding date date db call etc
+
 
 This will be a notes app for Music teachers (or any 1 to 1 regular teaching situation)
 

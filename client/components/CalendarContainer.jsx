@@ -12,26 +12,21 @@ const initEvent = {
 
 export default function MyCalendar(props) {
   const [events, setEvents] = useState(props.eventsData)
-  console.log(events)
-  //TO DO adding new event
-
-  // const [newEvent, setNewEvent] = useState(initEvent)
-  //  const clickRef = useRef
-  // useEffect(()=>{
-  // return () => {
-  //   window.clearTimeout(clickRef?.current)
-  // }
-  //  },[])
-
+  
   function handleSelect({ start, end }) {
+    //TODO make title student name-via form?
+    //Add newEvent to redux state
     const title = window.prompt('New Event name')
+    // get student name, get studentId
     if (title) {
       let newEvent = {
         start: start,
         end: end,
-        title: title,
+        title: title,// get student name, get studentId
+        studentNotes: '',
+        teacherNotes: '',
+        name: '',
       }
-      console.log('one')
       setEvents([...events, newEvent])
     }
   }

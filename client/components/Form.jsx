@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setTodaysFormData } from '../Actions/currentFormActions'
-import { addSession } from '../apiClient'
+import { addSession } from '../sessionsAPI'
 
 export default function CurrentForm(props) {
   const [submitted, setSubmitted] = useState(false)

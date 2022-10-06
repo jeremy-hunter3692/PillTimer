@@ -1,6 +1,6 @@
 import nock from 'nock'
 
-const { addSession, getLastSessionById } = require('./apiClient')
+const { addSession, getLastSessionById } = require('./sessionsAPI')
 
 const apiUrl = '/api/v1/sessions'
 

@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux'
 import Nav from './Nav'
 import CurrentSession from './CurrentSession'
 import LastSession from './LastSession'
-import { getLastSessionById } from '../apiClient'
+import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
 import MyCalendar from './CalendarContainer.jsx'
+import Students from './Students.jsx'
 
 // const date = new Date().toISOString()
 const eventsData = [
@@ -62,6 +63,7 @@ const App = () => {
   return (
     <>
       <Nav />
+      <Students />
       <MyCalendar eventsData={eventsData} />
       <button
         className="clickMe"

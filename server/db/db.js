@@ -21,9 +21,15 @@ function addSession(info, db = connection) {
   return db('sessions').insert(info)
 }
 
+function getAllStudents(db = connection){
+  return db('students').select()
+}
+
+
 module.exports = {
   addSession,
   getSessionById,
   getAllSessions,
   getLastSessionById,
+  getAllStudents
 }
