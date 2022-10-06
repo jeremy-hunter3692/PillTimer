@@ -5,7 +5,6 @@ import request from 'superagent'
 const apiUrl = '/api/v1/sessions'
 
 export function getLastSessionById(id) {
-  console.group('api,', id, `${apiUrl}/${id}`)
   return request.get(`${apiUrl}/${id}`).then((res) => {
     return res.body
   })
@@ -29,6 +28,6 @@ export function addSession(data) {
       }
     })
     .catch((err) => {
-      console.error(err, 'bad from addSession')
+      console.log(err.status, 'bad from addSession')
     })
 }

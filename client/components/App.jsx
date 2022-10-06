@@ -10,27 +10,27 @@ import MyCalendar from './CalendarContainer.jsx'
 // const date = new Date().toISOString()
 const eventsData = [
   {
-    start: new Date(2022, 9, 5, 17, 0, 0),
-    end: new Date(2022, 9, 5, 18, 0, 0),
+    start: new Date(2022, 9, 6, 17, 0, 0),
+    end: new Date(2022, 9, 6, 18, 0, 0),
     title: 'First event', //student.name
     studentId: 3,
   },
   {
-    start: new Date(2022, 9, 5, 18, 0, 0),
-    end: new Date(2022, 9, 5, 19, 0, 0),
+    start: new Date(2022, 9, 6, 18, 0, 0),
+    end: new Date(2022, 9, 6, 19, 0, 0),
     title: 'Second event',
     studentId: 6,
   },
   {
-    start: new Date(2022, 9, 5, 14, 0, 0),
-    end: new Date(2022, 9, 5, 15, 0, 0),
+    start: new Date(2022, 9, 6, 8, 0, 0),
+    end: new Date(2022, 9, 6, 5, 0, 0),
     title: 'Third event',
     studentId: 8,
   },
 ]
+//Only working by hours. need check for day
 const now = new Date().getHours()
-// const hourplus = now.getHours() + 1
-console.log('now', now)
+
 const App = () => {
   const dispatch = useDispatch()
   const [displayCurrent, setDisplayCurrent] = useState(false)
@@ -41,21 +41,22 @@ const App = () => {
     //get the id of the student who is attached to that event
     //get the last session where the id matches from the database
     //set in state
-    let result = 'none'
-    result = eventsData.find((x) => {
+
+    let result = eventsData.find((x) => {
       if (x.start.getHours() >= now && x.start.getHours() < now + 1) {
         return x
       }
     })
 
-    console.log('result', result, 'id', result?.studentId)
-    getLastSessionById(result.studentId)
-      .then((data) => {
-        dispatch(setLastSessionFormData(data))
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
+    result
+      ? getLastSessionById(result.studentId)
+          .then((data) => {
+            dispatch(setLastSessionFormData(data))
+          })
+          .catch((err) => {
+            console.error(err.message)
+          })
+      : console.log(' second half')
   }, [])
 
   return (
