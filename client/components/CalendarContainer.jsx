@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
+
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = momentLocalizer(moment)
-const initEvent = {
-  start: ' ',
-  end: ' ',
-  title: ' ',
-}
+// const initEvent = {
+//   start: ' ',
+//   end: ' ',
+//   title: ' ',
+// }
 
 export default function MyCalendar(props) {
   const [events, setEvents] = useState(props.eventsData)
-  
+  console.log(events)
+
+
   function handleSelect({ start, end }) {
     //TODO make title student name-via form?
     //Add newEvent to redux state
-    const title = window.prompt('New Event name')
+    let title = props.student
+    console.log(title)
     // get student name, get studentId
+
     if (title) {
       let newEvent = {
         start: start,
         end: end,
-        title: title,// get student name, get studentId
+        title: title, // get student name, get studentId
         studentNotes: '',
         teacherNotes: '',
-        name: '',
+        name: title,
       }
       setEvents([...events, newEvent])
     }

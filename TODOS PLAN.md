@@ -7,6 +7,8 @@ Might need to change addSession to be and update session
 --add empty data with only times and Ids etc then update notes data
 
 Adding date date db call etc
+on click of calendar navigate to that session and bring up information
+
 
 
 This will be a notes app for Music teachers (or any 1 to 1 regular teaching situation)
