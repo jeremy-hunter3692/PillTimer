@@ -6,7 +6,6 @@ const apiUrl = '/api/v1/students'
 
 export function getAllStudents() {
   return request.get(apiUrl).then((res) => {
-    console.log('stuAPI', res.body)
     return res.body
   })
 }

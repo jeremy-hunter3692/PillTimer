@@ -6,10 +6,10 @@ const initForm = {
   id: ' ',
 }
 
-export default function Students({ eventsData }) {
+export default function Students() {
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
-  console.log('form', form)
+  // console.log('form', form)
   useEffect(() => {
     getAllStudents()
       .then((data) => {
@@ -66,7 +66,7 @@ export default function Students({ eventsData }) {
           </select>
         </div>
       </form>
-      <MyCalendar eventsData={eventsData} student={form.name} />
+      <MyCalendar student={form.name} />
     </>
   )
 }

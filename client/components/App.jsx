@@ -6,7 +6,7 @@ import LastSession from './LastSession'
 import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
 import Students from './Students.jsx'
-
+import { setEventsData } from '../Actions/eventsActions'
 // const date = new Date().toISOString()
 const eventsData = [
   {
@@ -37,6 +37,9 @@ const App = () => {
 
   //loading last session from the data base via apli client and then setting it in the state
   useEffect(() => {
+    dispatch(setEventsData(eventsData))
+    //reduxing
+
     // dispatch()
     //if current time is equally to a time in the eventsData array
     //get the id of the student who is attached to that event
@@ -57,7 +60,7 @@ const App = () => {
           .catch((err) => {
             console.error(err.message)
           })
-      : console.log(' second half')
+      : console.log('not loaded sessions')
   }, [])
 
   return (
