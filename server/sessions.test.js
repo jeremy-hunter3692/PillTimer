@@ -10,7 +10,7 @@ afterEach(() => {
   console.error.mockReset()
 })
 
-describe('GET last sessions /api/v1/sessions', () => {
+describe('GET last sessions', () => {
   test('returns last session from db', () => {
     const mockSessionData = [
       { id: 5, name: 'Summer Lovin' },
@@ -18,7 +18,7 @@ describe('GET last sessions /api/v1/sessions', () => {
       { id: 7, name: 'Autum Blues' },
     ]
     expect.assertions(1)
-    db.getLastSessionById.mockReturnValue(Promise.resolve(mockSessionData))
+    db.getLastSessionById(1).mockReturnValue(Promise.resolve(mockSessionData))
     return request(server)
       .get('/api/v1/sessions')
       .then((res) => {
@@ -55,6 +55,7 @@ describe('GET last sessions /api/v1/s', () => {
     return request(server)
       .get('/api/v1/sessions')
       .then((res) => {
+        // console.log(res.body)
         expect(res.body[0].id).toBe(5)
 
         return null
@@ -65,8 +66,8 @@ describe('GET last sessions /api/v1/s', () => {
 describe('Post a session /api/v1/sessions', () => {
   test('Posts a sessions and returns the session details', () => {
     const mockPostSessionData = {
-      date: '22-10-02',
-      hour: '06:04',
+      start: '22-10-02',
+      end: '06:04',
       name: 'lil jimmy',
       studentId: 7,
       studentNotes: 'Hello',
@@ -75,8 +76,8 @@ describe('Post a session /api/v1/sessions', () => {
     }
 
     const mockReturnObject = {
-      date: '22-10-02',
-      hour: '06:04',
+      start: '22-10-02',
+      end: '06:04',
       student_id: 7,
       studentNotes: 'Hello',
       teacher_id: 2,

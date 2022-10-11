@@ -6,7 +6,7 @@ import LastSession from './LastSession'
 import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
 import Students from './Students.jsx'
-import { setEventsData } from '../Actions/eventsActions'
+import { setEventsData, fetchEvents } from '../Actions/eventsActions'
 // const date = new Date().toISOString()
 const eventsData = [
   {
@@ -37,7 +37,7 @@ const App = () => {
 
   //loading last session from the data base via apli client and then setting it in the state
   useEffect(() => {
-    dispatch(setEventsData(eventsData))
+    dispatch(fetchEvents())
     //reduxing
 
     // dispatch()
@@ -60,7 +60,7 @@ const App = () => {
           .catch((err) => {
             console.error(err.message)
           })
-      : console.log('not loaded sessions')
+      : console.log('not loaded: sessions')
   }, [])
 
   return (

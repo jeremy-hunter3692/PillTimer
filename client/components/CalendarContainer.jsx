@@ -20,7 +20,7 @@ export default function MyCalendar(props) {
   const [events, setEvents] = useState([])
 
   useEffect(() => {
-    console.log(eventData)
+    // console.log(eventData)
     eventData[0] ? setEvents(eventData) : setEvents([])
   }, [eventData])
 
@@ -29,7 +29,7 @@ export default function MyCalendar(props) {
     //Add newEvent to redux state
 
     let title = props.student
-    console.log(title)
+
     // get student name, get studentId
 
     if (title) {

@@ -34,13 +34,13 @@ describe('getAllStudents', () => {
   })
 })
 
-describe('assSession', () => {
+describe('addSession', () => {
   test('adds a new session to the database', () => {
     expect.assertions(7)
 
     const mockInfo = {
-      date: '22-10-02',
-      hour: '06:04',
+      start: '22-10-02',
+      end: '06:04',
       student_id: 7,
       studentNotes: 'Hello',
       teacher_id: 2,
@@ -57,8 +57,8 @@ describe('assSession', () => {
         expect(sessions[5].teacher_id).toBe(2)
         expect(sessions[5].studentNotes).toBe('Hello')
         expect(sessions[5].teacherNotes).toBe('Goodbye')
-        expect(sessions[5].date).toBe('22-10-02')
-        expect(sessions[5].hour).toBe('06:04')
+        expect(sessions[5].start).toBe('22-10-02')
+        expect(sessions[5].end).toBe('06:04')
       })
   })
 })

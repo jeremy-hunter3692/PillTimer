@@ -46,6 +46,7 @@
     "react-color": "^2.19.3",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "sqlite3": "^5.0.8",
     "superagent": "^8.0.0"
   },

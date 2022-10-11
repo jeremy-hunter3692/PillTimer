@@ -4,6 +4,17 @@ const db = require('./db/db')
 
 
 
+router.get('/', (req, res) => {
+  db.getAllSessions()
+    .then((data) => {
+      res.send(data)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500).json({ message: 'Something went wrong' })
+    })
+})
+
 router.get('/:id', (req, res) => {
   const id = req.params.id
   db.getLastSessionById(id)
@@ -18,7 +29,9 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   //Matching/changing key names to databse key names
+
   const session = req.body
+  console.log('sessions.js', req.body)
   session.student_id = req.body.studentId
   session.teacher_id = req.body.teacherId
   delete session.name
