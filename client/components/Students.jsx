@@ -7,6 +7,7 @@ const initForm = {
 }
 
 export default function Students() {
+
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   // console.log('form', form)
@@ -66,7 +67,7 @@ export default function Students() {
           </select>
         </div>
       </form>
-      <MyCalendar student={form.name} />
+      <MyCalendar student={form} />
     </>
   )
 }

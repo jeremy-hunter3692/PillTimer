@@ -17,7 +17,7 @@ export function getSessions() {
   })
 }
 
-export function addSession(data) {
+export function addSessions(data) {
   return request
     .post(apiUrl)
     .send(data)

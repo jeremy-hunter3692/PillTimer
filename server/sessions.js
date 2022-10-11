@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const db = require('./db/db')
 
-
-
 router.get('/', (req, res) => {
   db.getAllSessions()
     .then((data) => {
@@ -30,16 +28,20 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   //Matching/changing key names to databse key names
 
-  const session = req.body
-  console.log('sessions.js', req.body)
-  session.student_id = req.body.studentId
-  session.teacher_id = req.body.teacherId
-  delete session.name
-  delete session.studentId
-  delete session.teacherId
-  db.addSession(session)
+  const sessions = req.body
+  sessions.forEach((x) => {
+    x.student_id = Number(x.studentId)
+    x.teacher_id = x.teacherId
+    delete x.name
+    delete x.studentId
+    delete x.teacherId
+    delete x.instrument
+    delete x.title
+  })
+  console.log('sessions.js', sessions)
+  db.addSession(sessions)
     .then(() => {
-      res.send(session)
+      res.send(sessions)
     })
     .catch((err) => {
       console.error(err.message)

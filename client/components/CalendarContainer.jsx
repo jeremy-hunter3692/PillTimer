@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addEvents } from '../Actions/eventsActions'
 
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
@@ -14,10 +15,12 @@ const initEvent = [
   },
 ]
 
-export default function MyCalendar(props) {
+export default function MyCalendar({ student }) {
+  const dispatch = useDispatch()
   const eventData = useSelector((state) => state.events)
-  // console.log('1', eventData)
+  console.log('1', student)
   const [events, setEvents] = useState([])
+  const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
     // console.log(eventData)
@@ -28,21 +31,28 @@ export default function MyCalendar(props) {
     //TODO make title student name-via form?
     //Add newEvent to redux state
 
-    let title = props.student
-
-    // get student name, get studentId
-
-    if (title) {
+    let title = student.name
+    let teacher = 4
+    // imrpove this logic/defnsive stuff
+    if (title != ' ') {
       let newEvent = {
         start: start,
         end: end,
         title: title, // get student name, get studentId
         studentNotes: '',
         teacherNotes: '',
-        name: title,
+        studentId: student.id,
+        teacherId: teacher,
       }
+      setNewEvents([...newEvents, newEvent])
       setEvents([...events, newEvent])
     }
+  }
+
+  //save on navigate away??
+  function submit() {
+    console.log('submit', newEvents)
+    dispatch(addEvents(newEvents))
   }
 
   return (
@@ -58,6 +68,7 @@ export default function MyCalendar(props) {
         selectable={true}
         onSelectSlot={handleSelect}
       />
+      <button onClick={submit}>submit events</button>
     </div>
   )
 }
