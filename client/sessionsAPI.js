@@ -11,7 +11,7 @@ export function getLastSessionById(id) {
 }
 
 export function getSessions() {
-  console.log('sessions api')
+  // console.log('sessions api')
   return request.get(apiUrl).then((res) => {
     return res.body
   })

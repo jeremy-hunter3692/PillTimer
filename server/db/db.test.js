@@ -2,7 +2,7 @@ const knex = require('knex')
 const config = require('./knexfile').test
 const testDb = knex(config)
 
-const { getLastSessionById, getAllStudents, addSession } = require('./db.js')
+const { getLastSessionById, getAllStudents, addSessions } = require('./db.js')
 
 beforeAll(() => {
   return testDb.migrate.latest()
@@ -34,25 +34,35 @@ describe('getAllStudents', () => {
   })
 })
 
-describe('addSession', () => {
+describe('addSessions', () => {
   test('adds a new session to the database', () => {
     expect.assertions(7)
 
-    const mockInfo = {
-      start: '22-10-02',
-      end: '06:04',
-      student_id: 7,
-      studentNotes: 'Hello',
-      teacher_id: 2,
-      teacherNotes: 'Goodbye',
-    }
+    const mockInfo = [
+      {
+        start: '22-10-02',
+        end: '06:04',
+        student_id: 7,
+        studentNotes: 'Hello',
+        teacher_id: 2,
+        teacherNotes: 'Goodbye',
+      },
+      {
+        start: '21-10-06',
+        end: '05:24',
+        student_id: 4,
+        studentNotes: 'Hey',
+        teacher_id: 7,
+        teacherNotes: 'Bye',
+      },
+    ]
 
-    return addSession(mockInfo, testDb)
+    return addSessions(mockInfo, testDb)
       .then(() => {
         return testDb('sessions').select()
       })
       .then((sessions) => {
-        expect(sessions).toHaveLength(6)
+        expect(sessions).toHaveLength(7)
         expect(sessions[5].student_id).toBe(7)
         expect(sessions[5].teacher_id).toBe(2)
         expect(sessions[5].studentNotes).toBe('Hello')

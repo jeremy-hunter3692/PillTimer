@@ -17,7 +17,8 @@ function getSessionById(id, db = connection) {
   return db('sessions').where('id', id).select().first()
 }
 
-function addSession(info, db = connection) {
+function addSessions(info, db = connection) {
+  console.log('info', info)
   return db('sessions').insert(info)
 }
 
@@ -26,7 +27,7 @@ function getAllStudents(db = connection) {
 }
 
 module.exports = {
-  addSession,
+  addSessions,
   getSessionById,
   getAllSessions,
   getLastSessionById,

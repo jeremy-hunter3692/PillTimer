@@ -9,11 +9,11 @@ export function setEventsData(data) {
 }
 
 export function addEvents(data) {
-  console.log('actions1', data)
+  // console.log('actions1', data)
   return (dispatch) => {
     addSessions(data)
       .then(() => {
-        console.log('actions2', data)
+        // console.log('actions2', data)
         dispatch(setEventsData(data))
       })
       .catch((error) => {

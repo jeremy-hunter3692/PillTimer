@@ -38,9 +38,8 @@ router.post('/', (req, res) => {
     delete x.instrument
     delete x.title
   })
-  console.log('sessions.js', sessions)
-  db.addSession(sessions)
-    .then(() => {
+  db.addSessions(sessions)
+    .then((sessions) => {
       res.send(sessions)
     })
     .catch((err) => {

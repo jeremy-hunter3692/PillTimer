@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setTodaysFormData } from '../Actions/currentFormActions'
-import { addSession } from '../sessionsAPI'
+import { addSessions } from '../sessionsAPI'
 
 export default function CurrentForm(props) {
   const [submitted, setSubmitted] = useState(false)
@@ -18,7 +18,7 @@ export default function CurrentForm(props) {
     //adds to the databse via api client
     //if you refresh after adding it it should then be in the last session page.
     console.log('submitted')
-    addSession(props.state)
+    addSessions(props.state)
     //TODO look at redierect. code from class teusday week 6 fruits
     //bit of a janky way to show that something has happenened at the moment will change this to a rediect later
     setSubmitted(true)

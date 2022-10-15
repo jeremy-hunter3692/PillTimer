@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { getAllStudents } from '../studentsAPI'
 import MyCalendar from './CalendarContainer.jsx'
+
 const initForm = {
   name: ' ',
   id: ' ',
 }
+let selected = 'None'
 
 export default function Students() {
-
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   // console.log('form', form)
@@ -27,19 +28,19 @@ export default function Students() {
   function handleChange(e) {
     e.preventDefault()
     //look into this drop down option thing
-
     const selectedIndex = e.target.options.selectedIndex
     setForm({
       ...form,
       [e.target.name]: e.target.value,
       id: e.target.options[selectedIndex].getAttribute('datakey'),
     })
+    selected = students[selectedIndex - 1].name
   }
 
   return (
     <>
       <header>
-        <h1>Students</h1>
+        <h1>Students:</h1>
       </header>
 
       <form onSubmit={handleSubmit} className="form">
@@ -67,6 +68,7 @@ export default function Students() {
           </select>
         </div>
       </form>
+      <h2>Selected student: {selected}</h2>
       <MyCalendar student={form} />
     </>
   )

@@ -18,7 +18,7 @@ const initEvent = [
 export default function MyCalendar({ student }) {
   const dispatch = useDispatch()
   const eventData = useSelector((state) => state.events)
-  console.log('1', student)
+  // console.log('1', student)
   const [events, setEvents] = useState([])
   const [newEvents, setNewEvents] = useState([])
 
@@ -51,7 +51,7 @@ export default function MyCalendar({ student }) {
 
   //save on navigate away??
   function submit() {
-    console.log('submit', newEvents)
+    // console.log('submit', newEvents)
     dispatch(addEvents(newEvents))
   }
 

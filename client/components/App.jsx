@@ -6,6 +6,7 @@ import LastSession from './LastSession'
 import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
 import Students from './Students.jsx'
+import RecurringEvents from './RecurringEvents'
 import { setEventsData, fetchEvents } from '../Actions/eventsActions'
 // const date = new Date().toISOString()
 const eventsData = [
@@ -65,8 +66,9 @@ const App = () => {
 
   return (
     <>
+      <RecurringEvents />
       <Nav />
-      <Students eventsData={eventsData} />
+      {/* <Students eventsData={eventsData} /> */}
 
       <button
         className="clickMe"
