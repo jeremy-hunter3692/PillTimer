@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
+// import RecurringEvents from './RecurringEvents'
 
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
@@ -15,7 +16,7 @@ const initEvent = [
   },
 ]
 
-export default function MyCalendar({ student }) {
+export default function MyCalendar({ student, recurringNumber }) {
   const dispatch = useDispatch()
   const eventData = useSelector((state) => state.events)
   // console.log('1', student)
@@ -27,9 +28,29 @@ export default function MyCalendar({ student }) {
     eventData[0] ? setEvents(eventData) : setEvents([])
   }, [eventData])
 
+  function createWeeklyEvent(newEvent, length) {
+    const weeklyEvents = [newEvent]
+
+    for (let i = 0; i < length; i++) {
+      let newDate = {
+        ...newEvent,
+        start: new Date(weeklyEvents[i].start.valueOf()),
+        end: new Date(weeklyEvents[i].end.valueOf()),
+      }
+      newDate.start.setDate(newDate.start.getDate() + 7)
+      newDate.end.setDate(newDate.end.getDate() + 7)
+      // newDate.setDate(newDate.getDate() + 7)
+      weeklyEvents.push(newDate)
+    }
+    return weeklyEvents
+  }
+
   function handleSelect({ start, end }) {
     //TODO make title student name-via form?
     //Add newEvent to redux state
+    // console.group('1')
+
+    let length = recurringNumber - 1
 
     let title = student.name
     let teacher = 4
@@ -38,20 +59,26 @@ export default function MyCalendar({ student }) {
       let newEvent = {
         start: start,
         end: end,
-        title: title, // get student name, get studentId
+        title: title,
         studentNotes: '',
         teacherNotes: '',
         studentId: student.id,
         teacherId: teacher,
       }
+
       setNewEvents([...newEvents, newEvent])
+      // let howManyTimes = 3
+      // console.group('2')
+      let resultArr = createWeeklyEvent(newEvent, length || 0)
+      console.group('3', resultArr)
+      // dispatch(addEvents(resultArr))
+      console.log('state', newEvents)
       setEvents([...events, newEvent])
     }
   }
 
   //save on navigate away??
   function submit() {
-    // console.log('submit', newEvents)
     dispatch(addEvents(newEvents))
   }
 

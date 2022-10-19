@@ -11,6 +11,7 @@ let selected = 'None'
 export default function Students() {
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
+  const [weeks, setWeeks] = useState(0)
   // console.log('form', form)
   useEffect(() => {
     getAllStudents()
@@ -22,9 +23,6 @@ export default function Students() {
       })
   }, [])
 
-  function handleSubmit(e) {
-    e.preventDefault()
-  }
   function handleChange(e) {
     e.preventDefault()
     //look into this drop down option thing
@@ -35,6 +33,18 @@ export default function Students() {
       id: e.target.options[selectedIndex].getAttribute('datakey'),
     })
     selected = students[selectedIndex - 1].name
+  }
+
+  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+  function getWeeks(e) {
+    e.preventDefault()
+    setWeeks(e.target.value)
+    console.log('week', e.target.value)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
   }
 
   return (
@@ -66,10 +76,27 @@ export default function Students() {
               </option>
             ))}
           </select>
+          <select
+            id={students.id}
+            name="weeks"
+            defaultValue=""
+            onChange={getWeeks}
+          >
+            <option value="" disabled>
+              Recurring?
+            </option>
+            {numbers.map((x) => {
+              return (
+                <option key={x} value={x} title="How many weeks">
+                  {x}
+                </option>
+              )
+            })}
+          </select>
         </div>
       </form>
       <h2>Selected student: {selected}</h2>
-      <MyCalendar student={form} />
+      <MyCalendar student={form} recurringNumber={weeks} />
     </>
   )
 }

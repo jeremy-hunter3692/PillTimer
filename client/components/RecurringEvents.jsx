@@ -14,16 +14,11 @@ export default function RecurringEvents() {
 
   function createWeeklyEvent(date, length) {
     const weeklyEvents = [date]
-    //clone of initial date
-
     for (let i = 0; i < length; i++) {
       let newDate = new Date(weeklyEvents[i].valueOf())
       newDate.setDate(newDate.getDate() + 7)
-      console.log(newDate)
-      // )
       weeklyEvents.push(newDate)
     }
-    console.log(weeklyEvents)
   }
 
   return (
