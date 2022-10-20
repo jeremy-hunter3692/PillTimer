@@ -18,9 +18,15 @@ export function getSessions() {
 }
 
 export function addSessions(data) {
+  //conver to utc
+  console.log(data)
+  const submitData = { ...data }
+  console.log(submitData)
+  console.log(typeof data[0].start.toUTCString(), data[0].start.toUTCString())
+  console.log(typeof data[0].end.toUTCString(), data[0].end.toUTCString())
   return request
     .post(apiUrl)
-    .send(data)
+    .send(submitData)
     .then((res) => {
       if (res.status === 200) {
         return res.body

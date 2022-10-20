@@ -12,7 +12,9 @@ export default function Students() {
   const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   const [weeks, setWeeks] = useState(0)
-  // console.log('form', form)
+  const [detailsPop, setDetailPop] = useState(false)
+
+  //getting names of students
   useEffect(() => {
     getAllStudents()
       .then((data) => {
@@ -23,6 +25,7 @@ export default function Students() {
       })
   }, [])
 
+  //Handle Student selector change
   function handleChange(e) {
     e.preventDefault()
     //look into this drop down option thing
@@ -30,12 +33,12 @@ export default function Students() {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
-      id: e.target.options[selectedIndex].getAttribute('datakey'),
+      id: Number(e.target.options[selectedIndex].getAttribute('datakey')),
     })
     selected = students[selectedIndex - 1].name
   }
-
-  const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  //For the number of reocurring events TODO better way than an array of numbers...
+  const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   function getWeeks(e) {
     e.preventDefault()
@@ -46,56 +49,69 @@ export default function Students() {
   function handleSubmit(e) {
     e.preventDefault()
   }
-
+  //bool for siplaying adding new event
+  function newEvent(e) {
+    e.preventDefault()
+    setDetailPop(true)
+  }
   return (
     <>
-      <header>
-        <h1>Students:</h1>
-      </header>
-
-      <form onSubmit={handleSubmit} className="form">
+      <button onClick={newEvent}>
+        <strong>Add New Event</strong>
+      </button>
+      {detailsPop ? (
         <div>
-          <select
-            id={students.id}
-            name="name"
-            defaultValue=""
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Choose student
-            </option>
-            {students.map((students) => (
-              <option
-                key={students.id}
-                datakey={students.id}
-                value={students.name}
-                title="Which student"
+          <header>
+            <h1>Students:</h1>
+          </header>
+
+          <form onSubmit={handleSubmit} className="form">
+            <div>
+              <select
+                id={students.id}
+                name="name"
+                defaultValue=""
+                onChange={handleChange}
+                required
               >
-                {students.name}
-              </option>
-            ))}
-          </select>
-          <select
-            id={students.id}
-            name="weeks"
-            defaultValue=""
-            onChange={getWeeks}
-          >
-            <option value="" disabled>
-              Recurring?
-            </option>
-            {numbers.map((x) => {
-              return (
-                <option key={x} value={x} title="How many weeks">
-                  {x}
+                <option value="" disabled>
+                  Choose student
                 </option>
-              )
-            })}
-          </select>
+                {students.map((students) => (
+                  <option
+                    key={students.id}
+                    datakey={students.id}
+                    value={students.name}
+                    title="Which student"
+                  >
+                    {students.name}
+                  </option>
+                ))}
+              </select>
+              <select
+                id={students.id}
+                name="weeks"
+                defaultValue=""
+                onChange={getWeeks}
+              >
+                <option value="" disabled>
+                  Recurring?
+                </option>
+                {numbers.map((x) => {
+                  return (
+                    <option key={x} value={x} title="How many weeks">
+                      {x}
+                    </option>
+                  )
+                })}
+              </select>
+            </div>
+          </form>
+          <h2>Selected student: {selected}</h2>
         </div>
-      </form>
-      <h2>Selected student: {selected}</h2>
+      ) : (
+        ''
+      )}
       <MyCalendar student={form} recurringNumber={weeks} />
     </>
   )

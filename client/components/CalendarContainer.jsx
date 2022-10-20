@@ -3,18 +3,17 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
-// import RecurringEvents from './RecurringEvents'
 
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = momentLocalizer(moment)
-const initEvent = [
-  {
-    start: ' ',
-    end: ' ',
-    title: 'init ',
-  },
-]
+// const initEvent = [
+//   {
+//     start: ' ',
+//     end: ' ',
+//     title: 'init ',
+//   },
+// ]
 
 export default function MyCalendar({ student, recurringNumber }) {
   const dispatch = useDispatch()
@@ -30,7 +29,6 @@ export default function MyCalendar({ student, recurringNumber }) {
 
   function createWeeklyEvent(newEvent, length) {
     const weeklyEvents = [newEvent]
-
     for (let i = 0; i < length; i++) {
       let newDate = {
         ...newEvent,
@@ -46,13 +44,16 @@ export default function MyCalendar({ student, recurringNumber }) {
   }
 
   function handleSelect({ start, end }) {
-    //TODO make title student name-via form?
+    console.log('onselecetedslot')
+
     //Add newEvent to redux state
-    // console.group('1')
+    // addEvent(start, end)
+  }
 
+  function addEvent({ start, end }) {
     let length = recurringNumber - 1
-
     let title = student.name
+    //TODO get teacher id on load?
     let teacher = 4
     // imrpove this logic/defnsive stuff
     if (title != ' ') {
@@ -65,14 +66,10 @@ export default function MyCalendar({ student, recurringNumber }) {
         studentId: student.id,
         teacherId: teacher,
       }
-
       setNewEvents([...newEvents, newEvent])
-      // let howManyTimes = 3
-      // console.group('2')
       let resultArr = createWeeklyEvent(newEvent, length || 0)
-      console.group('3', resultArr)
+      console.group('resultarr', resultArr)
       // dispatch(addEvents(resultArr))
-      console.log('state', newEvents)
       setEvents([...events, newEvent])
     }
   }
@@ -94,6 +91,7 @@ export default function MyCalendar({ student, recurringNumber }) {
         defaultView={Views.DAY}
         selectable={true}
         onSelectSlot={handleSelect}
+        longPressThreshold={10}
       />
       <button onClick={submit}>submit events</button>
     </div>
