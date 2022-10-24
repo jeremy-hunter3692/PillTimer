@@ -1,6 +1,6 @@
 import nock from 'nock'
 
-const { addSession, getLastSessionById } = require('./sessionsAPI')
+const { addSessions, getLastSessionById } = require('./sessionsAPI')
 
 const apiUrl = '/api/v1/sessions'
 
@@ -20,7 +20,7 @@ describe('getLastSession', () => {
       .post(apiUrl)
       .reply(200, { data: 'testing data' })
     const data = { data: 'test' }
-    return addSession(data).then((result) => {
+    return addSessions(data).then((result) => {
       expect(result).toEqual({ data: 'testing data' })
       expect(scope.isDone()).toBe(true)
     })

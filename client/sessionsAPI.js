@@ -11,22 +11,36 @@ export function getLastSessionById(id) {
 }
 
 export function getSessions() {
-  // console.log('sessions api')
   return request.get(apiUrl).then((res) => {
-    return res.body
+    //converting from UTC back to date object
+    const data = res.body
+    data.forEach((x) => {
+      // console.log('type', typeof x.start, 'actual', x.start)
+      x.start = new Date(parseInt(x.start))
+      x.end = new Date(parseInt(x.end))
+      // console.log('after type', typeof x.start, 'actual', x.start)
+    })
+
+    return data
   })
 }
 
 export function addSessions(data) {
-  //conver to utc
-  console.log(data)
-  const submitData = { ...data }
-  console.log(submitData)
-  console.log(typeof data[0].start.toUTCString(), data[0].start.toUTCString())
-  console.log(typeof data[0].end.toUTCString(), data[0].end.toUTCString())
+  //convert to utc
+  console.log('1', data)
+  data.forEach((x) => {
+    console.log(typeof x.start, x.start)
+    x.start.toUTCString()
+    console.log(typeof x.start, x.start)
+  })
+  console.log('2', data)
+  // const submitData = { ...data }
+  // console.log(submitData)
+  // console.log(typeof data[0].start.toUTCString(), data[0].start.toUTCString())
+  // console.log(typeof data[0].end.toUTCString(), data[0].end.toUTCString())
   return request
     .post(apiUrl)
-    .send(submitData)
+    .send(data)
     .then((res) => {
       if (res.status === 200) {
         return res.body

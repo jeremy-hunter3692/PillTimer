@@ -43,7 +43,7 @@ export default function Students() {
   function getWeeks(e) {
     e.preventDefault()
     setWeeks(e.target.value)
-    // console.log('week', e.target.value)
+    console.log('week', e.target.value)
   }
 
   function handleSubmit(e) {
@@ -53,6 +53,7 @@ export default function Students() {
   function newEvent(e) {
     e.preventDefault()
     setDetailPop(!detailsPop)
+    console.log('deatilspop', detailsPop)
   }
   return (
     <>
@@ -75,7 +76,7 @@ export default function Students() {
                 required
               >
                 <option value="" disabled>
-                  Choose student
+                  Student
                 </option>
                 {students.map((students) => (
                   <option
@@ -95,7 +96,7 @@ export default function Students() {
                 onChange={getWeeks}
               >
                 <option value="" disabled>
-                  Recurring?
+                  How many times
                 </option>
                 {numbers.map((x) => {
                   return (
@@ -112,7 +113,11 @@ export default function Students() {
       ) : (
         ''
       )}
-      <MyCalendar student={form} recurringNumber={weeks} />
+      <MyCalendar
+        student={form}
+        recurringNumber={weeks}
+        makeNewEvent={detailsPop}
+      />
     </>
   )
 }

@@ -5,8 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable('sessions', (table) => {
     table.increments('id').primary()
-    table.dateTime('start')
-    table.dateTime('end')
+    table.string('start')
+    table.string('end')
     table.text('studentNotes')
     table.text('teacherNotes')
     table.integer('teacher_id')

@@ -18,7 +18,6 @@ function getSessionById(id, db = connection) {
 }
 
 function addSessions(info, db = connection) {
-  console.log('info', info)
   return db('sessions').insert(info)
 }
 

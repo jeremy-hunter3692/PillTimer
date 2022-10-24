@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
+import { getSessions } from '../sessionsAPI'
 
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
@@ -23,8 +24,13 @@ export default function MyCalendar({ student, recurringNumber }) {
   const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
-    // console.log(eventData)
-    eventData[0] ? setEvents(eventData) : setEvents([])
+    getSessions()
+      .then((eventData) => {
+        eventData[0] ? setEvents(eventData) : setEvents([])
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }, [eventData])
 
   function createWeeklyEvent(newEvent, length) {
@@ -43,11 +49,11 @@ export default function MyCalendar({ student, recurringNumber }) {
     return weeklyEvents
   }
 
-  function handleSelect({ start, end }) {
+  function handleSelect(start, end) {
     console.log('onselecetedslot')
 
     //Add newEvent to redux state
-    // addEvent(start, end)
+    addEvent(start, end)
   }
 
   function addEvent({ start, end }) {
@@ -66,9 +72,9 @@ export default function MyCalendar({ student, recurringNumber }) {
         studentId: student.id,
         teacherId: teacher,
       }
-      setNewEvents([...newEvents, newEvent])
+
       let resultArr = createWeeklyEvent(newEvent, length || 0)
-      console.group('resultarr', resultArr)
+      setNewEvents(resultArr)
       // dispatch(addEvents(resultArr))
       setEvents([...events, newEvent])
     }
@@ -76,6 +82,7 @@ export default function MyCalendar({ student, recurringNumber }) {
 
   //save on navigate away??
   function submit() {
+    console.log('submit', newEvents)
     dispatch(addEvents(newEvents))
   }
 
