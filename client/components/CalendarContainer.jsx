@@ -16,7 +16,7 @@ const localizer = momentLocalizer(moment)
 //   },
 // ]
 
-export default function MyCalendar({ student, recurringNumber }) {
+export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventData = useSelector((state) => state.events)
   // console.log('1', student)
@@ -34,30 +34,31 @@ export default function MyCalendar({ student, recurringNumber }) {
   }, [eventData])
 
   function createWeeklyEvent(newEvent, length) {
+    console.log('length', length, 'event', newEvent)
     const weeklyEvents = [newEvent]
-    for (let i = 0; i < length; i++) {
+    for (let i = 1; i < length; i++) {
       let newDate = {
         ...newEvent,
-        start: new Date(weeklyEvents[i].start.valueOf()),
-        end: new Date(weeklyEvents[i].end.valueOf()),
+        start: new Date(weeklyEvents[i - 1].start.valueOf()),
+        end: new Date(weeklyEvents[i - 1].end.valueOf()),
       }
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
       // newDate.setDate(newDate.getDate() + 7)
+      console.log('current date', i, newDate)
       weeklyEvents.push(newDate)
     }
+    console.log('arr', weeklyEvents)
     return weeklyEvents
   }
 
   function handleSelect(start, end) {
     console.log('onselecetedslot')
-
-    //Add newEvent to redux state
     addEvent(start, end)
   }
 
   function addEvent({ start, end }) {
-    let length = recurringNumber - 1
+    let length = noOfWeeks
     let title = student.name
     //TODO get teacher id on load?
     let teacher = 4
@@ -73,8 +74,8 @@ export default function MyCalendar({ student, recurringNumber }) {
         teacherId: teacher,
       }
 
-      let resultArr = createWeeklyEvent(newEvent, length || 0)
-      setNewEvents(resultArr)
+      let newEventsArr = createWeeklyEvent(newEvent, length || 0)
+      setNewEvents(newEventsArr)
       // dispatch(addEvents(resultArr))
       setEvents([...events, newEvent])
     }

@@ -99,6 +99,15 @@ h3 {
   /* gap: 4rem; */
 }
 
+.students {
+  background-color: rgb(255, 136, 160);
+  padding: 2rem;
+
+}
+
+.students h3 {
+  text-align: left;
+}
 
 
 label {

@@ -16,8 +16,8 @@ export function getSessions() {
     const data = res.body
     data.forEach((x) => {
       // console.log('type', typeof x.start, 'actual', x.start)
-      x.start = new Date(parseInt(x.start))
-      x.end = new Date(parseInt(x.end))
+      x.start = new Date(x.start)
+      x.end = new Date(x.end)
       // console.log('after type', typeof x.start, 'actual', x.start)
     })
 
@@ -27,18 +27,11 @@ export function getSessions() {
 
 export function addSessions(data) {
   //convert to utc
-  console.log('1', data)
   data.forEach((x) => {
-    console.log(typeof x.start, x.start)
     x.start.toUTCString()
-    console.log(typeof x.start, x.start)
   })
-  console.log('2', data)
-  // const submitData = { ...data }
-  // console.log(submitData)
-  // console.log(typeof data[0].start.toUTCString(), data[0].start.toUTCString())
-  // console.log(typeof data[0].end.toUTCString(), data[0].end.toUTCString())
-  return request
+  console
+    .log(data, typeof data[0].start)
     .post(apiUrl)
     .send(data)
     .then((res) => {

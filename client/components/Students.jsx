@@ -43,7 +43,7 @@ export default function Students() {
   function getWeeks(e) {
     e.preventDefault()
     setWeeks(e.target.value)
-    // console.log('week', e.target.value)
+    console.log('week', e.target.value)
   }
 
   function handleSubmit(e) {
@@ -60,11 +60,10 @@ export default function Students() {
         <strong>Add New Event</strong>
       </button>
       {detailsPop ? (
-        <div>
+        <div className="students">
           <header>
-            <h1>Students:</h1>
+            <h1>New Session</h1>
           </header>
-
           <form onSubmit={handleSubmit} className="form">
             <div>
               <select
@@ -107,12 +106,13 @@ export default function Students() {
               </select>
             </div>
           </form>
-          <h2>Selected student: {selected}</h2>
+          <h3>New Session - Student: {selected}</h3>
+          <h4>How many weeks: {weeks}</h4>
         </div>
       ) : (
         ''
       )}
-      <MyCalendar student={form} recurringNumber={weeks} />
+      <MyCalendar student={form} noOfWeeks={weeks} />
     </>
   )
 }
