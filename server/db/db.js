@@ -3,14 +3,26 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
 function getAllSessions(db = connection) {
-  return db('sessions').join('students', 'student_id', 'students.id').select()
+  return db('sessions')
+    .join('students', 'student_id', 'students.id')
+    .select(
+      'student_id as studentId',
+      'teacher_id as teacherId',
+      'start',
+      'end',
+      'studentNotes',
+      'teacherNotes'
+    )
 }
 
 function getLastSessionById(id, db = connection) {
   return db('sessions')
     .where('sessions.student_id', id)
     .join('students', 'student_id', 'students.id')
-    .then((ids) => ids[ids.length - 1])
+    .select()
+    .then((ids) => {
+      return ids[ids.length - 1]
+    })
 }
 
 function getSessionById(id, db = connection) {

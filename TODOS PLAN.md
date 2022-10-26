@@ -1,8 +1,9 @@
 
-Learn more about dates and handling of. Re do naming logic in app for getting last session id. 
-Write better seed data for this
+Getting student name/title back from api to make calendar work 
+
+
 Think about how to get student is and linking to calendar events better.//Just via the times?
-Along with this is submitting sessions to the database
+
 Might need to change addSession to be and update session
 --add empty data with only times and Ids etc then update notes data
 

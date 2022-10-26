@@ -79,24 +79,19 @@ describe('Post a session /api/v1/sessions', () => {
       },
     ]
 
-    const mockReturnObject = [
-      {
-        start: '22-10-02',
-        end: '06:04',
-        student_id: 7,
-        studentNotes: 'Hello',
-        teacher_id: 2,
-        teacherNotes: 'Goodbye',
-      },
-    ]
-
-    expect.assertions(1)
+    expect.assertions(7)
     db.addSessions.mockReturnValue(Promise.resolve(mockPostSessionData))
     return request(server)
       .post('/api/v1/sessions')
       .send(mockPostSessionData)
       .then((res) => {
-        expect(res.body).toBe(mockReturnObject)
+        expect(res.body[0].studentId).toBe(7)
+        expect(res.body[0].teacherId).toBe(2)
+        expect(res.body[0].studentNotes).toBe('Hello')
+        expect(res.body[0].teacherNotes).toBe('Goodbye')
+        expect(res.body[0].name).toBe('lil jimmy')
+        expect(res.body[0].start).toBe('22-10-02')
+        expect(res.body[0].end).toBe('06:04')
       })
   })
 

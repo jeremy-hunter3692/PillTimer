@@ -7,14 +7,14 @@ export default function LastSession() {
   return (
     <>
       <h1>Last Session: </h1>
-      <h2>{`Notes for ${formData.name} at ${formData.hour} on the ${formData.date}`}</h2>
+      <h2>{`Notes for ${formData?.name} at ${formData?.hour} on the ${formData?.date}`}</h2>
       <div className="formContainer">
         <div className="studentNotes">
           <Form
             title="Student Notes"
             formName="studentNotes"
             state={formData}
-            value={formData.studentNotes}
+            value={formData?.studentNotes}
             buttonBool={false}
             onChangeBool={false}
           />
@@ -25,7 +25,7 @@ export default function LastSession() {
             title="Teacher Notes"
             formName="teacherNotes"
             state={formData}
-            value={formData.teacherNotes}
+            value={formData?.teacherNotes}
             buttonBool={false}
             onChangeBool={false}
           />

@@ -13,7 +13,7 @@ export function addEvents(data) {
   return (dispatch) => {
     addSessions(data)
       .then(() => {
-        console.log('actions2', data)
+        console.log('actions2 then', data)
         dispatch(setEventsData(data))
       })
       .catch((error) => {

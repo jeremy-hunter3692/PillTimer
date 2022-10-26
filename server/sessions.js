@@ -17,6 +17,7 @@ router.get('/:id', (req, res) => {
   const id = req.params.id
   db.getLastSessionById(id)
     .then((data) => {
+      // console.log('route', data)
       res.send(data)
     })
     .catch((err) => {
@@ -28,17 +29,17 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   //Matching/changing key names to databse key names
 
-  const sessions = req.body
-  sessions.forEach((x) => {
+  const sessionsFiltered = req.body
+  sessionsFiltered.forEach((x) => {
     x.student_id = Number(x.studentId)
-    x.teacher_id = x.teacherId
+    x.teacher_id = Number(x.teacherId)
     delete x.name
     delete x.studentId
     delete x.teacherId
     delete x.instrument
     delete x.title
   })
-  db.addSessions(sessions)
+  db.addSessions(sessionsFiltered)
     .then((sessions) => {
       res.send(sessions)
     })

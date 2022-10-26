@@ -4,23 +4,25 @@ import { useSelector } from 'react-redux'
 
 export default function CurrentSession() {
   let formData = useSelector((state) => state.currentFormData)
-
+  console.log('formD', formData)
   //This is place holder do getting some information from the last session and new Date()
   //until I work out how I will make it interact with a calendar libaray
   const oldSessionData = useSelector((state) => state.lastFormData)
+  console.log('oldSessiondata', oldSessionData)
   formData = {
     ...formData,
     date: new Date().toISOString().slice(2, 10),
     hour: new Date().toISOString().slice(11, 16),
-    name: oldSessionData.name,
-    teacherId: oldSessionData.teacher_id,
-    studentId: oldSessionData.student_id,
+    name: oldSessionData?.name,
+    teacherId: oldSessionData?.teacher_id,
+    studentId: oldSessionData?.student_id,
   }
+  console.log('formD', formData)
   return (
     <>
       <h1>Current Session:</h1>
       <h2>
-        {`Notes for ${formData.name} at ${formData.hour} on the ${formData.date}`}
+        {`Notes for ${formData?.name} at ${formData?.hour} on the ${formData?.date}`}
       </h2>
       <div className="formContainer">
         <div className="studentNotes">
@@ -28,7 +30,7 @@ export default function CurrentSession() {
             title="Student Notes"
             formName="studentNotes"
             state={formData}
-            value={formData.studentNotes}
+            value={formData?.studentNotes}
             buttonBool={true}
             onChangeBool={true}
           />
@@ -39,7 +41,7 @@ export default function CurrentSession() {
             title="Teacher Notes"
             formName="teacherNotes"
             state={formData}
-            value={formData.teacherNotes}
+            value={formData?.teacherNotes}
             buttonBool={false}
             onChangeBool={true}
           />

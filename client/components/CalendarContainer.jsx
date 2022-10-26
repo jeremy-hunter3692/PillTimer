@@ -24,14 +24,8 @@ export default function MyCalendar({ student, noOfWeeks }) {
   const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
-    getSessions()
-      .then((eventData) => {
-        eventData[0] ? setEvents(eventData) : setEvents([])
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }, [eventData])
+    eventData[0] ? setEvents(eventData) : setEvents([])
+  }, [])
 
   function createWeeklyEvent(newEvent, length) {
     console.log('length', length, 'event', newEvent)
@@ -45,7 +39,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
       // newDate.setDate(newDate.getDate() + 7)
-      console.log('current date', i, newDate)
+      // console.log('current date', i, newDate)
       weeklyEvents.push(newDate)
     }
     console.log('arr', weeklyEvents)
