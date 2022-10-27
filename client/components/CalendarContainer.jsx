@@ -19,10 +19,16 @@ export default function MyCalendar({ student, noOfWeeks }) {
 
   useEffect(() => {
     eventData = eventState.map((x) => {
-      return { ...x, start: moment(x.start), end: moment(x.start) }
+      return {
+        ...x,
+        start: new Date(x.start),
+        end: new Date(x.start),
+        title: 'TO DO',
+      }
     })
-    console.log(eventData)
-  }, [])
+    console.log('use ed', eventData, 'type', typeof eventData[0].start)
+    setEvents(eventData)
+  }, [eventState])
 
   function createWeeklyEvent(newEvent, length) {
     console.log('length', length, 'event', newEvent)
@@ -84,7 +90,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}
-        events={eventData}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 700 }}
