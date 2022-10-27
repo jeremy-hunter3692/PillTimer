@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import CurrentSession from './CurrentSession'
 import LastSession from './LastSession'
 import moment from 'moment'
-import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
+import { fetchStudents } from '../Actions/studentsActions'
 import { fetchEvents } from '../Actions/eventsActions'
 
 //Only working by hours. need check for day
@@ -18,6 +18,7 @@ export default function NotesDisplay() {
   //loading last session from the data base via apli client and then setting it in the state
   useEffect(() => {
     dispatch(fetchEvents())
+    dispatch(fetchStudents())
   }, [])
 
   useEffect(() => {
@@ -35,7 +36,6 @@ export default function NotesDisplay() {
     //       return x
     //     }
     //   })
-
     //   //TOOOOO DOOOOO object is returning in student_id form intead of studentID form
     //   //Sort it out in routes and do tests to make sure this doesn't happened again Thanks.
     //   console.log('result in use', result)

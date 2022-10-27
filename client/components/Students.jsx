@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getAllStudents } from '../studentsAPI'
+import { useSelector } from 'react-redux'
 import MyCalendar from './CalendarContainer.jsx'
 
 const initForm = {
@@ -13,17 +13,13 @@ export default function Students() {
   const [form, setForm] = useState(initForm)
   const [weeks, setWeeks] = useState(0)
   const [detailsPop, setDetailPop] = useState(false)
-
+  const studentsData = useSelector((state) => state.students)
+  console.log('students', studentsData)
   //getting names of students
-  useEffect(() => {
-    getAllStudents()
-      .then((data) => {
-        setStudents(data)
-      })
-      .catch((err) => {
-        console.error(err.message)
-      })
-  }, [])
+  // useEffect(() => {
+  //   setStudents(studentsData)
+  //   console.log('students use', students)
+  // }, [studentsData])
 
   //Handle Student selector change
   function handleChange(e) {
@@ -67,7 +63,7 @@ export default function Students() {
           <form onSubmit={handleSubmit} className="form">
             <div>
               <select
-                id={students.id}
+                id={studentsData.id}
                 name="name"
                 defaultValue=""
                 onChange={handleChange}
@@ -76,19 +72,19 @@ export default function Students() {
                 <option value="" disabled>
                   Choose student
                 </option>
-                {students.map((students) => (
+                {studentsData.map((studentsData) => (
                   <option
-                    key={students.id}
-                    datakey={students.id}
-                    value={students.name}
+                    key={studentsData.id}
+                    datakey={studentsData.id}
+                    value={studentsData.name}
                     title="Which student"
                   >
-                    {students.name}
+                    {studentsData.name}
                   </option>
                 ))}
               </select>
               <select
-                id={students.id}
+                id={studentsData.id}
                 name="weeks"
                 defaultValue=""
                 onChange={getWeeks}

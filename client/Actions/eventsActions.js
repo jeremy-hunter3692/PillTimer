@@ -9,7 +9,6 @@ export function setEventsData(data) {
 }
 
 export function addEvents(data) {
-  // console.log('actions1', data)
   return (dispatch) => {
     addSessions(data)
       .then(() => {
@@ -22,19 +21,15 @@ export function addEvents(data) {
   }
 }
 
-// export const fetchEvents = (dispatch) => {
-//   return
-
-// }
-
 export function fetchEvents() {
   return (dispatch) => {
     getSessions()
       .then((sessions) => {
-        const filterd = sessions.map((x) => {
-          return { ...x, title: x.name }
-        })
-        dispatch(setEventsData(filterd))
+        // const filterd = sessions.map((x) => {
+        //   console.log('in thunk', x)
+        //   return { ...x, title: x.name }
+        // })
+        dispatch(setEventsData(sessions))
       })
       .catch((error) => {
         console.log('actions', error)

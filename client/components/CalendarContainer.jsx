@@ -3,29 +3,28 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
-import { getSessions } from '../sessionsAPI'
 
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = momentLocalizer(moment)
-// const initEvent = [
-//   {
-//     start: ' ',
-//     end: ' ',
-//     title: 'init ',
-//   },
-// ]
 
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventData = useSelector((state) => state.events)
-  // console.log('1', student)
+  // console.log(eventData)
   const [events, setEvents] = useState([])
   const [newEvents, setNewEvents] = useState([])
 
-  useEffect(() => {
-    eventData[0] ? setEvents(eventData) : setEvents([])
-  }, [])
+  // useEffect(() => {
+  //   // if (eventData[1] === true) {
+  //   //   console.log('true', eventData)
+  //   setEvents(eventData?.events)
+  //   // } else {
+  //   //   console.log('else', eventData)
+  //   //   setEvents([initEvent])
+  //   // }
+  //   console.log(eventData, events)
+  // }, [])
 
   function createWeeklyEvent(newEvent, length) {
     console.log('length', length, 'event', newEvent)
@@ -39,7 +38,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
       // newDate.setDate(newDate.getDate() + 7)
-      // console.log('current date', i, newDate)
+
       weeklyEvents.push(newDate)
     }
     console.log('arr', weeklyEvents)
@@ -86,10 +85,10 @@ export default function MyCalendar({ student, noOfWeeks }) {
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}
-        events={events}
+        events={eventData}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ height: 700 }}
         defaultView={Views.DAY}
         selectable={true}
         onSelectSlot={handleSelect}
