@@ -31,7 +31,7 @@ export default function Students() {
       [e.target.name]: e.target.value,
       id: Number(e.target.options[selectedIndex].getAttribute('datakey')),
     })
-    selected = students[selectedIndex - 1].name
+    selected = studentsData[selectedIndex - 1].name
   }
   //For the number of reocurring events TODO better way than an array of numbers...
   const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]

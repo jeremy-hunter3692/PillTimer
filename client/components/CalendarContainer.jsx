@@ -10,21 +10,19 @@ const localizer = momentLocalizer(moment)
 
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
-  const eventData = useSelector((state) => state.events)
+  const eventState = useSelector((state) => state.events)
+  let eventData = []
   // console.log(eventData)
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState(eventData)
+  console.log(events)
   const [newEvents, setNewEvents] = useState([])
 
-  // useEffect(() => {
-  //   // if (eventData[1] === true) {
-  //   //   console.log('true', eventData)
-  //   setEvents(eventData?.events)
-  //   // } else {
-  //   //   console.log('else', eventData)
-  //   //   setEvents([initEvent])
-  //   // }
-  //   console.log(eventData, events)
-  // }, [])
+  useEffect(() => {
+    eventData = eventState.map((x) => {
+      return { ...x, start: moment(x.start), end: moment(x.start) }
+    })
+    console.log(eventData)
+  }, [])
 
   function createWeeklyEvent(newEvent, length) {
     console.log('length', length, 'event', newEvent)
@@ -71,6 +69,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
       setNewEvents(newEventsArr)
       // dispatch(addEvents(resultArr))
       setEvents([...events, newEvent])
+      console.log('add event', events)
     }
   }
 
