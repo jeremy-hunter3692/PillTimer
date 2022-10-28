@@ -1,9 +1,14 @@
+/* @import '../../src/sass/styles.scss';
+@import '../../src/addons/dragAndDrop/styles.scss'; */
+
+
 html, body, .viewport {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
   background: #e6ecee;
-  font-family: 'Caveat';
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 
@@ -14,39 +19,24 @@ header {
 #app {
   width: 100%;
   flex-wrap: wrap;
-  display: flex;
+  display:block;
 }
 
 h1 {
   text-align: center;
-  margin: 30px auto;
-  font-family: 'Caveat', cursive;
+  margin: 0;
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 50px;
 }
 
 h2 {
   text-align: center;
   margin: 30px auto;
-  font-family: 'Caveat', cursive;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 40px;
-  color: rgb(104, 100, 100);
+  color: rgb(208, 0, 0);
 }
 
-/* .titleContainer {
-  text-align: center;
-  margin: 20px auto;
-} */
-
-/* .canvasContainer {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: center;
-  margin-left: 20%;
-} */
-
-canvas {
-  box-shadow: 0 0 0 10px #9d6a45;
-}
 
 h3 {
   text-align: center;
@@ -54,19 +44,10 @@ h3 {
   font-size: 25px;
 }
 
-.tools {
-  display: flex-box;
-  justify-content: center;
-  flex-direction: wrap;
-}
 
-.palette {
-  width: 240px;
-  height: 200px;
-  padding: 5px;
-  margin: 10px 0;
-  border-radius: 20px;
-  background-color: #d2b08c;
+.nav {
+  background-color: #fafafa;
+  margin: 0;
 }
 
 .icon {
@@ -82,54 +63,68 @@ h3 {
 }
 
 .clickMe {
-  width: 100px;
-  height: 30px; 
-  background: #aac2ce;
-  border-radius: 5px;
-  justify-content: right;
-  font-family: 'Caveat';
+  padding: 10px;
+  display: inline-block;
+  background: #fafafa;
+  border-radius: 1px;
+  justify-content: left;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
 }
 
 .clickMe:hover {
-  color: #576fe3;
+  color: #808fd7;
 }
 
-input {
-  width: 100px;
-  height: 30px; 
+.textBox {
+  width: 90vw;
+  height: 40vh; 
+  margin: 2rem;
   border-radius: 5px;
-  justify-content: right;
+  justify-content: center;
+  font-size: 2rem;
 }
 
-
-.erase-clear {
-  /* display: flex;
-  flex-wrap: wrap; */
-  background-color: #d2b08c;
-  width: 240px;
-  height: 160px;
-  border-radius: 10px;
+.notesInput{
+  width: 100%;
+  justify-content: center;
 }
 
-.container {
+.formContainer {
+  background-color: aqua;
+  width: 100%;
   display: flex;
   justify-content: center;
-  flex-direction: row;
-  gap: 4rem;
+  flex-direction: column;
+  /* gap: 4rem; */
 }
 
-.big-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+.students {
+  background-color: rgb(255, 136, 160);
+  padding: 2rem;
+
 }
+
+.students h3 {
+  text-align: left;
+}
+
 
 label {
+  
   font-size: 20px;
 }
 
-.row {
-  margin: 10px;
-  text-align: center;
+.studentNotes { 
+
+  background-color: green;
+}
+.teacherNotes { 
+
+  background-color:red;
+}
+
+.displayDetails {
+
+  color: cornflowerblue;
 }

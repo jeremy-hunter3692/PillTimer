@@ -12,12 +12,14 @@
   "scripts": {
     "build": "webpack --config client/webpack.config.js",
     "start": "node server",
-    "test": "jest --watchAll",
+    "test": "jest ",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run build -- --watch",
     "dev:server": "nodemon server",
-    "lint": "eslint --ext .js,.jsx ."
+    "lint": "eslint --ext .js,.jsx .",
+    "knex": "knex --knexfile server/db/knexfile.js"
   },
+  "style": "lib/css/react-big-calendar.css",
   "babel": {
     "presets": [
       "@babel/preset-typescript",
@@ -35,10 +37,21 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "dom": "^0.0.3",
     "express": "^4.17.2",
     "hash-string": "^1.0.0",
+    "knex": "^2.3.0",
+    "nock": "^13.2.9",
+    "react-big-calendar": "^1.5.0",
     "react-canvas-draw": "^1.2.1",
-    "react-color": "^2.19.3"
+    "react-color": "^2.19.3",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.4.2",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
+    "router": "^1.3.7",
+    "sqlite3": "^5.0.8",
+    "superagent": "^8.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.6",
@@ -67,6 +80,7 @@
     "prettier": "2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "supertest": "^6.2.4",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
