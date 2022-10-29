@@ -19,6 +19,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   // console.log(events)
   const [newEvents, setNewEvents] = useState([])
   console.log('compare events', events, 'newEvents', newEvents)
+  
   useEffect(() => {
     eventData = eventState.map((x) => {
       return {
