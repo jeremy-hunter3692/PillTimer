@@ -9,12 +9,10 @@ import { fetchEvents } from '../Actions/eventsActions'
 
 //Only working by hours. need check for day
 const now = new Date().getHours()
-
+const dispatch = useDispatch()
 export default function NotesDisplay() {
-  const dispatch = useDispatch()
   const [displayCurrent, setDisplayCurrent] = useState(false)
   const events = useSelector((state) => state.events)
-  // console.log(events)
   //loading last session from the data base via apli client and then setting it in the state
   useEffect(() => {
     dispatch(fetchEvents())

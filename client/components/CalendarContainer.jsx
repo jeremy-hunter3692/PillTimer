@@ -7,17 +7,18 @@ import { addEvents } from '../Actions/eventsActions'
 // import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const localizer = momentLocalizer(moment)
+let eventData = []
 
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
   // const studentState = useEffect((state)=> state.students)
-  let eventData = []
+
   // console.log(eventData)
   const [events, setEvents] = useState(eventData)
   // console.log(events)
   const [newEvents, setNewEvents] = useState([])
-
+  console.log('compare events', events, 'newEvents', newEvents)
   useEffect(() => {
     eventData = eventState.map((x) => {
       return {
@@ -27,12 +28,11 @@ export default function MyCalendar({ student, noOfWeeks }) {
         title: x.name,
       }
     })
-    console.log('use ed', eventData, 'type', typeof eventData[0].start)
     setEvents(eventData)
   }, [eventState])
 
   function createWeeklyEvent(newEvent, length) {
-    console.log('length', length, 'event', newEvent)
+    // console.log('length', length, 'event', newEvent)
     const weeklyEvents = [newEvent]
     for (let i = 1; i < length; i++) {
       let newDate = {
@@ -46,12 +46,12 @@ export default function MyCalendar({ student, noOfWeeks }) {
 
       weeklyEvents.push(newDate)
     }
-    console.log('arr', weeklyEvents)
+    // console.log('arr', weeklyEvents)
     return weeklyEvents
   }
 
   function handleSelect(start, end) {
-    console.log('onselecetedslot')
+    // console.log('onselecetedslot')
     addEvent(start, end)
   }
 
@@ -62,7 +62,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
     let teacher = 4
     // imrpove this logic/defnsive stuff
     if (title != ' ') {
-      console.log('if', title, length)
+      // console.log('if', title, length)
       let newEvent = {
         start: start,
         end: end,
@@ -76,16 +76,14 @@ export default function MyCalendar({ student, noOfWeeks }) {
       let newEventsArr = createWeeklyEvent(newEvent, length || 0)
       setNewEvents(newEventsArr)
       // dispatch(addEvents(resultArr))
-      // setEvents([...events, newEventsArr])
-
-      console.log('compare', events, newEvents)
+      setEvents([...events, ...newEventsArr])
     }
   }
 
   //save on navigate away??
   function submit() {
-    console.log('submit', newEvents)
-    dispatch(addEvents(newEvents))
+    console.log('on submit events', events, 'newEvents', newEvents)
+    dispatch(addEvents(events))
   }
 
   return (
