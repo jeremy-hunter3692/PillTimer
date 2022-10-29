@@ -11,6 +11,7 @@ const localizer = momentLocalizer(moment)
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
+  // const studentState = useEffect((state)=> state.students)
   let eventData = []
   // console.log(eventData)
   const [events, setEvents] = useState(eventData)
@@ -23,7 +24,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
         ...x,
         start: new Date(x.start),
         end: new Date(x.start),
-        title: 'TO DO',
+        title: x.name,
       }
     })
     console.log('use ed', eventData, 'type', typeof eventData[0].start)

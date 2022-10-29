@@ -2,7 +2,12 @@ const knex = require('knex')
 const config = require('./knexfile').test
 const testDb = knex(config)
 
-const { getLastSessionById, getAllStudents, addSessions } = require('./db.js')
+const {
+  getAllSessions,
+  getLastSessionById,
+  getAllStudents,
+  addSessions,
+} = require('./db.js')
 
 beforeAll(() => {
   return testDb.migrate.latest()
@@ -22,6 +27,22 @@ describe('getLastSession', () => {
     expect.assertions(1)
     return getLastSessionById(id, testDb).then((sessions) => {
       expect(sessions.id).toBe(8)
+    })
+  })
+})
+describe('getAllSessions', () => {
+  test('gets all sessions with correct data', () => {
+    expect.assertions(9)
+    return getAllSessions(testDb).then((sessions) => {
+      expect(sessions).toHaveLength(5)
+      expect(sessions[0].studentId).toBe(6)
+      expect(sessions[0].start.slice(-1)).toBe('Z')
+      expect(sessions[0].teacherId).toBe(3)
+      expect(sessions[0].name).toBe('bleremy')
+      expect(sessions[4].studentId).toBe(3)
+      expect(sessions[4].teacherId).toBe(1)
+      expect(sessions[4].name).toBe('lil jimmy')
+      expect(sessions[4].start.slice(-1)).toBe('Z')
     })
   })
 })
