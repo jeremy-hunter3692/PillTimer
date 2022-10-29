@@ -15,7 +15,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   let eventData = []
   // console.log(eventData)
   const [events, setEvents] = useState(eventData)
-  console.log(events)
+  // console.log(events)
   const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
       return {
         ...x,
         start: new Date(x.start),
-        end: new Date(x.start),
+        end: new Date(x.end),
         title: x.name,
       }
     })
@@ -62,6 +62,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
     let teacher = 4
     // imrpove this logic/defnsive stuff
     if (title != ' ') {
+      console.log('if', title, length)
       let newEvent = {
         start: start,
         end: end,
@@ -75,8 +76,9 @@ export default function MyCalendar({ student, noOfWeeks }) {
       let newEventsArr = createWeeklyEvent(newEvent, length || 0)
       setNewEvents(newEventsArr)
       // dispatch(addEvents(resultArr))
-      setEvents([...events, newEvent])
-      console.log('add event', events)
+      // setEvents([...events, newEventsArr])
+
+      console.log('compare', events, newEvents)
     }
   }
 
@@ -88,6 +90,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
 
   return (
     <div>
+      <button onClick={submit}>submit events</button>
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}
@@ -100,7 +103,6 @@ export default function MyCalendar({ student, noOfWeeks }) {
         onSelectSlot={handleSelect}
         longPressThreshold={10}
       />
-      <button onClick={submit}>submit events</button>
     </div>
   )
 }

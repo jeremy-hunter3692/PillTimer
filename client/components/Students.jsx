@@ -9,7 +9,7 @@ const initForm = {
 let selected = 'None'
 
 export default function Students() {
-  const [students, setStudents] = useState([])
+  // old use state const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   const [weeks, setWeeks] = useState(0)
   const [detailsPop, setDetailPop] = useState(false)
@@ -21,7 +21,6 @@ export default function Students() {
   //   console.log('students use', students)
   // }, [studentsData])
 
-  //Handle Student selector change
   function handleChange(e) {
     e.preventDefault()
     //look into this drop down option thing
@@ -39,15 +38,16 @@ export default function Students() {
   function getWeeks(e) {
     e.preventDefault()
     setWeeks(e.target.value)
-    console.log('week', e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault()
   }
+
   //bool for siplaying adding new event
   function newEvent(e) {
     e.preventDefault()
+    setForm(initForm)
     setDetailPop(!detailsPop)
   }
   return (
@@ -102,8 +102,8 @@ export default function Students() {
               </select>
             </div>
           </form>
-          <h3>New Session - Student: {selected}</h3>
-          <h4>How many weeks: {weeks}</h4>
+          <h3>New Session Student: {selected}</h3>
+          <h3>How many weeks: {weeks}</h3>
         </div>
       ) : (
         ''
