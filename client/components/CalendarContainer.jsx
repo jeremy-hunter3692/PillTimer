@@ -18,19 +18,26 @@ export default function MyCalendar({ student, noOfWeeks }) {
   const [events, setEvents] = useState(eventData)
   // console.log(events)
   const [newEvents, setNewEvents] = useState([])
-  console.log('compare events', events, 'newEvents', newEvents)
-  
+  // console.log('compare events', events, 'newEvents', newEvents)
+
   useEffect(() => {
-    eventData = eventState.map((x) => {
-      return {
-        ...x,
-        start: new Date(x.start),
-        end: new Date(x.end),
-        title: x.name,
-      }
-    })
-    setEvents(eventData)
+    console.log('use', eventState)
+    if (Object.keys(eventState).length < 1) {
+      console.log(' no eventData')
+    } else {
+      eventData = eventState?.map((x) => {
+        return {
+          ...x,
+          start: new Date(x.start),
+          end: new Date(x.end),
+          title: x.name,
+        }
+      })
+      setEvents(eventData)
+    }
   }, [eventState])
+
+  console.log('events:', events)
 
   function createWeeklyEvent(newEvent, length) {
     // console.log('length', length, 'event', newEvent)

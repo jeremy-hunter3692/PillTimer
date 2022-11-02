@@ -11,6 +11,12 @@ export function getLastSessionById(id) {
   })
 }
 
+// export function getTodaysSessions() {
+//   return request.get(`${apiUrl}/today`).then((res) => {
+//     return res.body
+//   })
+// }
+
 export function getSessions() {
   return request.get(apiUrl).then((res) => {
     //converting from UTC back to date object
@@ -21,7 +27,7 @@ export function getSessions() {
     //   x.end = new Date(x.end)
     //   // console.log('after type', typeof x.start, 'actual', x.start)
     // })
-    console.log('from sessions', data)
+    // console.log('from sessions', data)
     return data
   })
 }

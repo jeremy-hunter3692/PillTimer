@@ -6,3 +6,4 @@ export function setTodaysFormData(data) {
     payload: data,
   }
 }
+

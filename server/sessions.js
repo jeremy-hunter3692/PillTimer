@@ -26,9 +26,9 @@ router.get('/:id', (req, res) => {
     })
 })
 
+
 router.post('/', (req, res) => {
   //Matching/changing key names to databse key names
-
   const sessionsFiltered = req.body
   sessionsFiltered.forEach((x) => {
     x.student_id = Number(x.studentId)

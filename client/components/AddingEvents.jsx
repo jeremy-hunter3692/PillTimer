@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import MyCalendar from './CalendarContainer.jsx'
+import { fetchEvents } from '../Actions/eventsActions'
+import { fetchStudents } from '../Actions/studentsActions'
 
 const initForm = {
   name: ' ',
@@ -9,13 +11,13 @@ const initForm = {
 let selected = 'None'
 
 export default function AddingEvents() {
+ 
   // old use state const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   const [weeks, setWeeks] = useState(0)
   const [detailsPop, setDetailPop] = useState(false)
   const studentsData = useSelector((state) => state.students)
   console.log('students', studentsData)
-
 
   function handleChange(e) {
     e.preventDefault()

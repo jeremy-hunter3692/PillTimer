@@ -9,14 +9,7 @@ export default function CurrentSession() {
   //until I work out how I will make it interact with a calendar libaray
   const oldSessionData = useSelector((state) => state.lastFormData)
   console.log('oldSessiondata', oldSessionData)
-  formData = {
-    ...formData,
-    date: new Date().getHours(),
-    hour: new Date().getHours(),
-    name: oldSessionData?.name,
-    teacherId: oldSessionData?.teacher_id,
-    studentId: oldSessionData?.student_id,
-  }
+
   console.log('formD', formData)
   return (
     <>
