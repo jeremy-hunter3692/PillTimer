@@ -27,6 +27,7 @@ export default function NotesDisplay() {
   useEffect(() => {
     //GET TODAYS EVENTS
     let sortedArray = []
+    //TO DO better if condition
     if (Object.keys(events).length < 1) {
       console.log(' no eventData')
     } else {
@@ -38,13 +39,27 @@ export default function NotesDisplay() {
     console.log('sorted', sortedArray)
     //GET CURRENT SESSION
     let result
-    if (events.length > 0) {
-      result = sortedArray.filter(
-        (x) => momentNow.diff(moment(x.start), 'hours', true) < 0
-      )
-    }
-    console.log('res', result)
+
+    result = sortedArray.filter((x) => {
+      if (sessionIsNow(moment(x.start), moment(x.end))) return x
+    })
+
+    dispatch(setTodaysFormData(result))
   }, [events])
+
+  function sessionIsNow(start, end) {
+    // console.log(
+    //   start.format('H'),
+    //   end.format('H'),
+    //   momentNow.diff(start, 'hours', true),
+    //   momentNow.diff(end, 'hours', true)
+    // )
+    if (
+      momentNow.diff(start, 'hours', true) > 0 &&
+      momentNow.diff(end, 'hours', true) < 0
+    )
+      return true
+  }
 
   return (
     <>
