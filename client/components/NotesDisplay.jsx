@@ -5,19 +5,17 @@ import LastSession from './LastSession'
 import moment from 'moment'
 import { fetchEvents } from '../Actions/eventsActions'
 import { fetchStudents } from '../Actions/studentsActions'
-import { getLastSessionById } from '../sessionsAPI'
 import { setLastSessionFormData } from '../Actions/lastFormActions'
 import { setTodaysFormData } from '../Actions/currentFormActions'
 
-//Only working by hours. need check for day
-const now = new Date()
+//Is this the best place to get the currrent time?
 const momentNow = moment()
 
 export default function NotesDisplay() {
   const dispatch = useDispatch()
+  //For changing session displays
   const [displayCurrent, setDisplayCurrent] = useState(false)
   const events = useSelector((state) => state.events)
-  //loading last session from the data base via apli client and then setting it in the state
 
   useEffect(() => {
     dispatch(fetchEvents())
@@ -36,14 +34,11 @@ export default function NotesDisplay() {
         moment(x.start).isSame(momentNow, 'day')
       )
     }
-    console.log('sorted', sortedArray)
+    // console.log('sorted', sortedArray)
     //GET CURRENT SESSION
-    let result
-
-    result = sortedArray.filter((x) => {
+    let result = sortedArray.filter((x) => {
       if (sessionIsNow(moment(x.start), moment(x.end))) return x
     })
-
     dispatch(setTodaysFormData(result))
   }, [events])
 

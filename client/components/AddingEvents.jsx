@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import MyCalendar from './CalendarContainer.jsx'
 import { fetchEvents } from '../Actions/eventsActions'
 import { fetchStudents } from '../Actions/studentsActions'
@@ -11,7 +11,6 @@ const initForm = {
 let selected = 'None'
 
 export default function AddingEvents() {
- 
   // old use state const [students, setStudents] = useState([])
   const [form, setForm] = useState(initForm)
   const [weeks, setWeeks] = useState(0)
@@ -29,6 +28,7 @@ export default function AddingEvents() {
       id: Number(e.target.options[selectedIndex].getAttribute('datakey')),
     })
     selected = studentsData[selectedIndex - 1].name
+    console.log('on change from', form)
   }
   //For the number of reocurring events TODO better way than an array of numbers...
   const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]

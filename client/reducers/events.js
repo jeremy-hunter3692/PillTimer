@@ -1,13 +1,12 @@
 import { SET_EVENTS_DATA } from '../Actions/eventsActions.js'
 
-const empty = {}
+const empty = []
 
-export default function lastForm(state = empty, action) {
+export default function setEvents(state = empty, action) {
   const { type, payload } = action
-
   switch (type) {
     case SET_EVENTS_DATA:
-      return payload
+      return [...state, ...payload]
     default:
       return state
   }

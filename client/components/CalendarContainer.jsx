@@ -12,6 +12,7 @@ let eventData = []
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
+  console.log('contain', student, noOfWeeks)
   // const studentState = useEffect((state)=> state.students)
 
   // console.log(eventData)
@@ -21,7 +22,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   // console.log('compare events', events, 'newEvents', newEvents)
 
   useEffect(() => {
-    console.log('use', eventState)
+    // console.log('use', eventState)
     if (Object.keys(eventState).length < 1) {
       console.log(' no eventData')
     } else {
@@ -37,7 +38,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
     }
   }, [eventState])
 
-  console.log('events:', events)
+  // console.log('events:', events)
 
   function createWeeklyEvent(newEvent, length) {
     // console.log('length', length, 'event', newEvent)
@@ -66,6 +67,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   function addEvent({ start, end }) {
     let length = noOfWeeks
     let title = student.name
+    console.log('addevent', title)
     //TODO get teacher id on load?
     let teacher = 4
     // imrpove this logic/defnsive stuff
@@ -75,23 +77,29 @@ export default function MyCalendar({ student, noOfWeeks }) {
         start: start,
         end: end,
         title: title,
+        name: title,
         studentNotes: '',
         teacherNotes: '',
         studentId: student.id,
         teacherId: teacher,
       }
 
-      let newEventsArr = createWeeklyEvent(newEvent, length || 0)
+      let newEventsArr =
+        length > 0 ? createWeeklyEvent(newEvent, length) : [newEvent]
+
+      console.log('newevets', newEventsArr)
       setNewEvents(newEventsArr)
+      console.log('2', newEvents)
       // dispatch(addEvents(resultArr))
       setEvents([...events, ...newEventsArr])
+      console.log('evts', events, 'new', newEvents)
     }
   }
 
   //save on navigate away??
   function submit() {
     console.log('on submit events', events, 'newEvents', newEvents)
-    dispatch(addEvents(events))
+    dispatch(addEvents(newEvents))
   }
 
   return (

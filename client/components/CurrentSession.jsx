@@ -5,15 +5,12 @@ import { useSelector } from 'react-redux'
 
 export default function CurrentSession() {
   let formData = useSelector((state) => state.currentFormData[0])
-  const start = moment(formData.start).format('hh a')
-  const end = moment(formData.end).format('DD MM YYYY')
-  // console.log(start)
-  //This is place holder do getting some information from the last session and new Date()
-  //until I work out how I will make it interact with a calendar libaray
+  console.log('CURRENT', formData)
+  const start = moment(formData?.start).format('hh a')
+  const end = moment(formData?.end).format('DD MM YYYY')
   // const oldSessionData = useSelector((state) => state.lastFormData)
   // console.log('oldSessiondata', oldSessionData)
-
-  console.log('formD', formData)
+  console.log('formData', formData)
   return (
     <>
       <h1>Current Session:</h1>
