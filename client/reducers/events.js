@@ -6,7 +6,7 @@ export default function setEvents(state = empty, action) {
   const { type, payload } = action
   switch (type) {
     case SET_EVENTS_DATA:
-      return [...state, ...payload]
+      return [state, ...payload]
     default:
       return state
   }

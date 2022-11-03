@@ -16,13 +16,13 @@ export default function MyCalendar({ student, noOfWeeks }) {
   // const studentState = useEffect((state)=> state.students)
 
   // console.log(eventData)
-  const [events, setEvents] = useState(eventData)
+  const [events, setEvents] = useState([])
   // console.log(events)
   const [newEvents, setNewEvents] = useState([])
   // console.log('compare events', events, 'newEvents', newEvents)
 
   useEffect(() => {
-    // console.log('use', eventState)
+    console.log('use', eventState)
     if (Object.keys(eventState).length < 1) {
       console.log(' no eventData')
     } else {
