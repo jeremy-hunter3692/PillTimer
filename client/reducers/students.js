@@ -6,7 +6,7 @@ export default function students(state = empty, action) {
   const { type, payload } = action
   switch (type) {
     case SET_STUDENTS_DATA:
-      return [...state, ...payload]
+      return payload
     default:
       return state
   }
