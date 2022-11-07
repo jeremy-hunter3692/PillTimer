@@ -4,24 +4,18 @@ import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
 
-// import 'react-big-calendar/lib/css/react-big-calendar.css'
-
 const localizer = momentLocalizer(moment)
 let eventData = []
 
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
-  // const studentState = useEffect((state)=> state.students)
 
-  // console.log(eventData)
   const [events, setEvents] = useState([])
-  // console.log(events)
   const [newEvents, setNewEvents] = useState([])
-  // console.log('compare events', events, 'newEvents', newEvents)
 
   useEffect(() => {
-    console.log('use', eventState)
+    // console.log('use', eventState)
     if (Object.keys(eventState).length < 1) {
       console.log(' no eventData')
     } else {
@@ -37,10 +31,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
     }
   }, [eventState])
 
-  // console.log('events:', events)
-
   function createWeeklyEvent(newEvent, length) {
-    // console.log('length', length, 'event', newEvent)
     const weeklyEvents = [newEvent]
     for (let i = 1; i < length; i++) {
       let newDate = {
@@ -50,11 +41,9 @@ export default function MyCalendar({ student, noOfWeeks }) {
       }
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
-      // newDate.setDate(newDate.getDate() + 7)
 
       weeklyEvents.push(newDate)
     }
-    // console.log('arr', weeklyEvents)
     return weeklyEvents
   }
 
@@ -66,8 +55,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   function addEvent({ start, end }) {
     let length = noOfWeeks
     let title = student.name
-    console.log('addevent', title)
-    //TODO get teacher id on load?
+    //TODO get teacher id on load/implement teacher IDS
     let teacher = 4
     // imrpove this logic/defnsive stuff
     if (title != ' ') {
@@ -86,24 +74,20 @@ export default function MyCalendar({ student, noOfWeeks }) {
       let newEventsArr =
         length > 0 ? createWeeklyEvent(newEvent, length) : [newEvent]
 
-      console.log('newevets', newEventsArr)
       setNewEvents(newEventsArr)
-      console.log('2', newEvents)
       // dispatch(addEvents(resultArr))
       setEvents([...events, ...newEventsArr])
-      console.log('evts', events, 'new', newEvents)
     }
   }
 
-  //save on navigate away??
+  //TO DO save on navigate away??
   function submit() {
-    console.log('on submit events', events, 'newEvents', newEvents)
     dispatch(addEvents(newEvents))
   }
 
   return (
     <div>
-      <button onClick={submit}>Save events</button>
+      <button onClick={submit}>Save Calendar Events</button>
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}

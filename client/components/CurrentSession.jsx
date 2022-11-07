@@ -4,13 +4,11 @@ import moment from 'moment'
 import { useSelector } from 'react-redux'
 
 export default function CurrentSession() {
-  let formData = useSelector((state) => state.currentFormData[0])
+  let formData = useSelector((state) => state.currentFormData)
   const start = moment(formData?.start)?.format('hh a')
   const end = moment(formData?.end)?.format('DD MM YYYY')
   const name = formData?.name || 'No lesson at this time'
-  // const oldSessionData = useSelector((state) => state.lastFormData)
-  // console.log('oldSessiondata', oldSessionData)
-  console.log('formData', formData)
+  // console.log('formData', formData)
   return (
     <>
       <h1>Current Session:</h1>

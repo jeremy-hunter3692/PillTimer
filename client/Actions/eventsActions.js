@@ -2,8 +2,7 @@ import { getLastSessionById, getSessions, addSessions } from '../sessionsAPI'
 export const SET_EVENTS_DATA = 'SET_EVENTS_DATA'
 export const ADD_EVENTS_DATA = 'ADD_EVENTS_DATA'
 
-function setEventsData(data) {
-  console.log('set', data)
+export function setEventsData(data) {
   return {
     type: SET_EVENTS_DATA,
     payload: data,

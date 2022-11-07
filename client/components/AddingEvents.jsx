@@ -101,7 +101,7 @@ export default function AddingEvents() {
             </div>
           </form>
           <h3>New Session Student: {selected}</h3>
-          <h3>How many weeks: {weeks}</h3>
+          <h3>For how many weeks: {weeks}</h3>
         </div>
       ) : (
         ''

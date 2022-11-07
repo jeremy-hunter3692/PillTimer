@@ -1,12 +1,13 @@
 import { SET_STUDENTS_DATA } from '../Actions/studentsActions.js'
 
-const empty = []
+const init = []
 
-export default function students(state = empty, action) {
+export default function students(state = init, action) {
   const { type, payload } = action
+  console.log('students', action)
   switch (type) {
     case SET_STUDENTS_DATA:
-      return [...state, payload]
+      return payload
     default:
       return state
   }

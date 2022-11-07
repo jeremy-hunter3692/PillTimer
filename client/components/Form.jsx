@@ -6,13 +6,13 @@ import { addSessions } from '../sessionsAPI'
 export default function CurrentForm(props) {
   const [submitted, setSubmitted] = useState(false)
   const dispatch = useDispatch()
-  // console.log('props at form', props)
+  console.log('props at form', props)
 
   function handleChange(e) {
     console.log('handle change', props.state)
 
     dispatch(
-      setTodaysFormData({ ...props.state, [e.target.name]: e.target.value })
+      setTodaysFormData({...props.state, [e.target.name]: e.target.value })
     )
   }
 
