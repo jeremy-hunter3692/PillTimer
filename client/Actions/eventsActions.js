@@ -1,9 +1,18 @@
 import { getLastSessionById, getSessions, addSessions } from '../sessionsAPI'
 export const SET_EVENTS_DATA = 'SET_EVENTS_DATA'
+export const ADD_EVENTS_DATA = 'ADD_EVENTS_DATA'
 
-export function setEventsData(data) {
+function setEventsData(data) {
+  console.log('set', data)
   return {
     type: SET_EVENTS_DATA,
+    payload: data,
+  }
+}
+
+export function addEventsData(data) {
+  return {
+    type: ADD_EVENTS_DATA,
     payload: data,
   }
 }
@@ -12,7 +21,7 @@ export function addEvents(data) {
   return (dispatch) => {
     addSessions(data)
       .then(() => {
-        dispatch(setEventsData(data))
+        dispatch(addEventsData(data))
       })
       .catch((error) => {
         console.log('actions', error)

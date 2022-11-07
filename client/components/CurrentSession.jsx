@@ -5,16 +5,16 @@ import { useSelector } from 'react-redux'
 
 export default function CurrentSession() {
   let formData = useSelector((state) => state.currentFormData[0])
-  console.log('CURRENT', formData)
-  const start = moment(formData?.start).format('hh a')
-  const end = moment(formData?.end).format('DD MM YYYY')
+  const start = moment(formData?.start)?.format('hh a')
+  const end = moment(formData?.end)?.format('DD MM YYYY')
+  const name = formData?.name || 'No lesson at this time'
   // const oldSessionData = useSelector((state) => state.lastFormData)
   // console.log('oldSessiondata', oldSessionData)
   console.log('formData', formData)
   return (
     <>
       <h1>Current Session:</h1>
-      <h2>{`Notes for ${formData?.name} at ${start} on the ${end}`}</h2>
+      <h2>{`Notes for ${name} at ${start} on the ${end}`}</h2>
       <div className="formContainer">
         <div className="studentNotes">
           <Form

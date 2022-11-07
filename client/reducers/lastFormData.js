@@ -1,8 +1,6 @@
 import { SET_LAST_DATA } from '../Actions/lastFormActions'
 
-const emptyForm = {}
-
-export default function lastForm(state = emptyForm, action) {
+export default function lastForm(state = {}, action) {
   const { type, payload } = action
 
   switch (type) {

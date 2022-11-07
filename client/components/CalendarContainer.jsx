@@ -12,7 +12,6 @@ let eventData = []
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
-  console.log('contain', student, noOfWeeks)
   // const studentState = useEffect((state)=> state.students)
 
   // console.log(eventData)
@@ -104,7 +103,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
 
   return (
     <div>
-      <button onClick={submit}>submit events</button>
+      <button onClick={submit}>Save events</button>
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}

@@ -7,8 +7,8 @@ import events from './events'
 const reducers = combineReducers({
   currentFormData,
   lastFormData,
-  events,
   students,
+  events,
 })
 
 export default reducers
