@@ -3,6 +3,9 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
+// import '!style-loader!css-loader!react-big-calendar/lib/css/react-big-calendar.css'
+// import '../server/public/sass/styles.css'
+import '!style-loader!css-loader!../../server/public/sass/styles.css'
 
 const localizer = momentLocalizer(moment)
 let eventData = []
