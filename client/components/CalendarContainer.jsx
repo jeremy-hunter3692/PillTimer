@@ -3,8 +3,7 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
-// import '!style-loader!css-loader!react-big-calendar/lib/css/react-big-calendar.css'
-// import '../server/public/sass/styles.css'
+//From github forums need the start for the style loader to get the sass working.
 import '!style-loader!css-loader!../../server/public/sass/styles.css'
 
 const localizer = momentLocalizer(moment)
@@ -18,7 +17,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
-    // console.log('use', eventState)
+    //checking the state has loaded and setting it conditionally
     if (Object.keys(eventState).length < 1) {
       console.log(' no eventData')
     } else {
@@ -39,12 +38,14 @@ export default function MyCalendar({ student, noOfWeeks }) {
     for (let i = 1; i < length; i++) {
       let newDate = {
         ...newEvent,
+        //copying last loops datetime
         start: new Date(weeklyEvents[i - 1].start.valueOf()),
         end: new Date(weeklyEvents[i - 1].end.valueOf()),
       }
+      //adding the 7 days to the last weeks datetime
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
-
+      //push to returning array
       weeklyEvents.push(newDate)
     }
     return weeklyEvents
@@ -78,7 +79,6 @@ export default function MyCalendar({ student, noOfWeeks }) {
         length > 0 ? createWeeklyEvent(newEvent, length) : [newEvent]
 
       setNewEvents(newEventsArr)
-      // dispatch(addEvents(resultArr))
       setEvents([...events, ...newEventsArr])
     }
   }

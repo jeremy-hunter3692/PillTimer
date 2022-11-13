@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import MyCalendar from './CalendarContainer.jsx'
-import { fetchEvents } from '../Actions/eventsActions'
-import { fetchStudents } from '../Actions/studentsActions'
 
 const initForm = {
   name: ' ',
   id: ' ',
 }
+//TODO look into making this not global
 let selected = 'None'
 
 export default function AddingEvents() {
@@ -16,19 +15,17 @@ export default function AddingEvents() {
   const [weeks, setWeeks] = useState(0)
   const [detailsPop, setDetailPop] = useState(false)
   const studentsData = useSelector((state) => state.students)
-  console.log('students', studentsData)
 
   function handleChange(e) {
     e.preventDefault()
-    //look into this drop down option thing
     const selectedIndex = e.target.options.selectedIndex
     setForm({
       ...form,
       [e.target.name]: e.target.value,
+      //Getting the student id via added datakey as an interger
       id: Number(e.target.options[selectedIndex].getAttribute('datakey')),
     })
     selected = studentsData[selectedIndex - 1].name
-    console.log('on change from', form)
   }
   //For the number of reocurring events TODO better way than an array of numbers...
   const numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -42,7 +39,8 @@ export default function AddingEvents() {
     e.preventDefault()
   }
 
-  //bool for siplaying adding new event
+  //bool for displaying adding new event
+  //TO DO make into a proper popup and decide how calendar add functionality will work
   function newEvent(e) {
     e.preventDefault()
     setForm(initForm)
@@ -73,6 +71,7 @@ export default function AddingEvents() {
                 {studentsData.map((studentsData) => (
                   <option
                     key={studentsData.id}
+                    //added so we can extract the student id property
                     datakey={studentsData.id}
                     value={studentsData.name}
                     title="Which student"

@@ -12,7 +12,7 @@ export default function CurrentForm(props) {
     console.log('handle change', props.state)
 
     dispatch(
-      setTodaysFormData({...props.state, [e.target.name]: e.target.value })
+      setTodaysFormData({ ...props.state, [e.target.name]: e.target.value })
     )
   }
 
@@ -50,7 +50,7 @@ export default function CurrentForm(props) {
                 className="clickMe"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(setTodaysFormData(props.state))
+                  dispatch(setTodaysFormData(props.state[0]))
                 }}
               >
                 Clear text

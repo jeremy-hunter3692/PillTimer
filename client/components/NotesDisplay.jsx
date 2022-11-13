@@ -5,7 +5,6 @@ import LastSession from './LastSession'
 import moment from 'moment'
 import { fetchEvents } from '../Actions/eventsActions'
 import { fetchStudents } from '../Actions/studentsActions'
-import { setLastSessionFormData } from '../Actions/lastFormActions'
 import { setTodaysFormData } from '../Actions/currentFormActions'
 
 //Is this the best place to get the currrent time?
@@ -29,26 +28,18 @@ export default function NotesDisplay() {
     if (Object.keys(events).length < 1) {
       console.log(' no eventData')
     } else {
-      // console.log(events, momentNow.format('DD/MM/YY'))
       sortedArray = events?.filter((x) =>
         moment(x.start).isSame(momentNow, 'day')
       )
     }
-    // console.log('sorted', sortedArray)
     //GET CURRENT SESSION
     let result = sortedArray.filter((x) => {
       if (sessionIsNow(moment(x.start), moment(x.end))) return x
     })
-    dispatch(setTodaysFormData(result))
+    dispatch(setTodaysFormData(result[0]))
   }, [events])
 
   function sessionIsNow(start, end) {
-    // console.log(
-    //   start.format('H'),
-    //   end.format('H'),
-    //   momentNow.diff(start, 'hours', true),
-    //   momentNow.diff(end, 'hours', true)
-    // )
     if (
       momentNow.diff(start, 'hours', true) > 0 &&
       momentNow.diff(end, 'hours', true) < 0

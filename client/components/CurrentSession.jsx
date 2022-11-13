@@ -8,7 +8,6 @@ export default function CurrentSession() {
   const start = moment(formData?.start)?.format('hh a')
   const end = moment(formData?.end)?.format('DD MM YYYY')
   const name = formData?.name || 'No lesson at this time'
-  // console.log('formData', formData)
   return (
     <>
       <h1>Current Session:</h1>

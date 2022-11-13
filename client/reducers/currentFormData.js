@@ -4,10 +4,10 @@ const init = {}
 
 export default function currentForm(state = init, action) {
   const { type, payload } = action
-  console.log('current reducer', action)
+  console.log('current', payload)
   switch (type) {
     case SET_CURRENT_DATA:
-      return payload
+      return { ...state, payload }
     default:
       return state
   }
