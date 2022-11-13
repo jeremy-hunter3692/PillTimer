@@ -4,7 +4,6 @@ const init = []
 
 export default function students(state = init, action) {
   const { type, payload } = action
-  console.log('students', action)
   switch (type) {
     case SET_STUDENTS_DATA:
       return payload
