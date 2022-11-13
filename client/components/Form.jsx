@@ -50,7 +50,7 @@ export default function CurrentForm(props) {
                 className="clickMe"
                 onClick={(e) => {
                   e.preventDefault()
-                  dispatch(setTodaysFormData(props.state[0]))
+                  dispatch(setTodaysFormData(props.state))
                 }}
               >
                 Clear text

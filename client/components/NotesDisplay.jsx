@@ -36,7 +36,7 @@ export default function NotesDisplay() {
     let result = sortedArray.filter((x) => {
       if (sessionIsNow(moment(x.start), moment(x.end))) return x
     })
-    dispatch(setTodaysFormData(result[0]))
+    dispatch(setTodaysFormData(result[0] || {}))
   }, [events])
 
   function sessionIsNow(start, end) {
