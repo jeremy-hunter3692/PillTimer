@@ -32,6 +32,7 @@ describe('sessions api', () => {
       expect(scope.isDone()).toBe(true)
     })
   })
+  
   //figure out how to check errors from apiclient
   // test('returns an error from add Session', () => {
   //   const scope = nock('http://localhost')

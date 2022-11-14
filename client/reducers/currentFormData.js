@@ -4,7 +4,7 @@ const init = {}
 
 export default function currentForm(state = init, action) {
   const { type, payload } = action
-  console.log('current', payload, state)
+  // console.log('current', payload, state)
   switch (type) {
     case SET_CURRENT_DATA:
       return payload
