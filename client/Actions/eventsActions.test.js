@@ -10,11 +10,10 @@ beforeEach(() => {
   jest.clearAllMocks()
 })
 
-describe('fetchPosts', () => {
+describe('fetchEvents', () => {
   test('dispatches setEvents', () => {
     const thunkFunk = fetchEvents()
     return thunkFunk(fakeDispatch).then(() => {
-      console.log(fakeDispatch.mock.calls)
       const fakedispatchFirstCallArgument = fakeDispatch.mock.calls[0][0]
       expect(fakedispatchFirstCallArgument.type).toBe('SET_EVENTS_DATA')
       expect(1).toBe(1)
@@ -22,12 +21,12 @@ describe('fetchPosts', () => {
     })
   })
 
-
   //Figure out this test = Probably need to  got over redux thunky actions writing to check this
   test('dispatches error message if api fails', () => {
     getSessions.mockImplementation(() => Promise.reject(new Error('failure')))
     return fetchEvents()(fakeDispatch).then(() => {
-      const fakeDispatchSecondAction = fakeDispatch.mock.calls[1]
+      console.log(fakeDispatch.mock.calls)
+      const fakeDispatchSecondAction = fakeDispatch.mock.calls[0][0]
       expect(fakeDispatchSecondAction.type).toBe(SET_ERROR)
       expect(fakeDispatchSecondAction.errMessage).toBe('failure')
       return null

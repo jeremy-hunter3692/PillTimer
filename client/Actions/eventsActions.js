@@ -43,7 +43,7 @@ export function fetchEvents() {
         dispatch(setEventsData(sessions))
       })
       .catch((error) => {
-        dispatch(setError('actions', error))
+        dispatch(setError(error.message))
       })
   }
 }
