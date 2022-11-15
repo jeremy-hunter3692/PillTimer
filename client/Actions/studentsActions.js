@@ -10,7 +10,7 @@ export function setStudents(data) {
 
 export function fetchStudents() {
   return (dispatch) => {
-    getAllStudents()
+    return getAllStudents()
       .then((students) => {
         dispatch(setStudents(students))
       })

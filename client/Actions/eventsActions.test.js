@@ -16,7 +16,6 @@ describe('fetchEvents', () => {
     return thunkFunk(fakeDispatch).then(() => {
       const fakedispatchFirstCallArgument = fakeDispatch.mock.calls[0][0]
       expect(fakedispatchFirstCallArgument.type).toBe('SET_EVENTS_DATA')
-      expect(1).toBe(1)
       return null
     })
   })
