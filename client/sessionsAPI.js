@@ -24,12 +24,8 @@ export function getSessions() {
 }
 
 export function addSessions(data) {
-  //convert to utc
-  data.forEach((x) => {
-    x.start.toUTCString()
-    x.end.toUTCString()
-  })
-
+  //Should be coming in as UTC dates here
+  console.log('from api add', data)
   return request
     .post(apiUrl)
     .send(data)

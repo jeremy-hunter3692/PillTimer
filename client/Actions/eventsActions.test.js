@@ -24,7 +24,6 @@ describe('fetchEvents', () => {
   test('dispatches error message if api fails', () => {
     getSessions.mockImplementation(() => Promise.reject(new Error('failure')))
     return fetchEvents()(fakeDispatch).then(() => {
-      console.log(fakeDispatch.mock.calls)
       const fakeDispatchSecondAction = fakeDispatch.mock.calls[0][0]
       expect(fakeDispatchSecondAction.type).toBe(SET_ERROR)
       expect(fakeDispatchSecondAction.errMessage).toBe('failure')

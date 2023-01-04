@@ -6,11 +6,10 @@ import { addSessions } from '../sessionsAPI'
 export default function CurrentForm(props) {
   const [submitted, setSubmitted] = useState(false)
   const dispatch = useDispatch()
-  console.log('props at form', props)
+  // console.log('props at form', props)
 
   function handleChange(e) {
-    console.log('handle change', props.state)
-
+    // console.log('handle change', props.state)
     dispatch(
       setTodaysFormData({ ...props.state, [e.target.name]: e.target.value })
     )
@@ -21,7 +20,7 @@ export default function CurrentForm(props) {
     //adds to the databse via api client
     //if you refresh after adding it it should then be in the last session page.
     console.log('submitted')
-    addSessions(props.state)
+    addSessions([props.state])
     //TODO look at redierect. code from class teusday week 6 fruits
     //bit of a janky way to show that something has happenened at the moment will change this to a rediect later
     setSubmitted(true)
@@ -41,11 +40,7 @@ export default function CurrentForm(props) {
           {/* WORK ON CLEAR BUTTON + MAKE AN INIT STATE */}
           {props.buttonBool && (
             <>
-              <input
-                className="clickMe"
-                type="submit"
-                value="submit all notes"
-              />
+              <input className="clickMe" type="submit" value="Save all notes" />
               <button
                 className="clickMe"
                 onClick={(e) => {
@@ -53,7 +48,7 @@ export default function CurrentForm(props) {
                   dispatch(setTodaysFormData(props.state))
                 }}
               >
-                Clear text
+                TODO:-Clear text
               </button>
             </>
           )}
