@@ -16,8 +16,9 @@ export default function NotesDisplay() {
   const [displayCurrent, setDisplayCurrent] = useState(false)
   const [activeSession, setActiveSession] = useState(null)
   const [displayNextStudentPop, setDisplayNextStudentPop] = useState(false)
-  console.log('active', activeSession)
-  console.log('pop', displayNextStudentPop)
+  // console.log('active', activeSession)
+  // console.log('pop', displayNextStudentPop)
+
   const events = useSelector((state) => state.events)
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function NotesDisplay() {
   useEffect(() => {
     //GET TODAYS EVENTS
     let sortedArray = []
+    // let preSortedArray =[]
     //TO DO better if condition
     if (Object.keys(events).length < 1) {
       console.log(' no eventData')
@@ -36,6 +38,7 @@ export default function NotesDisplay() {
         moment(x.start).isSame(momentNow, 'day')
       )
     }
+
     //GET CURRENT SESSION
 
     let result = sortedArray.filter((x) => {
@@ -43,29 +46,40 @@ export default function NotesDisplay() {
         return x
       }
     })
+    console.log('now session', result)
+    console.log('todays events', sortedArray)
+    // if (result[0]) {
 
-    console.log('res', result)
-    if (result[0]) {
-      setActiveSession(true)
-      setDisplayNextStudentPop(false)
-    }
+    //   setDisplayNextStudentPop(false)
+    // }
+    //PSEUDO
+    //Get the time now
+    //Get the next session --wtf
+    //measure time from now to next session
+    //set time out
+    //put pop up (-3mi ns)
 
     if (!activeSession) {
       dispatch(setTodaysFormData(result[0] || {}))
-      console.log('false in if', activeSession)
-    } else {
-      console.log('else')(momentNow.diff(result[0].end, 'hours', true) < 0)
-        ? setDisplayNextStudentPop(true)
-        : null
+      // console.log('false in if', activeSession)
     }
+    //else {
+    //   console.log('else')
+    //   (momentNow.diff(result[0].end, 'hours', true) < 0)
+    //     ? setDisplayNextStudentPop(true)
+    //     : null
+    // }
   }, [events])
 
   function sessionIsNow(start, end) {
+    console.log('isnow', start, end, momentNow)
     if (
       momentNow.diff(start, 'hours', true) > 0 &&
       momentNow.diff(end, 'hours', true) < 0
-    )
+    ) {
+      setActiveSession(true)
       return true
+    } else return false
   }
 
   function nextStudentpop(bool) {
