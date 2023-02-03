@@ -4,7 +4,7 @@ export default function MoveToNextStudentPopUp({ setNextStudentState }) {
   return (
     <>
       <div className="changeStudentPop">
-        <header>The hour has changed do do you want to change student?</header>
+        <header>The session has ended do do you want to change student?</header>
         <button
           className="clickMe"
           onClick={(e) => {
