@@ -18,6 +18,7 @@ export function setEventsData(data) {
 }
 
 export function addEventsData(data) {
+  console.log('actions', data)
   return {
     type: ADD_EVENTS_DATA,
     payload: data,

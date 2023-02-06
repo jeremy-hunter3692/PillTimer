@@ -40,16 +40,21 @@ export default function AddingEvents() {
   }
 
   //bool for displaying adding new event
-  //TO DO make into a proper popup and decide how calendar add functionality will work
+  //TO DO make into a proper popup and decide how calendar-add functionality will work
   function newEvent(e) {
     e.preventDefault()
     setForm(initForm)
     setDetailPop(!detailsPop)
   }
+
   return (
     <>
       <button onClick={newEvent}>
-        <strong>Add New Event</strong>
+        {detailsPop ? (
+          <strong> Back/show calendar</strong>
+        ) : (
+          <strong> Add New Session </strong>
+        )}
       </button>
       {detailsPop ? (
         <div className="students">
@@ -103,9 +108,8 @@ export default function AddingEvents() {
           <h3>For how many weeks: {weeks}</h3>
         </div>
       ) : (
-        ''
+        <MyCalendar student={form} noOfWeeks={weeks} />
       )}
-      <MyCalendar student={form} noOfWeeks={weeks} />
     </>
   )
 }

@@ -17,7 +17,7 @@ export default function NotesDisplay() {
   const [activeSession, setActiveSession] = useState(null)
   const [displayNextStudentPop, setDisplayNextStudentPop] = useState(false)
   // console.log('active', activeSession)
-  console.log('pop', displayNextStudentPop)
+  // console.log('pop', displayNextStudentPop)
 
   const events = useSelector((state) => state.events)
 
@@ -31,7 +31,7 @@ export default function NotesDisplay() {
     let sortedArray = []
     //TODO better if condition
     if (Object.keys(events).length < 1) {
-      console.log(' no eventData')
+      // console.log(' no eventData')
     } else {
       sortedArray = events?.filter((x) =>
         moment(x.start).isSame(momentNow, 'day')
@@ -53,8 +53,8 @@ export default function NotesDisplay() {
       endOfSession = moment(result[0]?.end)
     }
     let timeTillEnd = momentNow.diff(endOfSession)
-    console.log('end', endOfSession)
-    console.log('time till', timeTillEnd)
+    // console.log('end', endOfSession)
+    // console.log('time till', timeTillEnd)
 
     if (!activeSession) {
       dispatch(setTodaysFormData(result[0] || {}))
@@ -63,8 +63,8 @@ export default function NotesDisplay() {
     //only setting timeout once event has loaded
     setTimeout(function () {
       setDisplayNextStudentPop(true)
-      console.log('nope', timeTillEnd)
-      console.log(endOfSession)
+      // console.log('nope', timeTillEnd)
+      // console.log(endOfSession)
     }, timeTillEnd * -1 || 100000)
   }, [events])
 
@@ -79,7 +79,7 @@ export default function NotesDisplay() {
   }
 
   function nextStudentpop(bool) {
-    console.log('next student fired')
+    // console.log('next student fired')
     setDisplayNextStudentPop(bool)
   }
 

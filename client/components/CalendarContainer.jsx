@@ -51,13 +51,11 @@ export default function MyCalendar({ student, noOfWeeks }) {
     return weeklyEvents
   }
 
-
   function handleSelect(start, end) {
     // console.log('onselecetedslot')
     addEvent(start, end)
   }
 
-  
   function addEvent({ start, end }) {
     let length = noOfWeeks
     let title = student.name
