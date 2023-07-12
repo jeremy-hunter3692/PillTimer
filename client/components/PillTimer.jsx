@@ -4,9 +4,9 @@ import moment from 'moment'
 //const localizer = momentLocalizer(moment)
 
 export default function PillTimer() {
-  const nonStateArr = []
-  const [logArr, setLogArr] = useState([''])
-  const tramadol, setTramadol = useState()
+  //const nonStateArr = ['1', '2', '3', '4']
+  const [logArr, setLogArr] = useState([])
+  //const tramadol, setTramadol = useState()
   //make and array of times that the thing was taken
   //on click push into the array
   //have the array be the state
@@ -15,18 +15,20 @@ export default function PillTimer() {
 
   function timeNow() {
     let nowString = moment().calendar()
-    // checking time is getting correctly console.log('nowstring:', nowString, 'type:', typeof nowString)
-    setLogArr(logArr.push(nowString))
+
+    // checking time is getting correctly
+    console.log('nowstring:', nowString, 'type:', typeof nowString)
+    setLogArr([...logArr, nowString])
 
     // setLogArr(nonStateArr)
-    //  console.log('non state arr', nonStateArr)
+    //console.log('non state arr', nonStateArr)
     console.log('state log', logArr)
   }
 
-  setTramadol(<ul>
-        {logArr.map((x) => (
-          <li>{x}</li>
-        ))})
+  // setTramadol(<ul>
+  //       {logArr.map((x) => (
+  //         <li>{x}</li>
+  //       ))})
 
   return (
     <>
@@ -40,7 +42,7 @@ export default function PillTimer() {
         Tramadol
       </button>
       <h1>You took tramadol at </h1>
-      <ul>{tramadol}</ul>
+      <ul>{logArr[0] ? logArr.map((x) => <li>{x}</li>) : ''}</ul>
     </>
   )
 }
