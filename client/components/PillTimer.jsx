@@ -1,34 +1,20 @@
 import React, { useState } from 'react'
 import moment from 'moment'
 
-//const localizer = momentLocalizer(moment)
-
 export default function PillTimer() {
-  //const nonStateArr = ['1', '2', '3', '4']
-  const [logArr, setLogArr] = useState([])
-  //const tramadol, setTramadol = useState()
-  //make and array of times that the thing was taken
-  //on click push into the array
-  //have the array be the state
-  //display as a log type i.e. log of the array
-  //editable array
 
+  const [tramArr, setTramArr] = useState([])
+  const [alreadyAdded, setAdded] = useState(null)
+ 
   function timeNow() {
     let nowString = moment().calendar()
-
-    // checking time is getting correctly
-    console.log('nowstring:', nowString, 'type:', typeof nowString)
-    setLogArr([...logArr, nowString])
-
-    // setLogArr(nonStateArr)
-    //console.log('non state arr', nonStateArr)
-    console.log('state log', logArr)
+    if (nowString != tramArr[tramArr.length - 1]) {
+      setTramArr([...tramArr, nowString])
+    } else {
+      console.log('added')
+      setAdded(nowString)
+    }
   }
-
-  // setTramadol(<ul>
-  //       {logArr.map((x) => (
-  //         <li>{x}</li>
-  //       ))})
 
   return (
     <>
@@ -42,7 +28,8 @@ export default function PillTimer() {
         Tramadol
       </button>
       <h1>You took tramadol at </h1>
-      <ul>{logArr[0] ? logArr.map((x) => <li>{x}</li>) : ''}</ul>
+      <ul>{tramArr[0] ? tramArr.map((x) => <li key={x}>{x}</li>) : ''}</ul>
+      {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}
     </>
   )
 }
