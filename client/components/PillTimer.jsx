@@ -23,6 +23,7 @@ export default function PillTimer() {
     setTramArr((x) => {
       return x.filter((x) => x !== time)
     })
+    setAdded(null)
   }
 
   function timeNow() {
