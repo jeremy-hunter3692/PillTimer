@@ -7,6 +7,7 @@ import moment from 'moment'
 import { fetchEvents } from '../Actions/eventsActions'
 import { fetchStudents } from '../Actions/studentsActions'
 import { setTodaysFormData } from '../Actions/currentFormActions'
+import PillTimer from './PillTimer'
 //Is this the best place to get the currrent time?
 const momentNow = moment()
 
@@ -85,6 +86,7 @@ export default function NotesDisplay() {
 
   return (
     <>
+      <PillTimer />
       <button
         className="clickMe"
         onClick={(e) => {

@@ -52,7 +52,7 @@ export default function MyCalendar({ student, noOfWeeks }) {
   }
 
   function handleSelect(start, end) {
-    // console.log('onselecetedslot')
+    console.log('onselecetedslot')
     addEvent(start, end)
   }
 
