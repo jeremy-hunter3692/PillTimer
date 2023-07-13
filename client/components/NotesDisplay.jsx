@@ -87,7 +87,7 @@ export default function NotesDisplay() {
   return (
     <>
       <PillTimer />
-      <button
+      {/* <button
         className="clickMe"
         onClick={(e) => {
           e.preventDefault()
@@ -99,7 +99,7 @@ export default function NotesDisplay() {
       {displayNextStudentPop ? (
         <MoveToNextStudentPop setNextStudentState={nextStudentpop} />
       ) : null}
-      {displayCurrent ? <CurrentSession /> : <LastSession />}
+      {displayCurrent ? <CurrentSession /> : <LastSession />} */}
     </>
   )
 }
