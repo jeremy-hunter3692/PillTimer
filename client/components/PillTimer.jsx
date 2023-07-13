@@ -3,16 +3,12 @@ import moment from 'moment'
 
 export default function PillTimer() {
   const [log, setLog] = useState({})
-  const [tramArr, setTramArr] = useState([])
+  //const [tramArr, setTramArr] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
   console.log(log)
   let pillName = 'Tramadol'
-  //TODOO: make it so you can re use the same code for different pillnames
-  //ie swap out tramArr for a variable?? Can you create state like that-array of arrays I guess?
-  //make and Add pill button?
 
   function deleteButton(x) {
-    //return button with an in built call to delete function passing in the time to find list item in stateful array
     return (
       <button
         onClick={(e) => {
@@ -26,9 +22,12 @@ export default function PillTimer() {
   }
 
   function handleDelete(time) {
-    setTramArr((x) => {
-      return x.filter((x) => x !== time)
-    })
+    let tempArr = log[pillName].filter((x) => x !== time)
+
+    setLog({ ...log, [pillName]: tempArr })
+    // setLog((x) => {
+    //   return x.filter((x) => x !== time)
+    // })
     setAdded(null)
   }
 
@@ -90,8 +89,8 @@ export default function PillTimer() {
     <>
       {generatePillContent(pillName)}
       <ul>
-        {tramArr[0]
-          ? tramArr.map((x) => (
+        {log[pillName]
+          ? log[pillName].map((x) => (
               <li key={x}>
                 {x}
                 {deleteButton(x)}
