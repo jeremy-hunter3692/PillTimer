@@ -10,12 +10,12 @@ export default function PillTimer() {
   const [displayPillName, setDisplay] = useState()
   let currentIndex = null
 
-  function deleteButton(x) {
+  function deleteButton(x, pillName) {
     return (
       <button
         onClick={(e) => {
           e.preventDefault()
-          handleDelete(x)
+          handleDelete(x, pillName)
         }}
       >
         delete
@@ -23,7 +23,8 @@ export default function PillTimer() {
     )
   }
 
-  function handleDelete(time) {
+  function handleDelete(time, pillName) {
+    console.log('in delete', pillName, time)
     let tempArr = log[pillName].filter((x) => x !== time)
     setLog({ ...log, [pillName]: tempArr })
     setAdded(null)
@@ -97,7 +98,7 @@ export default function PillTimer() {
         {log[pill]?.map((x) => (
           <li key={x}>
             {x}
-            {deleteButton(x)}
+            {deleteButton(x, pill)}
           </li>
         ))}
       </ul>
