@@ -5,8 +5,10 @@ export default function PillTimer() {
   const [log, setLog] = useState({})
   //const [tramArr, setTramArr] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
-  console.log(log)
-  let pillName = 'Tramadol'
+  console.log('init', log)
+  const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
+  const [displayPillName, setDisplay] = useState()
+  let currentIndex = null
 
   function deleteButton(x) {
     return (
@@ -23,85 +25,95 @@ export default function PillTimer() {
 
   function handleDelete(time) {
     let tempArr = log[pillName].filter((x) => x !== time)
-
     setLog({ ...log, [pillName]: tempArr })
-    // setLog((x) => {
-    //   return x.filter((x) => x !== time)
-    // })
     setAdded(null)
   }
 
-  function doubleTimeCheck(pillName) {
-    console.log('in dub', log[pillName])
-    let nowString = moment().calendar()
-    let index = log[pillName].length - 1
-    console.log('index', index)
-    return nowString === log[pillName][index] ? true : false
-  }
-
-  function timeNow(pillName) {
+  function addPillTime(selectedPillName) {
+    console.log('inaddPill', selectedPillName)
     //will doing this in two places cause problems?
     let nowString = moment().calendar()
 
     {
       //checking if array alreqdy exists in state
-      if (log[pillName] == undefined) {
+      if (log[selectedPillName] == undefined) {
         //push a new array to state if it doesnt exist
         let tempArr = []
         tempArr.push(nowString)
-        setLog({ ...log, [pillName]: tempArr })
+        setLog({ ...log, [selectedPillName]: tempArr })
       } else {
-        //call functions for preventing double ups
-        if (doubleTimeCheck(pillName)) {
-          console.log('already added')
-          setAdded(nowString)
+        currentIndex = pillName.indexOf(selectedPillName)
+        console.log('curent Inedxt', pillName[currentIndex])
 
-          //setLog({ ...log, [pillName].push(timeNow) })
+        //call functions for preventing double ups
+        if (doubleTimeCheck(selectedPillName)) {
+          console.log('already added', selectedPillName)
+          setAdded(nowString)
+          setDisplay(pillName[currentIndex])
+          console.log('in double check index is:', currentIndex)
         } else {
-          let tempElseArr = log[pillName]
+          let tempElseArr = log[selectedPillName]
           tempElseArr.push(nowString)
-          console.log(tempElseArr)
           //replacing named array with new one.. will it work when more complex object
-          setLog({ ...log, [pillName]: tempElseArr })
+          setLog({ ...log, [selectedPillName]: tempElseArr })
         }
       }
     }
   }
 
-  function generatePillContent(pillName) {
+  function doubleTimeCheck(selectedPillName) {
+    console.log('in dub', selectedPillName, log, log.Ibuprofen)
+    let nowString = moment().calendar()
+    let index = log[selectedPillName].length - 1
+    //console.log('index', index)
+    return nowString === log[selectedPillName][index] ? true : false
+  }
+
+  function generatePillContent(selectedPillName) {
+    console.log('pillContent', selectedPillName)
     return (
       <>
+        <h1>You took {selectedPillName} at </h1>
         <button
+          // key={pillName}
           className="clickMe"
           onClick={(e) => {
             e.preventDefault()
-            timeNow(pillName)
+            addPillTime(selectedPillName)
           }}
         >
-          {pillName}
+          Enter new {selectedPillName}
         </button>
-        <h1>You took {pillName} at </h1>
+        {generateList(selectedPillName)}
       </>
+    )
+  }
+
+  function generateList(pill) {
+    console.log('listContent', pill)
+    //might need to ternary this bcos react
+    return (
+      <ul>
+        {log[pill]?.map((x) => (
+          <li key={x}>
+            {x}
+            {deleteButton(x)}
+          </li>
+        ))}
+      </ul>
     )
   }
 
   return (
     <>
-      {generatePillContent(pillName)}
-      <ul>
-        {log[pillName]
-          ? log[pillName].map((x) => (
-              <li key={x}>
-                {x}
-                {deleteButton(x)}
-              </li>
-            ))
-          : ''}
-      </ul>
+      <div>
+        {pillName.map((x) => {
+          return generatePillContent(x)
+        })}
+      </div>
       {alreadyAdded ? (
         <h3>
-          {' '}
-          {pillName} {alreadyAdded} already saved
+          {displayPillName} {alreadyAdded} already saved
         </h3>
       ) : (
         ''
