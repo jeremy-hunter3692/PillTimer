@@ -3,19 +3,19 @@ import moment from 'moment'
 
 export default function PillTimer() {
   const [log, setLog] = useState({})
-  //const [tramArr, setTramArr] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
-  console.log('init', log)
   const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
   const [displayPillName, setDisplay] = useState()
-  let currentIndex = null
+  const [form, setForm] = useState('')
+  // let currentIndex = null
+  console.log('init', log)
 
-  function deleteButton(x, pillName) {
+  function deleteButton(x, selectedPillName) {
     return (
       <button
         onClick={(e) => {
           e.preventDefault()
-          handleDelete(x, pillName)
+          handleDelete(x, selectedPillName)
         }}
       >
         delete
@@ -23,18 +23,16 @@ export default function PillTimer() {
     )
   }
 
-  function handleDelete(time, pillName) {
-    console.log('in delete', pillName, time)
-    let tempArr = log[pillName].filter((x) => x !== time)
-    setLog({ ...log, [pillName]: tempArr })
+  function handleDelete(time, selectedPillName) {
+    let tempArr = log[selectedPillName].filter((x) => x !== time)
+    setLog({ ...log, [selectedPillName]: tempArr })
     setAdded(null)
   }
 
   function addPillTime(selectedPillName) {
-    console.log('inaddPill', selectedPillName)
     //will doing this in two places cause problems?
     let nowString = moment().calendar()
-
+    let currentIndex = null
     {
       //checking if array alreqdy exists in state
       if (log[selectedPillName] == undefined) {
@@ -44,14 +42,10 @@ export default function PillTimer() {
         setLog({ ...log, [selectedPillName]: tempArr })
       } else {
         currentIndex = pillName.indexOf(selectedPillName)
-        console.log('curent Inedxt', pillName[currentIndex])
-
         //call functions for preventing double ups
         if (doubleTimeCheck(selectedPillName)) {
-          console.log('already added', selectedPillName)
           setAdded(nowString)
           setDisplay(pillName[currentIndex])
-          console.log('in double check index is:', currentIndex)
         } else {
           let tempElseArr = log[selectedPillName]
           tempElseArr.push(nowString)
@@ -63,20 +57,17 @@ export default function PillTimer() {
   }
 
   function doubleTimeCheck(selectedPillName) {
-    console.log('in dub', selectedPillName, log, log.Ibuprofen)
     let nowString = moment().calendar()
     let index = log[selectedPillName].length - 1
-    //console.log('index', index)
     return nowString === log[selectedPillName][index] ? true : false
   }
 
   function generatePillContent(selectedPillName) {
-    console.log('pillContent', selectedPillName)
     return (
       <>
         <h1>You took {selectedPillName} at </h1>
         <button
-          // key={pillName}
+          key={selectedPillName}
           className="clickMe"
           onClick={(e) => {
             e.preventDefault()
@@ -91,8 +82,6 @@ export default function PillTimer() {
   }
 
   function generateList(pill) {
-    console.log('listContent', pill)
-    //might need to ternary this bcos react
     return (
       <ul>
         {log[pill]?.map((x) => (
@@ -105,8 +94,28 @@ export default function PillTimer() {
     )
   }
 
+  function addNewPill(e) {
+    e.preventDefault()
+    setPillName([...pillName, form])
+    setForm('')
+  }
+
+  function handleChange(e) {
+    setForm(e.target.value)
+  }
+
   return (
     <>
+      <form onSubmit={addNewPill}>
+        <input
+          name="addNewPill"
+          type="text"
+          value={form}
+          onChange={handleChange}
+        />
+        <button onSubmit={addNewPill}>Save New Pill</button>
+      </form>
+
       <div>
         {pillName.map((x) => {
           return generatePillContent(x)
@@ -122,3 +131,5 @@ export default function PillTimer() {
     </>
   )
 }
+//TO DO: TIDY UP CONSOLE LOGS
+//CLEAR FORM - REACT FORMS
