@@ -7,6 +7,7 @@ export default function PillTimer() {
   const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
   const [displayPillName, setDisplay] = useState()
   const [form, setForm] = useState('')
+  const [deleteChange, setDeleteChange] = useState('')
   console.log('init', log)
 
   //adding time pill is taken
@@ -90,17 +91,35 @@ export default function PillTimer() {
   }
 
   //form stuff
+
   function addNewPill(e) {
     e.preventDefault()
-    setPillName([...pillName, form])
-    setForm('')
+    if (pillName.includes(form)) {
+      setAdded(form)
+      setForm('')
+    } else {
+      setPillName([...pillName, form])
+      setForm('')
+    }
   }
 
   function handleChange(e) {
     setForm(e.target.value)
   }
 
-  
+  function handleDeleteChange(e) {
+    setDeleteChange(e.target.value)
+  }
+
+  function deleteAddedPill(e) {
+    e.preventDefault()
+    let input = deleteChange
+    console.log('deletepill', input)
+    let tempArr = pillName.filter((x) => x !== input)
+    setPillName(tempArr)
+    console.log('delte pill end. temp:', tempArr, 'pillname', pillName)
+  }
+
   return (
     <>
       <form onSubmit={addNewPill}>
@@ -112,21 +131,45 @@ export default function PillTimer() {
         />
         <button onSubmit={addNewPill}>Save New Pill</button>
       </form>
-
+      {/* drop down for deleting existing pills*/}
+      <select
+        id="pillSelect"
+        name="name"
+        onChange={handleDeleteChange}
+        required
+      >
+        <option>Choose Pill</option>
+        {pillName.map((x) => (
+          <option
+            key={x}
+            //added so we can extract the student id property dunno if we need this
+            datakey={x}
+            value={x}
+            title="Which pill"
+          >
+            {x}
+          </option>
+        ))}
+      </select>
+      <button onClick={deleteAddedPill}>Delete</button>
       <div>
         {pillName.map((x) => {
           return generatePillTitles(x)
         })}
       </div>
-      {alreadyAdded ? (
-        <h3>
-          {displayPillName} {alreadyAdded} already saved
-        </h3>
-      ) : (
-        ''
-      )}
+      <div>
+        {alreadyAdded ? (
+          <h3>
+            {displayPillName} {alreadyAdded} already saved
+          </h3>
+        ) : (
+          ''
+        )}
+      </div>
     </>
   )
 }
 //TO DO: TIDY UP CONSOLE LOGS
-//CLEAR FORM - REACT FORMS
+//Delete newly added pills
+//Find away to remove the already saved pill -- set timer?
+//make a better check function for adding pills i.e. lower case and upper case etc
