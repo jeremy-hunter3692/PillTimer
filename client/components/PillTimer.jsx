@@ -84,6 +84,10 @@ export default function PillTimer() {
     return nowString === log[selectedPillName][index] ? true : false
   }
 
+  function doubleNameCheck(a, b) {
+    return a.toUpperCase() === b.toUpperCase() ? true : false
+  }
+
   function handleDelete(time, selectedPillName) {
     let tempArr = log[selectedPillName].filter((x) => x !== time)
     setLog({ ...log, [selectedPillName]: tempArr })
@@ -94,7 +98,8 @@ export default function PillTimer() {
 
   function addNewPill(e) {
     e.preventDefault()
-    if (pillName.includes(form)) {
+    // console.log(pillName.find((x) => doubleNameCheck(form, x)))
+    if (pillName.find((x) => doubleNameCheck(form, x))) {
       setAdded(form)
       setForm('')
     } else {
@@ -170,6 +175,5 @@ export default function PillTimer() {
   )
 }
 //TO DO: TIDY UP CONSOLE LOGS
-//Delete newly added pills
 //Find away to remove the already saved pill -- set timer?
-//make a better check function for adding pills i.e. lower case and upper case etc
+
