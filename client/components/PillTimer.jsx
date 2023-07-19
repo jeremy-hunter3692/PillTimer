@@ -7,8 +7,31 @@ export default function PillTimer() {
   const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
   const [displayPillName, setDisplay] = useState()
   const [form, setForm] = useState('')
-  // let currentIndex = null
   console.log('init', log)
+
+  //adding time pill is taken
+  function addPillTime(selectedPillName) {
+    //will doing this in two places cause problems?
+    let nowString = moment().calendar()
+    let currentIndex = null
+    {
+      //checking if array alreqdy exists in state
+      if (log[selectedPillName] === undefined) {
+        setLog({ ...log, [selectedPillName]: [nowString] })
+      } else {
+        currentIndex = pillName.indexOf(selectedPillName)
+        //call function for preventing double ups
+        if (doubleTimeCheck(selectedPillName, nowString)) {
+          setAdded(nowString)
+          setDisplay(pillName[currentIndex])
+        } else {
+          let tempArr = log[selectedPillName]
+          tempArr.push(nowString)
+          setLog({ ...log, [selectedPillName]: tempArr })
+        }
+      }
+    }
+  }
 
   function deleteButton(x, selectedPillName) {
     return (
@@ -23,46 +46,7 @@ export default function PillTimer() {
     )
   }
 
-  function handleDelete(time, selectedPillName) {
-    let tempArr = log[selectedPillName].filter((x) => x !== time)
-    setLog({ ...log, [selectedPillName]: tempArr })
-    setAdded(null)
-  }
-
-  function addPillTime(selectedPillName) {
-    //will doing this in two places cause problems?
-    let nowString = moment().calendar()
-    let currentIndex = null
-    {
-      //checking if array alreqdy exists in state
-      if (log[selectedPillName] == undefined) {
-        //push a new array to state if it doesnt exist
-        let tempArr = []
-        tempArr.push(nowString)
-        setLog({ ...log, [selectedPillName]: tempArr })
-      } else {
-        currentIndex = pillName.indexOf(selectedPillName)
-        //call functions for preventing double ups
-        if (doubleTimeCheck(selectedPillName)) {
-          setAdded(nowString)
-          setDisplay(pillName[currentIndex])
-        } else {
-          let tempElseArr = log[selectedPillName]
-          tempElseArr.push(nowString)
-          //replacing named array with new one.. will it work when more complex object
-          setLog({ ...log, [selectedPillName]: tempElseArr })
-        }
-      }
-    }
-  }
-
-  function doubleTimeCheck(selectedPillName) {
-    let nowString = moment().calendar()
-    let index = log[selectedPillName].length - 1
-    return nowString === log[selectedPillName][index] ? true : false
-  }
-
-  function generatePillContent(selectedPillName) {
+  function generatePillTitles(selectedPillName) {
     return (
       <>
         <h1>You took {selectedPillName} at </h1>
@@ -76,12 +60,12 @@ export default function PillTimer() {
         >
           Enter new {selectedPillName}
         </button>
-        {generateList(selectedPillName)}
+        {generateTimeList(selectedPillName)}
       </>
     )
   }
-
-  function generateList(pill) {
+  //time pill taken
+  function generateTimeList(pill) {
     return (
       <ul>
         {log[pill]?.map((x) => (
@@ -94,6 +78,18 @@ export default function PillTimer() {
     )
   }
 
+  function doubleTimeCheck(selectedPillName, nowString) {
+    let index = log[selectedPillName].length - 1
+    return nowString === log[selectedPillName][index] ? true : false
+  }
+
+  function handleDelete(time, selectedPillName) {
+    let tempArr = log[selectedPillName].filter((x) => x !== time)
+    setLog({ ...log, [selectedPillName]: tempArr })
+    setAdded(null)
+  }
+
+  //form stuff
   function addNewPill(e) {
     e.preventDefault()
     setPillName([...pillName, form])
@@ -104,6 +100,7 @@ export default function PillTimer() {
     setForm(e.target.value)
   }
 
+  
   return (
     <>
       <form onSubmit={addNewPill}>
@@ -118,7 +115,7 @@ export default function PillTimer() {
 
       <div>
         {pillName.map((x) => {
-          return generatePillContent(x)
+          return generatePillTitles(x)
         })}
       </div>
       {alreadyAdded ? (
