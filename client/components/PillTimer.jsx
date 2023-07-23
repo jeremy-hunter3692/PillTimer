@@ -4,7 +4,7 @@ import moment from 'moment'
 
 export default function PillTimer() {
   const [log, setLog] = useState({})
-  const [alreadyAdded, setAdded] = useState([])
+  const [alreadyAdded, setAdded] = useState()
   const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
   // const [displayPillName, setDisplay] = useState('')
   const [form, setForm] = useState('')
@@ -122,8 +122,11 @@ export default function PillTimer() {
     e.preventDefault()
     // console.log(pillName.find((x) => doubleNameCheck(form, x)))
     if (pillName.find((x) => doubleNameCheck(form, x))) {
-      addAndClearText(form)
+      setAdded(form)
       setForm('')
+      setTimeout(() => {
+        setAdded(null)
+      }, 4000)
     } else {
       setPillName([...pillName, form])
       setForm('')
@@ -149,6 +152,7 @@ export default function PillTimer() {
 
   return (
     <>
+      <div>{alreadyAdded ? <h4>{alreadyAdded} already addded</h4> : ''}</div>
       <form onSubmit={addNewPill}>
         <input
           name="addNewPill"
@@ -182,14 +186,6 @@ export default function PillTimer() {
       {pillName.map((x) => {
         return <Pill key={x} props={{ selectedPillName: x }} />
       })}
-
-      <div>
-        {alreadyAdded[0]
-          ? alreadyAdded.map((x) => {
-              return <h3 key={x}>{x} already saved</h3>
-            })
-          : ''}
-      </div>
     </>
   )
 }
