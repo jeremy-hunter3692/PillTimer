@@ -4,12 +4,7 @@ import moment from 'moment'
 export default function Pill({ props }) {
   const [log, setLog] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
-  // const [pillName, setPillName] = useState(['Tramadol', 'Panadol', 'Ibuprofen'])
-  // const [displayPillName, setDisplay] = useState('')
-  const [form, setForm] = useState('')
-  const [deleteChange, setDeleteChange] = useState('')
-  //RE LEARN HOW TO DESTRUCTURE PROPS FOR
-  const selectedPillName = props.selectedPillName
+  const { selectedPillName } = props
   console.log('init', props, selectedPillName, 'log', log)
 
   function generatePillTitles(selectedPillName) {
@@ -58,19 +53,10 @@ export default function Pill({ props }) {
 
   function addAndClearText(pillName) {
     //might need to put and or/and to deal with empty string/null situation
-    // console.log({ input, index }, pillName[index])
-    // let string = null
-
-    // string = index >= 0 ? pillName[index] + ' ' + input : input
-
-    // if (!alreadyAdded.includes(string)) {
-    // console.log('str', string)
     setAdded(pillName)
     setTimeout(() => {
       setAdded(null)
     }, 3000)
-    // }
-    // }
   }
 
   //time pill taken
@@ -111,80 +97,10 @@ export default function Pill({ props }) {
     }
   }
 
-  function doubleNameCheck(a, b) {
-    return a.toUpperCase() === b.toUpperCase() ? true : false
-  }
-
-  //form stuff
-
-  // function addNewPill(e) {
-  //   e.preventDefault()
-  //   // console.log(pillName.find((x) => doubleNameCheck(form, x)))
-  //   if (pillName.find((x) => doubleNameCheck(form, x))) {
-  //     addAndClearText(form)
-  //     setForm('')
-  //   } else {
-  //     setPillName([...pillName, form])
-  //     setForm('')
-  //   }
-  // }
-
-  // function handleChange(e) {
-  //   setForm(e.target.value)
-  // }
-
-  // function handleDeleteChange(e) {
-  //   setDeleteChange(e.target.value)
-  // }
-
-  // function deleteAddedPill(e) {
-  //   e.preventDefault()
-  //   let input = deleteChange
-  //   console.log('deletepill', input)
-  //   let tempArr = pillName.filter((x) => x !== input)
-  //   setPillName(tempArr)
-  //   console.log('delte pill end. temp:', tempArr, 'pillname', pillName)
-  // }
-
   return (
     <>
-      {/* <form onSubmit={addNewPill}>
-        <input
-          name="addNewPill"
-          type="text"
-          value={form}
-          onChange={handleChange}
-        />
-        <button onSubmit={addNewPill}>Save New Pill</button>
-      </form>
-    
-      <select
-        id="pillSelect"
-        name="name"
-        onChange={handleDeleteChange}
-        required
-      >
-        <option>Choose Pill</option>
-        {pillName.map((x) => (
-          <option
-            key={x}
-            //added so we can extract the student id property dunno if we need this
-            datakey={x}
-            value={x}
-            title="Which pill"
-          >
-            {x}
-          </option>
-        ))}
-      </select>
-      <button onClick={deleteAddedPill}>Delete</button> */}
       <div>{generatePillTitles(selectedPillName)}</div>
       <div>{alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}</div>
     </>
   )
 }
-// <h3>{alreadyAdded[0]} already saved</h3> : ''}
-//TO DO: TIDY UP CONSOLE LOGS
-//Find away to remove the already saved pill -- set timer?
-//Change so alert of already added prints a new one each time rather than replacing the old
-//each has a timer to remove itselft but can't double up on itself
