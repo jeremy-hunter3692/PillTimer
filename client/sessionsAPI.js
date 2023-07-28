@@ -11,28 +11,21 @@ export function getLastSessionById(id) {
   })
 }
 
+// export function getTodaysSessions() {
+//   return request.get(`${apiUrl}/today`).then((res) => {
+//     return res.body
+//   })
+// }
+
 export function getSessions() {
   return request.get(apiUrl).then((res) => {
-    //converting from UTC back to date object
-    const data = res.body
-    // data.forEach((x) => {
-    //   // console.log('type', typeof x.start, 'actual', x.start)
-    //   x.start = new Date(x.start)
-    //   x.end = new Date(x.end)
-    //   // console.log('after type', typeof x.start, 'actual', x.start)
-    // })
-    console.log('from sessions', data)
-    return data
+    return res.body
   })
 }
 
 export function addSessions(data) {
-  //convert to utc
-  data.forEach((x) => {
-    x.start.toUTCString()
-    x.end.toUTCString()
-  })
-
+  //Should be coming in as UTC dates here
+  console.log('from api add', data)
   return request
     .post(apiUrl)
     .send(data)

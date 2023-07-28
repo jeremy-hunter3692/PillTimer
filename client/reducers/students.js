@@ -1,10 +1,9 @@
 import { SET_STUDENTS_DATA } from '../Actions/studentsActions.js'
 
-const empty = {}
+const init = []
 
-export default function lastForm(state = empty, action) {
+export default function students(state = init, action) {
   const { type, payload } = action
-
   switch (type) {
     case SET_STUDENTS_DATA:
       return payload

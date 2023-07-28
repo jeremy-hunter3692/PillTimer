@@ -56,7 +56,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-off-range {
-  color: #999999;
+  color: white;
 }
 
 .rbc-off-range-bg {
@@ -74,14 +74,14 @@ button.rbc-input::-moz-focus-inner {
   font-weight: bold;
   font-size: 90%;
   min-height: 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 .rbc-header + .rbc-header {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-header + .rbc-header {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 .rbc-header > a, .rbc-header > a:active, .rbc-header > a:visited {
   color: inherit;
@@ -97,14 +97,12 @@ button.rbc-input::-moz-focus-inner {
   cursor: pointer;
   -webkit-user-select: text;
      -moz-user-select: text;
-      -ms-user-select: text;
           user-select: text;
 }
 
 .rbc-row-content {
   position: relative;
   -moz-user-select: none;
-   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   z-index: 4;
@@ -127,7 +125,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-today {
-  background-color: #eaf6ff;
+  background-color: #ffddf9;
 }
 
 .rbc-toolbar {
@@ -221,9 +219,9 @@ button.rbc-input::-moz-focus-inner {
   box-shadow: none;
   margin: 0;
   padding: 2px 5px;
-  background-color: #3174ad;
+  background-color: #f8f8f8;
   border-radius: 5px;
-  color: #fff;
+  color: rgb(7, 3, 229);
   cursor: pointer;
   width: 100%;
   text-align: left;
@@ -233,7 +231,7 @@ button.rbc-input::-moz-focus-inner {
   pointer-events: none;
 }
 .rbc-event.rbc-selected, .rbc-day-slot .rbc-selected.rbc-background-event {
-  background-color: #265985;
+  background-color: #dfdfdf;
 }
 .rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {
   outline: 5px auto #3b99fc;
@@ -286,21 +284,20 @@ button.rbc-input::-moz-focus-inner {
   font-size: 85%;
   height: auto;
   line-height: normal;
-  color: #3174ad;
+  color: #f8f8f8;
 }
 .rbc-show-more:hover, .rbc-show-more:focus {
-  color: #265985;
+  color: #dfdfdf;
 }
 
 .rbc-month-view {
   position: relative;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(253, 253, 253);
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
   width: 100%;
   -moz-user-select: none;
-   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
   height: 100%;
@@ -321,7 +318,7 @@ button.rbc-input::-moz-focus-inner {
   height: 100%;
 }
 .rbc-month-row + .rbc-month-row {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid rgb(255, 255, 255);
 }
 
 .rbc-date-cell {
@@ -349,11 +346,11 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 0 0%;
 }
 .rbc-day-bg + .rbc-day-bg {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-day-bg + .rbc-day-bg {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 
 .rbc-overlay {
@@ -382,7 +379,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-agenda-view table.rbc-agenda-table {
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(255, 255, 255);
   border-spacing: 0;
   border-collapse: collapse;
 }
@@ -396,19 +393,19 @@ button.rbc-input::-moz-focus-inner {
   text-transform: lowercase;
 }
 .rbc-agenda-view table.rbc-agenda-table tbody > tr > td + td {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-agenda-view table.rbc-agenda-table tbody > tr > td + td {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 .rbc-agenda-view table.rbc-agenda-table tbody > tr + tr {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid rgb(255, 255, 255);
 }
 .rbc-agenda-view table.rbc-agenda-table thead > tr > th {
   padding: 3px 5px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-agenda-view table.rbc-agenda-table thead > tr > th {
   text-align: right;
@@ -443,7 +440,7 @@ button.rbc-input::-moz-focus-inner {
 }
 
 .rbc-timeslot-group {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
   min-height: 40px;
   display: flex;
   flex-flow: column nowrap;
@@ -500,16 +497,15 @@ button.rbc-input::-moz-focus-inner {
   min-height: 1em;
 }
 .rbc-day-slot .rbc-time-slot {
-  border-top: 1px solid #f7f7f7;
+  border-top: 1px solid white;
 }
 
 .rbc-time-view-resources .rbc-time-gutter,
 .rbc-time-view-resources .rbc-time-header-gutter {
-  position: -webkit-sticky;
   position: sticky;
   left: 0;
   background-color: white;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
   z-index: 10;
   margin-right: -1px;
 }
@@ -553,7 +549,7 @@ button.rbc-input::-moz-focus-inner {
   z-index: 10;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 75%;
   width: 100%;
   padding: 3px;
@@ -568,7 +564,7 @@ button.rbc-input::-moz-focus-inner {
   flex-direction: column;
   flex: 1;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(253, 253, 253);
   min-height: 0;
 }
 .rbc-time-view .rbc-time-gutter {
@@ -582,7 +578,7 @@ button.rbc-input::-moz-focus-inner {
   position: relative;
 }
 .rbc-time-view .rbc-allday-cell + .rbc-allday-cell {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-time-view .rbc-allday-events {
   position: relative;
@@ -599,17 +595,17 @@ button.rbc-input::-moz-focus-inner {
   flex-direction: row;
 }
 .rbc-time-header.rbc-overflowing {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-time-header.rbc-overflowing {
   border-right-width: 0;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-time-header > .rbc-row:first-child {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 .rbc-time-header > .rbc-row.rbc-row-resource {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 .rbc-time-header-cell-single-day {
@@ -621,14 +617,14 @@ button.rbc-input::-moz-focus-inner {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-time-header-content {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 .rbc-time-header-content > .rbc-row.rbc-row-resource {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgb(255, 255, 255);
   flex-shrink: 0;
 }
 
@@ -637,7 +633,7 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 0 0%;
   align-items: flex-start;
   width: 100%;
-  border-top: 2px solid #ddd;
+  border-top: 2px solid rgb(253, 253, 253);
   overflow-y: auto;
   position: relative;
 }
@@ -645,16 +641,15 @@ button.rbc-input::-moz-focus-inner {
   flex: none;
 }
 .rbc-time-content > * + * > * {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(255, 255, 255);
 }
 .rbc-rtl .rbc-time-content > * + * > * {
   border-left-width: 0;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgb(255, 255, 255);
 }
 .rbc-time-content > .rbc-day-slot {
   width: 100%;
   -moz-user-select: none;
-   -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
 }
@@ -665,6 +660,6 @@ button.rbc-input::-moz-focus-inner {
   left: 0;
   right: 0;
   height: 1px;
-  background-color: #74ad31;
+  background-color: #ff0492;
   pointer-events: none;
 }/*# sourceMappingURL=styles.css.map */

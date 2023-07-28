@@ -11,7 +11,8 @@ function getAllSessions(db = connection) {
       'start',
       'end',
       'studentNotes',
-      'teacherNotes'
+      'teacherNotes',
+      'name'
     )
 }
 

@@ -42,6 +42,7 @@
     "hash-string": "^1.0.0",
     "knex": "^2.3.0",
     "nock": "^13.2.9",
+    "node-sass": "^7.0.3",
     "react-big-calendar": "^1.5.0",
     "react-canvas-draw": "^1.2.1",
     "react-color": "^2.19.3",

@@ -1,5 +1,4 @@
-/* @import '../../src/sass/styles.scss';
-@import '../../src/addons/dragAndDrop/styles.scss'; */
+
 
 
 html, body, .viewport {
@@ -127,4 +126,8 @@ label {
 .displayDetails {
 
   color: cornflowerblue;
+}
+
+.changeStudentPop {
+  background-color: chocolate;
 }

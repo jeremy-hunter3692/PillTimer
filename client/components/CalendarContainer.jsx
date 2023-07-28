@@ -3,49 +3,51 @@ import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 import { addEvents } from '../Actions/eventsActions'
-
-// import 'react-big-calendar/lib/css/react-big-calendar.css'
+//From github forums need the start for the style loader to get the sass working.
+import '!style-loader!css-loader!../../server/public/sass/styles.css'
 
 const localizer = momentLocalizer(moment)
+let eventData = []
 
 export default function MyCalendar({ student, noOfWeeks }) {
   const dispatch = useDispatch()
   const eventState = useSelector((state) => state.events)
-  let eventData = []
-  // console.log(eventData)
-  const [events, setEvents] = useState(eventData)
-  console.log(events)
+
+  const [events, setEvents] = useState([])
   const [newEvents, setNewEvents] = useState([])
 
   useEffect(() => {
-    eventData = eventState.map((x) => {
-      return {
-        ...x,
-        start: new Date(x.start),
-        end: new Date(x.start),
-        title: 'TO DO',
-      }
-    })
-    console.log('use ed', eventData, 'type', typeof eventData[0].start)
-    setEvents(eventData)
+    //checking the state has loaded and setting it conditionally
+    if (Object.keys(eventState).length < 1) {
+      console.log(' no eventData')
+    } else {
+      eventData = eventState?.map((x) => {
+        return {
+          ...x,
+          start: new Date(x.start),
+          end: new Date(x.end),
+          title: x.name,
+        }
+      })
+      setEvents(eventData)
+    }
   }, [eventState])
 
   function createWeeklyEvent(newEvent, length) {
-    console.log('length', length, 'event', newEvent)
     const weeklyEvents = [newEvent]
     for (let i = 1; i < length; i++) {
       let newDate = {
         ...newEvent,
+        //copying last loops datetime
         start: new Date(weeklyEvents[i - 1].start.valueOf()),
         end: new Date(weeklyEvents[i - 1].end.valueOf()),
       }
+      //adding the 7 days to the last weeks datetime
       newDate.start.setDate(newDate.start.getDate() + 7)
       newDate.end.setDate(newDate.end.getDate() + 7)
-      // newDate.setDate(newDate.getDate() + 7)
-
+      //push to returning array
       weeklyEvents.push(newDate)
     }
-    console.log('arr', weeklyEvents)
     return weeklyEvents
   }
 
@@ -57,36 +59,38 @@ export default function MyCalendar({ student, noOfWeeks }) {
   function addEvent({ start, end }) {
     let length = noOfWeeks
     let title = student.name
-    //TODO get teacher id on load?
+    //TODO get teacher id on load/implement teacher IDS
     let teacher = 4
     // imrpove this logic/defnsive stuff
     if (title != ' ') {
+      // console.log('if', title, length)
       let newEvent = {
         start: start,
         end: end,
         title: title,
+        name: title,
         studentNotes: '',
         teacherNotes: '',
         studentId: student.id,
         teacherId: teacher,
       }
 
-      let newEventsArr = createWeeklyEvent(newEvent, length || 0)
+      let newEventsArr =
+        length > 0 ? createWeeklyEvent(newEvent, length) : [newEvent]
+
       setNewEvents(newEventsArr)
-      // dispatch(addEvents(resultArr))
-      setEvents([...events, newEvent])
-      console.log('add event', events)
+      setEvents([...events, ...newEventsArr])
     }
   }
 
-  //save on navigate away??
+  //TO DO save on navigate away??
   function submit() {
-    console.log('submit', newEvents)
     dispatch(addEvents(newEvents))
   }
 
   return (
     <div>
+      <button onClick={submit}>Save Calendar Events</button>
       <h1>Calender</h1>
       <Calendar
         localizer={localizer}
@@ -99,7 +103,6 @@ export default function MyCalendar({ student, noOfWeeks }) {
         onSelectSlot={handleSelect}
         longPressThreshold={10}
       />
-      <button onClick={submit}>submit events</button>
     </div>
   )
 }
