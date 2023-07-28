@@ -22,14 +22,14 @@ header {
 }
 
 h1 {
-  text-align: center;
+  text-align: left;
   margin: 0;
   font-family:Arial, Helvetica, sans-serif;
   font-size: 50px;
 }
 
 h2 {
-  text-align: center;
+  text-align: left;
   margin: 30px auto;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 40px;
@@ -38,35 +38,18 @@ h2 {
 
 
 h3 {
-  text-align: center;
+  text-align: left;
   margin: 7px auto;
   font-size: 25px;
 }
 
 
-.nav {
-  background-color: #fafafa;
-  margin: 0;
-}
 
-.icon {
-  margin: 0 20px ;
-  font-size: 25px;
-  justify-content: left;
-  color:#5f4838;
-}
-
-.icon:hover {
-  color: #576fe3;
-  
-}
-
-.clickMe {
-  padding: 10px;
-  display: inline-block;
-  background: #fafafa;
-  border-radius: 1px;
-  justify-content: left;
+.pillButton {
+  padding: 60px;
+  background: #1177fd;
+  border-radius: 100%;
+  justify-content: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 20px;
 }

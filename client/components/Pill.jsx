@@ -13,7 +13,7 @@ export default function Pill({ props }) {
         <h1>You took {selectedPillName} at </h1>
         <button
           key={selectedPillName}
-          className="clickMe"
+          className="pillButton"
           onClick={(e) => {
             e.preventDefault()
             addPillTime(selectedPillName)
@@ -62,6 +62,7 @@ export default function Pill({ props }) {
   //time pill taken
   function generateTimeList() {
     return (
+    <div className='pillList'>
       <ul>
         {log.map((x) => (
           <li key={x}>
@@ -70,6 +71,7 @@ export default function Pill({ props }) {
           </li>
         ))}
       </ul>
+      </div>
     )
   }
 

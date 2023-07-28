@@ -87,19 +87,6 @@ export default function NotesDisplay() {
   return (
     <>
       <PillTimer />
-      {/* <button
-        className="clickMe"
-        onClick={(e) => {
-          e.preventDefault()
-          setDisplayCurrent(!displayCurrent)
-        }}
-      >
-        {!displayCurrent ? 'Show Current Session' : 'Show Last Session'}
-      </button>
-      {displayNextStudentPop ? (
-        <MoveToNextStudentPop setNextStudentState={nextStudentpop} />
-      ) : null}
-      {displayCurrent ? <CurrentSession /> : <LastSession />} */}
-    </>
-  )
+
+  </>)
 }
