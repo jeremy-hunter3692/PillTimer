@@ -18,13 +18,19 @@ export default function PillTimer() {
         setAdded(null)
       }, 4000)
     } else {
-      setPillName([...pillName, form])
+      //checking for empty strinsg
+
+      Boolean(form) == false
+        ? console.log('emptystring')
+        : setPillName([...pillName, form])
       setForm('')
     }
   }
 
   function doubleNameCheck(a, b) {
-    return a.toUpperCase() === b.toUpperCase() ? true : false
+    const one = a.replace(/\s/g, '')
+    const two = b.replace(/\s/g, '')
+    return one.toUpperCase() === two.toUpperCase() ? true : false
   }
 
   function handleChange(e) {
@@ -37,18 +43,20 @@ export default function PillTimer() {
 
   return (
     <>
-      <div>{alreadyAdded ? <h4>{alreadyAdded} already addded</h4> : ''}</div>
-      <form onSubmit={addNewPill}>
-        <input
-          name="addNewPill"
-          type="text"
-          value={form}
-          onChange={handleChange}
-        />
-        <button onSubmit={addNewPill}>Save New Pill</button>
-      </form>
-      <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
-      {showEdit && <EditPill props={pillName} pillFunc={setPillPropFunc} />}
+      <div className="editcontrols">
+        <form onSubmit={addNewPill}>
+          <input
+            name="addNewPill"
+            type="text"
+            value={form}
+            onChange={handleChange}
+          />
+          <button onSubmit={addNewPill}>Save New Pill</button>
+        </form>
+        <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
+        {showEdit && <EditPill props={pillName} pillFunc={setPillPropFunc} />}
+      </div>
+      <div>{alreadyAdded ? <h4>{alreadyAdded} already saved</h4> : ''}</div>
       {pillName.map((x) => {
         return <Pill key={x} props={{ selectedPillName: x }} />
       })}

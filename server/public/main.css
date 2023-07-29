@@ -43,74 +43,30 @@ h3 {
   font-size: 25px;
 }
 
-
+.editcontrols {
+  display: flex;
+  flex-direction: row;
+  }
 
 .pillButton {
-  padding: 60px;
+  padding: 1rem;
   background: #1177fd;
-  border-radius: 100%;
+  border-radius: 20%;
   justify-content: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 20px;
 }
 
-.clickMe:hover {
-  color: #808fd7;
-}
-
-.textBox {
-  width: 90vw;
-  height: 40vh; 
-  margin: 2rem;
-  border-radius: 5px;
-  justify-content: center;
-  font-size: 2rem;
-}
-
-.notesInput{
-  width: 100%;
-  justify-content: center;
-}
-
-.formContainer {
-  background-color: aqua;
-  width: 100%;
+.PillContainer {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  /* gap: 4rem; */
-}
-
-.students {
-  background-color: rgb(255, 136, 160);
-  padding: 2rem;
-
-}
-
-.students h3 {
-  text-align: left;
-}
+  flex-direction: row;
+  background-color: bisque;
+  padding: 3em;
+  border: solid;
+  border-color: red;
 
 
-label {
-  
-  font-size: 20px;
-}
-
-.studentNotes { 
-
-  background-color: green;
-}
-.teacherNotes { 
-
-  background-color:red;
-}
-
-.displayDetails {
-
-  color: cornflowerblue;
-}
-
-.changeStudentPop {
-  background-color: chocolate;
+.PillandList {
+  display: flex;
+  flex-direction: row;
+  border: solid; 
 }

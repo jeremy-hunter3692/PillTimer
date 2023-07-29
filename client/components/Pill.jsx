@@ -5,23 +5,25 @@ export default function Pill({ props }) {
   const [log, setLog] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
   const { selectedPillName } = props
-  console.log('init', props, selectedPillName, 'log', log)
+  // console.log('init', props, selectedPillName, 'log', log)
 
   function generatePillTitles(selectedPillName) {
     return (
       <>
-        <h1>You took {selectedPillName} at </h1>
-        <button
-          key={selectedPillName}
-          className="pillButton"
-          onClick={(e) => {
-            e.preventDefault()
-            addPillTime(selectedPillName)
-          }}
-        >
-          Enter new {selectedPillName}
-        </button>
-        {generateTimeList(selectedPillName)}
+        <div className="PillandList">
+          <h1>You took {selectedPillName} at </h1>
+          <button
+            key={selectedPillName}
+            className="pillButton"
+            onClick={(e) => {
+              e.preventDefault()
+              addPillTime(selectedPillName)
+            }}
+          >
+            Enter new {selectedPillName}
+          </button>
+          {generateTimeList(selectedPillName)}
+        </div>
       </>
     )
   }
@@ -62,15 +64,15 @@ export default function Pill({ props }) {
   //time pill taken
   function generateTimeList() {
     return (
-    <div className='pillList'>
-      <ul>
-        {log.map((x) => (
-          <li key={x}>
-            {x}
-            {deleteButton(x)}
-          </li>
-        ))}
-      </ul>
+      <div className="pillList">
+        <ul>
+          {log.map((x) => (
+            <li key={x}>
+              {x}
+              {deleteButton(x)}
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
@@ -101,8 +103,10 @@ export default function Pill({ props }) {
 
   return (
     <>
-      <div>{generatePillTitles(selectedPillName)}</div>
-      <div>{alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}</div>
+      <div className="PillContainer">
+        <div>{generatePillTitles(selectedPillName)}</div>
+        <div>{alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}</div>
+      </div>
     </>
   )
 }
