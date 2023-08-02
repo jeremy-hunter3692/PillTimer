@@ -39,41 +39,41 @@ h2 {
 
 h3 {
   text-align: left;
-  margin: 7px auto;
+  margin: 1rem;
   font-size: 25px;
 }
 
-.editcontrols {
+.edit-controls {
   display: flex;
   flex-direction: row;
   }
 
-.pillButton {
+.pill-button {
   background: #4595fe;
   border-radius: 20%;
   justify-content: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.PillContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.pill-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-gap: 20px; */
   background-color: rgb(255, 255, 255);
-  padding: 2rem;
+  padding: 5rem 2rem;
   border: solid;
   border-color: rgb(0, 8, 116);
 }
 
 
-.PillNames{
+.pill-names{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: solid red; 
+  /* border: solid red;  */
 }
 
-.PillList {
-  /* display: flex;
-  justify-content: flex-end; */
+.pill-list {
+  background-color: rgb(25, 25, 55);
+  color: white;
 }

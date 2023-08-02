@@ -43,7 +43,7 @@ export default function PillTimer() {
 
   return (
     <>
-      <div className="editcontrols">
+      <div className="edit-controls">
         <form onSubmit={addNewPill}>
           <input
             name="addNewPill"

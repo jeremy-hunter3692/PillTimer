@@ -10,10 +10,10 @@ export default function Pill({ props }) {
   function generatePillTitles(selectedPillName) {
     return (
       <>
-        <div className="PillNames">
+        <div className="pill-names">
           <button
             key={selectedPillName}
-            className="pillButton"
+            className="pill-button"
             onClick={(e) => {
               e.preventDefault()
               addPillTime(selectedPillName)
@@ -23,7 +23,7 @@ export default function Pill({ props }) {
           </button>
           <h2>You took {selectedPillName} at </h2>
         </div>
-        <div className="PillList">{generateTimeList(selectedPillName)}</div>
+        <div className="pill-list">{generateTimeList(selectedPillName)}</div>
       </>
     )
   }
@@ -67,7 +67,7 @@ export default function Pill({ props }) {
       <ul>
         {log.map((x) => (
           <li key={x}>
-            {x}
+            {x} {'   '}
             {deleteButton(x)}
           </li>
         ))}
@@ -101,10 +101,10 @@ export default function Pill({ props }) {
 
   return (
     <>
-      <div className="PillContainer">
+      <div className="pill-container">
         {generatePillTitles(selectedPillName)}
+        {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : <h3>      </h3>}
       </div>
-      {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}
     </>
   )
 }
