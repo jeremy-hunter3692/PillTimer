@@ -4,7 +4,7 @@ export default function EditPill({ props: pillName, pillFunc }) {
   const [deleteChange, setDeleteChange] = useState('')
 
   // const { pillName } = props
-  console.log('in edit. Pill:', pillName, 'func', pillFunc)
+  // console.log('in edit. Pill:', pillName, 'func', pillFunc)
 
   function handleDeleteChange(e) {
     setDeleteChange(e.target.value)
@@ -19,7 +19,6 @@ export default function EditPill({ props: pillName, pillFunc }) {
 
   return (
     <>
-      <h1>Edit Pill</h1>
       <select
         id="pillSelect"
         name="name"

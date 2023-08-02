@@ -10,8 +10,7 @@ export default function Pill({ props }) {
   function generatePillTitles(selectedPillName) {
     return (
       <>
-        <div className="PillandList">
-          <h1>You took {selectedPillName} at </h1>
+        <div className="PillNames">
           <button
             key={selectedPillName}
             className="pillButton"
@@ -22,8 +21,9 @@ export default function Pill({ props }) {
           >
             Enter new {selectedPillName}
           </button>
-          {generateTimeList(selectedPillName)}
+          <h2>You took {selectedPillName} at </h2>
         </div>
+        <div className="PillList">{generateTimeList(selectedPillName)}</div>
       </>
     )
   }
@@ -64,16 +64,14 @@ export default function Pill({ props }) {
   //time pill taken
   function generateTimeList() {
     return (
-      <div className="pillList">
-        <ul>
-          {log.map((x) => (
-            <li key={x}>
-              {x}
-              {deleteButton(x)}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul>
+        {log.map((x) => (
+          <li key={x}>
+            {x}
+            {deleteButton(x)}
+          </li>
+        ))}
+      </ul>
     )
   }
 
@@ -104,9 +102,9 @@ export default function Pill({ props }) {
   return (
     <>
       <div className="PillContainer">
-        <div>{generatePillTitles(selectedPillName)}</div>
-        <div>{alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}</div>
+        {generatePillTitles(selectedPillName)}
       </div>
+      {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : ''}
     </>
   )
 }

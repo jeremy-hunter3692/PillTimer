@@ -49,8 +49,7 @@ h3 {
   }
 
 .pillButton {
-  padding: 1rem;
-  background: #1177fd;
+  background: #4595fe;
   border-radius: 20%;
   justify-content: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -59,14 +58,22 @@ h3 {
 .PillContainer {
   display: flex;
   flex-direction: row;
-  background-color: bisque;
-  padding: 3em;
+  justify-content: flex-start;
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
   border: solid;
-  border-color: red;
+  border-color: rgb(0, 8, 116);
+}
 
 
-.PillandList {
+.PillNames{
   display: flex;
   flex-direction: row;
-  border: solid; 
+  justify-content: space-around;
+  border: solid red; 
+}
+
+.PillList {
+  /* display: flex;
+  justify-content: flex-end; */
 }
