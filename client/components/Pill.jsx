@@ -10,6 +10,7 @@ export default function Pill({ props }) {
   function generatePillTitles(selectedPillName) {
     return (
       <>
+        <h2>You took {selectedPillName} at </h2>
         <div className="pill-names">
           <button
             key={selectedPillName}
@@ -21,9 +22,9 @@ export default function Pill({ props }) {
           >
             Enter new {selectedPillName}
           </button>
-          <h2>You took {selectedPillName} at </h2>
+
+          <div className="pill-list">{generateTimeList(selectedPillName)}</div>
         </div>
-        <div className="pill-list">{generateTimeList(selectedPillName)}</div>
       </>
     )
   }
@@ -102,8 +103,11 @@ export default function Pill({ props }) {
   return (
     <>
       <div className="pill-container">
-        {generatePillTitles(selectedPillName)}
-        {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : <h3>      </h3>}
+        <div> {generatePillTitles(selectedPillName)}</div>
+        <div>
+          {' '}
+          {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : <h3> </h3>}
+        </div>
       </div>
     </>
   )
