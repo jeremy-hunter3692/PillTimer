@@ -4,7 +4,9 @@ import moment from 'moment'
 export default function Pill({ props }) {
   const [log, setLog] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
+  const [edit, setEdit] = useState(false)
   const { selectedPillName } = props
+
   // console.log('init', props, selectedPillName, 'log', log)
 
   function generatePillTitles(selectedPillName) {
@@ -23,7 +25,7 @@ export default function Pill({ props }) {
             Enter new {selectedPillName}
           </button>
 
-          <div className="pill-list">{generateTimeList(selectedPillName)}</div>
+          {generateTimeList(selectedPillName)}
         </div>
       </>
     )
@@ -32,7 +34,7 @@ export default function Pill({ props }) {
   //adding time pill is taken
   function addPillTime(selectedPillName) {
     //will doing this in two places cause problems?
-    let nowString = moment().calendar()
+    let nowString = moment().format('h' + ':' + 'm a')
     let currentIndex = null
     {
       //checking if array alreqdy exists in state
@@ -65,14 +67,28 @@ export default function Pill({ props }) {
   //time pill taken
   function generateTimeList() {
     return (
-      <ul>
-        {log.map((x) => (
-          <li key={x}>
-            {x} {'   '}
-            {deleteButton(x)}
-          </li>
-        ))}
-      </ul>
+      <>
+        <div className="pill-list">
+          <ul>
+            {log.map((x) => (
+              <li key={x}>
+                {x} {'   '}
+                {edit && deleteButton(x)}
+              </li>
+            ))}
+          </ul>
+          {alreadyAdded ? <h4> {alreadyAdded} already saved</h4> : ''}
+        </div>
+        <button
+          key={edit}
+          onClick={(e) => {
+            e.preventDefault()
+            setEdit(!edit)
+          }}
+        >
+          edit
+        </button>
+      </>
     )
   }
 
@@ -104,10 +120,6 @@ export default function Pill({ props }) {
     <>
       <div className="pill-container">
         <div> {generatePillTitles(selectedPillName)}</div>
-        <div>
-          {' '}
-          {alreadyAdded ? <h3> {alreadyAdded} already saved</h3> : <h3> </h3>}
-        </div>
       </div>
     </>
   )
