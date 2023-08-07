@@ -85,10 +85,11 @@ li { list-style-type: none;
 
 .pill-button {
   align-self: center;
+  text-align: left;
   width: 60%;
   background: #4595fe;
   border-radius: 50%;
-  padding: 2rem;
+  padding: 4rem;
   justify-content: left;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

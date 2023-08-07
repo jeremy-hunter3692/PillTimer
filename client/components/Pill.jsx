@@ -7,7 +7,7 @@ export default function Pill({ props }) {
   const [edit, setEdit] = useState(false)
   const { selectedPillName } = props
 
-  // console.log('init', props, selectedPillName, 'log', log)
+  // console.log('init log', log)
 
   function generatePillTitles(selectedPillName) {
     return (
@@ -22,7 +22,7 @@ export default function Pill({ props }) {
               addPillTime(selectedPillName)
             }}
           >
-            Enter new {selectedPillName}
+            New {selectedPillName}
           </button>
 
           {generateTimeList(selectedPillName)}
@@ -34,8 +34,9 @@ export default function Pill({ props }) {
   //adding time pill is taken
   function addPillTime(selectedPillName) {
     //will doing this in two places cause problems?
-    let nowString = moment().format('h' + ':' + 'm a')
+    let nowString = moment().format('h' + ':' + 'mm a')
     let currentIndex = null
+    setEdit(false)
     {
       //checking if array alreqdy exists in state
       if (log[0] === undefined) {
@@ -73,7 +74,7 @@ export default function Pill({ props }) {
             {log.map((x) => (
               <li key={x}>
                 {x} {'   '}
-                {edit && deleteButton(x)}
+                {deleteButton(x)}
               </li>
             ))}
           </ul>
@@ -86,7 +87,7 @@ export default function Pill({ props }) {
             setEdit(!edit)
           }}
         >
-          edit
+          Edit
         </button>
       </>
     )
@@ -95,12 +96,13 @@ export default function Pill({ props }) {
   function deleteButton(x) {
     return (
       <button
+        style={edit ? { visibility: 'visible' } : { visibility: 'hidden' }}
         onClick={(e) => {
           e.preventDefault()
           handleDelete(x)
         }}
       >
-        delete
+        Delete
       </button>
     )
   }
@@ -108,8 +110,7 @@ export default function Pill({ props }) {
   function handleDelete(time) {
     if (log[1]) {
       let tempArr = log.filter((x) => x !== time)
-      console.log('temp', tempArr)
-      setLog([tempArr])
+      setLog(tempArr)
       setAdded(null)
     } else {
       setLog([])
