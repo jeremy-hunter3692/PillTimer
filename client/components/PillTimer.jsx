@@ -18,9 +18,7 @@ export default function PillTimer() {
         setAdded(null)
       }, 4000)
     } else {
-      //checking for empty strinsg
-
-      Boolean(form) == false
+      form.trim().length === 0
         ? console.log('emptystring')
         : setPillName([...pillName, form])
       setForm('')
