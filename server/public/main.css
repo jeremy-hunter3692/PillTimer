@@ -93,3 +93,6 @@ li { list-style-type: none;
   justify-content: left;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.pill-dropdowns {
+  width: 20%;
+}

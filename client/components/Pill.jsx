@@ -5,8 +5,9 @@ export default function Pill({ props }) {
   const [log, setLog] = useState([])
   const [alreadyAdded, setAdded] = useState(null)
   const [edit, setEdit] = useState(false)
-  const { selectedPillName } = props
 
+  const { selectedPillName } = props
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   // console.log('init log', log)
 
   function generatePillTitles(selectedPillName) {
@@ -24,7 +25,6 @@ export default function Pill({ props }) {
           >
             New {selectedPillName}
           </button>
-
           {generateTimeList(selectedPillName)}
         </div>
       </>
@@ -33,7 +33,6 @@ export default function Pill({ props }) {
 
   //adding time pill is taken
   function addPillTime(selectedPillName) {
-    //will doing this in two places cause problems?
     let nowString = moment().format('h' + ':' + 'mm a')
     let currentIndex = null
     setEdit(false)
@@ -58,7 +57,6 @@ export default function Pill({ props }) {
   }
 
   function addAndClearText(pillName) {
-    //might need to put and or/and to deal with empty string/null situation
     setAdded(pillName)
     setTimeout(() => {
       setAdded(null)
@@ -74,6 +72,16 @@ export default function Pill({ props }) {
             {log.map((x) => (
               <li key={x}>
                 {x} {'   '}
+                <select className="pill-dropdowns">
+                  <option value="" disabled>
+                    Amount taken
+                  </option>
+                  {numbers.map((x) => (
+                    <option key={x} value={x} title="Choose a track">
+                      {x}
+                    </option>
+                  ))}
+                </select>
                 {deleteButton(x)}
               </li>
             ))}
