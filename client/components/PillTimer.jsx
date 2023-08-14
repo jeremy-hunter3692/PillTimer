@@ -36,6 +36,7 @@ export default function PillTimer() {
   }
   //to pass to edit modal
   function setPillPropFunc(input) {
+    console.log('set pill fired', input)
     setPillName(input)
   }
 
@@ -49,10 +50,12 @@ export default function PillTimer() {
             value={form}
             onChange={handleChange}
           />
-          <button onSubmit={addNewPill}>Save New Pill</button>
+          <button onSubmit={addNewPill}>Add New Pill</button>
         </form>
         <button onClick={() => setShowEdit(!showEdit)}>Edit</button>
-        {showEdit && <EditPill props={pillName} pillFunc={setPillPropFunc} />}
+        {showEdit && (
+          <EditPill pillName={pillName} pillFunc={setPillPropFunc} />
+        )}
       </div>
       <div>{alreadyAdded ? <h4>{alreadyAdded} already saved</h4> : ''}</div>
       {pillName.map((x) => {

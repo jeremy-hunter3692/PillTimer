@@ -7,7 +7,10 @@ export default function Pill({ props }) {
   const [edit, setEdit] = useState(false)
 
   const { selectedPillName } = props
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const numbers = Array(10)
+    .fill(0)
+    .map((_, idx) => idx + 1)
+  
   // console.log('init log', log)
 
   function generatePillTitles(selectedPillName) {
@@ -71,8 +74,9 @@ export default function Pill({ props }) {
           <ul>
             {log.map((x) => (
               <li key={x}>
-                {x} {'   '}
+                {x} How many?
                 <select className="pill-dropdowns">
+    
                   <option value="" disabled>
                     Amount taken
                   </option>
